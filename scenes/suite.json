@@ -1,0 +1,1028 @@
+{
+  "schema": 1,
+  "full": [
+    "bathroom",
+    "living-room",
+    "bedroom",
+    "kitchen",
+    "staircase2",
+    "staircase",
+    "bathroom2",
+    "living-room-2",
+    "living-room-3",
+    "dining-room",
+    "glass-of-water",
+    "car2",
+    "car",
+    "coffee",
+    "lamp",
+    "hair-curl",
+    "curly-hair",
+    "straight-hair",
+    "house",
+    "spaceship",
+    "classroom",
+    "dragon",
+    "teapot-full",
+    "teapot",
+    "cornell-box",
+    "volumetric-caustic",
+    "water-caustic",
+    "veach-ajar",
+    "veach-bidir",
+    "veach-mis",
+    "material-testball",
+    "furball",
+    "lego",
+    "rover",
+    "matpreview"
+  ],
+  "quick": [
+    "kitchen",
+    "classroom",
+    "glass-of-water",
+    "water-caustic",
+    "cornell-box",
+    "material-testball"
+  ],
+  "scenes": {
+    "bathroom": {
+      "name": "Contemporary Bathroom",
+      "expected_unsupported": {},
+      "expected_diagnostics": [
+        "MATERIAL_APPROXIMATION",
+        "MATERIAL_FEATURE_DEFERRED"
+      ],
+      "regions": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      }
+    },
+    "living-room": {
+      "name": "The Grey & White Room",
+      "expected_unsupported": {},
+      "expected_diagnostics": [
+        "MATERIAL_FEATURE_DEFERRED"
+      ],
+      "regions": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      }
+    },
+    "bedroom": {
+      "name": "Bedroom",
+      "expected_unsupported": {},
+      "expected_diagnostics": [
+        "MATERIAL_APPROXIMATION",
+        "MATERIAL_FEATURE_DEFERRED"
+      ],
+      "regions": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      }
+    },
+    "kitchen": {
+      "name": "Country Kitchen",
+      "expected_unsupported": {},
+      "expected_diagnostics": [
+        "MATERIAL_APPROXIMATION",
+        "MATERIAL_FEATURE_DEFERRED"
+      ],
+      "regions": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      }
+    },
+    "staircase2": {
+      "name": "Modern Hall",
+      "expected_unsupported": {},
+      "expected_diagnostics": [
+        "MATERIAL_FEATURE_DEFERRED",
+        "MEDIUM_DEFERRED"
+      ],
+      "regions": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      }
+    },
+    "staircase": {
+      "name": "The Wooden Staircase",
+      "expected_unsupported": {},
+      "expected_diagnostics": [
+        "MATERIAL_FEATURE_DEFERRED"
+      ],
+      "regions": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      }
+    },
+    "bathroom2": {
+      "name": "Salle de bain",
+      "expected_unsupported": {},
+      "expected_diagnostics": [
+        "MATERIAL_FEATURE_DEFERRED"
+      ],
+      "regions": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      }
+    },
+    "living-room-2": {
+      "name": "The White Room",
+      "expected_unsupported": {},
+      "expected_diagnostics": [
+        "MATERIAL_APPROXIMATION",
+        "MATERIAL_FEATURE_DEFERRED"
+      ],
+      "regions": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      }
+    },
+    "living-room-3": {
+      "name": "The Modern Living Room",
+      "expected_unsupported": {},
+      "expected_diagnostics": [
+        "MATERIAL_FEATURE_DEFERRED",
+        "MEDIUM_DEFERRED"
+      ],
+      "regions": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      }
+    },
+    "dining-room": {
+      "name": "The Breakfast Room",
+      "expected_unsupported": {},
+      "expected_diagnostics": [
+        "MATERIAL_FEATURE_DEFERRED"
+      ],
+      "regions": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      }
+    },
+    "glass-of-water": {
+      "name": "Glass of Water",
+      "expected_unsupported": {},
+      "expected_diagnostics": [
+        "MATERIAL_FEATURE_DEFERRED"
+      ],
+      "regions": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      }
+    },
+    "car2": {
+      "name": "Pontiac GTO 67",
+      "expected_unsupported": {},
+      "expected_diagnostics": [
+        "MATERIAL_APPROXIMATION",
+        "MATERIAL_FEATURE_DEFERRED"
+      ],
+      "regions": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      }
+    },
+    "car": {
+      "name": "Old vintage car",
+      "expected_unsupported": {},
+      "expected_diagnostics": [
+        "MATERIAL_APPROXIMATION",
+        "MATERIAL_FEATURE_DEFERRED"
+      ],
+      "regions": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      }
+    },
+    "coffee": {
+      "name": "Coffee Maker",
+      "expected_unsupported": {},
+      "expected_diagnostics": [
+        "MATERIAL_FEATURE_DEFERRED"
+      ],
+      "regions": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      }
+    },
+    "lamp": {
+      "name": "Little Lamp",
+      "expected_unsupported": {},
+      "expected_diagnostics": [
+        "MATERIAL_FEATURE_DEFERRED"
+      ],
+      "regions": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      }
+    },
+    "hair-curl": {
+      "name": "Hair Curls",
+      "expected_unsupported": {
+        "gi": "UNSUPPORTED_SHAPE",
+        "pt-reblur": "UNSUPPORTED_SHAPE",
+        "pt2048": "UNSUPPORTED_SHAPE"
+      },
+      "expected_diagnostics": [
+        "LIGHT_UNSUPPORTED",
+        "UNSUPPORTED_SHAPE"
+      ],
+      "regions": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      }
+    },
+    "curly-hair": {
+      "name": "Curly Hair",
+      "expected_unsupported": {
+        "gi": "UNSUPPORTED_SHAPE",
+        "pt-reblur": "UNSUPPORTED_SHAPE",
+        "pt2048": "UNSUPPORTED_SHAPE"
+      },
+      "expected_diagnostics": [
+        "LIGHT_UNSUPPORTED",
+        "UNSUPPORTED_SHAPE"
+      ],
+      "regions": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      }
+    },
+    "straight-hair": {
+      "name": "Straight Hair",
+      "expected_unsupported": {
+        "gi": "UNSUPPORTED_SHAPE",
+        "pt-reblur": "UNSUPPORTED_SHAPE",
+        "pt2048": "UNSUPPORTED_SHAPE"
+      },
+      "expected_diagnostics": [
+        "LIGHT_UNSUPPORTED",
+        "UNSUPPORTED_SHAPE"
+      ],
+      "regions": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      }
+    },
+    "house": {
+      "name": "Victorian Style House",
+      "expected_unsupported": {},
+      "expected_diagnostics": [
+        "MATERIAL_APPROXIMATION",
+        "MATERIAL_FEATURE_DEFERRED"
+      ],
+      "regions": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      }
+    },
+    "spaceship": {
+      "name": "4060.b Spaceship",
+      "expected_unsupported": {},
+      "expected_diagnostics": [
+        "MATERIAL_FEATURE_DEFERRED"
+      ],
+      "regions": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      }
+    },
+    "classroom": {
+      "name": "Japanese Classroom",
+      "expected_unsupported": {},
+      "expected_diagnostics": [
+        "MATERIAL_FEATURE_DEFERRED"
+      ],
+      "regions": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      }
+    },
+    "dragon": {
+      "name": "Dragon",
+      "expected_unsupported": {
+        "gi": "FALCOR_DI_NO_FINITE_LIGHT_POWER"
+      },
+      "expected_diagnostics": [
+        "MATERIAL_FEATURE_DEFERRED"
+      ],
+      "regions": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      }
+    },
+    "teapot-full": {
+      "name": "Utah Teapot (full)",
+      "expected_unsupported": {},
+      "expected_diagnostics": [
+        "MATERIAL_FEATURE_DEFERRED",
+        "MEDIUM_DEFERRED"
+      ],
+      "regions": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      }
+    },
+    "teapot": {
+      "name": "Utah Teapot",
+      "expected_unsupported": {},
+      "expected_diagnostics": [
+        "MATERIAL_FEATURE_DEFERRED"
+      ],
+      "regions": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      }
+    },
+    "cornell-box": {
+      "name": "Cornell Box",
+      "expected_unsupported": {},
+      "expected_diagnostics": [
+        "MATERIAL_FEATURE_DEFERRED"
+      ],
+      "regions": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      }
+    },
+    "volumetric-caustic": {
+      "name": "Volumetric Caustic",
+      "expected_unsupported": {},
+      "expected_diagnostics": [
+        "MATERIAL_FEATURE_DEFERRED",
+        "MEDIUM_DEFERRED"
+      ],
+      "regions": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      }
+    },
+    "water-caustic": {
+      "name": "Water Caustic",
+      "expected_unsupported": {},
+      "expected_diagnostics": [
+        "MATERIAL_FEATURE_DEFERRED"
+      ],
+      "regions": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      }
+    },
+    "veach-ajar": {
+      "name": "Veach, Ajar",
+      "expected_unsupported": {},
+      "expected_diagnostics": [
+        "MATERIAL_FEATURE_DEFERRED"
+      ],
+      "regions": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      }
+    },
+    "veach-bidir": {
+      "name": "Veach, Bidir Room",
+      "expected_unsupported": {},
+      "expected_diagnostics": [
+        "MATERIAL_FEATURE_DEFERRED"
+      ],
+      "regions": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      }
+    },
+    "veach-mis": {
+      "name": "Veach, MIS",
+      "expected_unsupported": {},
+      "expected_diagnostics": [
+        "MATERIAL_FEATURE_DEFERRED"
+      ],
+      "regions": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      }
+    },
+    "material-testball": {
+      "name": "Material Test Ball",
+      "expected_unsupported": {},
+      "expected_diagnostics": [
+        "MATERIAL_APPROXIMATION",
+        "MATERIAL_FEATURE_DEFERRED"
+      ],
+      "regions": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      }
+    },
+    "furball": {
+      "name": "Fur Ball",
+      "expected_unsupported": {
+        "gi": "UNSUPPORTED_SHAPE",
+        "pt-reblur": "UNSUPPORTED_SHAPE",
+        "pt2048": "UNSUPPORTED_SHAPE"
+      },
+      "expected_diagnostics": [
+        "LIGHT_UNSUPPORTED",
+        "UNSUPPORTED_SHAPE"
+      ],
+      "regions": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      }
+    },
+    "lego": {
+      "name": "Lego Digger",
+      "expected_unsupported": {},
+      "expected_diagnostics": [
+        "MATERIAL_FEATURE_DEFERRED"
+      ],
+      "regions": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      }
+    },
+    "rover": {
+      "name": "Rover",
+      "expected_unsupported": {},
+      "expected_diagnostics": [
+        "MATERIAL_APPROXIMATION",
+        "MATERIAL_FEATURE_DEFERRED"
+      ],
+      "regions": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      }
+    },
+    "matpreview": {
+      "name": "Mitsuba Material Ball",
+      "expected_unsupported": {},
+      "expected_diagnostics": [],
+      "regions": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      }
+    }
+  }
+}

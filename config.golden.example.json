@@ -1,0 +1,10 @@
+{
+  "engine_executable": "../CoronaEngine/cmake-build-relwithdebinfo/examples/engine/corona_engine.exe",
+  "runtime_dirs": [],
+  "sampling": {
+    "pt_spp": 2048,
+    "gi_frames": 192,
+    "pt_reblur_frames": 192,
+    "warmup_frames": 64
+  }
+}

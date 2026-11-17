@@ -1,0 +1,158 @@
+{
+  "open_project_response": {
+    "data": {
+      "degraded": true,
+      "diagnostics": [
+        {
+          "code": "UNSUPPORTED_SHAPE",
+          "count": 4,
+          "message": "Skipped unsupported Mitsuba shape 'hair'",
+          "path": "D:\\work\\corona\\CoronaEngine\\.workspace\\experiments\\mitsuba-all-20261104\\legacy-inputs\\hair-curl\\scene_v3_normalized.xml",
+          "recoverable": true,
+          "requires_confirmation": true,
+          "severity": "warning",
+          "shape_type": "hair",
+          "stage": "archive_parse"
+        },
+        {
+          "code": "LIGHT_UNSUPPORTED",
+          "count": 1,
+          "message": "Unsupported emitter sunsky",
+          "path": "D:\\work\\corona\\CoronaEngine\\.workspace\\experiments\\mitsuba-all-20261104\\legacy-inputs\\hair-curl\\scene_v3_normalized.xml",
+          "recoverable": true,
+          "requires_confirmation": true,
+          "severity": "warning",
+          "shape_type": "",
+          "stage": "archive_parse"
+        }
+      ],
+      "ok": true,
+      "path": "D:\\work\\corona\\CoronaEngine\\.workspace\\experiments\\mitsuba-all-20261104\\legacy-inputs\\hair-curl\\scene_v3_normalized.xml",
+      "scene": {
+        "name": "hair-curl",
+        "path": "scene_v3_normalized.xml"
+      },
+      "status": "opened_degraded",
+      "unresolved_actor_count": 0
+    },
+    "function": "ProjectLauncher.open_project",
+    "module": "EditorApi",
+    "route": "editor-api",
+    "success": true
+  },
+  "scene_snapshot_response": {
+    "data": {
+      "active_camera_id": "source-camera",
+      "active_camera_name": "SourceCamera",
+      "actor_count": 0,
+      "actors": [],
+      "archive_session": "a006b6116388475cbbdb0ce33aebe996",
+      "bounds_ready": false,
+      "camera": {
+        "camera_id": "source-camera",
+        "deletable": false,
+        "far_plane": 10000,
+        "forward": [
+          1.509580016545442e-07,
+          -0.002813170198351145,
+          -0.9999960660934448
+        ],
+        "fov": 29.44329833984375,
+        "handle": 2089727136832,
+        "height": 1000,
+        "id": "source-camera",
+        "move_speed": 1,
+        "name": "SourceCamera",
+        "near_plane": 0.009999999776482582,
+        "output_mode": "final_color",
+        "position": [
+          -0.05528600141406059,
+          5.929759979248047,
+          17.065099716186523
+        ],
+        "projection_x_sign": -1,
+        "render_backend": "native",
+        "view_height": 800,
+        "view_open": false,
+        "view_width": 960,
+        "view_x": 120,
+        "view_y": 120,
+        "vision_accumulation": false,
+        "vision_denoise": true,
+        "vision_denoiser": "reblur",
+        "vision_max_depth": "",
+        "vision_pt_settings": {},
+        "vision_reblur_settings": {},
+        "vision_relax_settings": {},
+        "vision_render_mode": "path_tracing",
+        "vision_restir_settings": {},
+        "vision_spp": "",
+        "vision_stable_planes": true,
+        "width": 1200,
+        "world_up": [
+          4.2467201977203217e-10,
+          0.9999960660934448,
+          -0.002813170198351145
+        ]
+      },
+      "cameras": [
+        {
+          "camera_id": "source-camera",
+          "deletable": false,
+          "far_plane": 10000,
+          "forward": [
+            1.509580016545442e-07,
+            -0.002813170198351145,
+            -0.9999960660934448
+          ],
+          "fov": 29.44329833984375,
+          "handle": 2089727136832,
+          "height": 1000,
+          "id": "source-camera",
+          "move_speed": 1,
+          "name": "SourceCamera",
+          "near_plane": 0.009999999776482582,
+          "output_mode": "final_color",
+          "position": [
+            -0.05528600141406059,
+            5.929759979248047,
+            17.065099716186523
+          ],
+          "projection_x_sign": -1,
+          "render_backend": "native",
+          "view_height": 800,
+          "view_open": false,
+          "view_width": 960,
+          "view_x": 120,
+          "view_y": 120,
+          "vision_accumulation": false,
+          "vision_denoise": true,
+          "vision_denoiser": "reblur",
+          "vision_max_depth": "",
+          "vision_pt_settings": {},
+          "vision_reblur_settings": {},
+          "vision_relax_settings": {},
+          "vision_render_mode": "path_tracing",
+          "vision_restir_settings": {},
+          "vision_spp": "",
+          "vision_stable_planes": true,
+          "width": 1200,
+          "world_up": [
+            4.2467201977203217e-10,
+            0.9999960660934448,
+            -0.002813170198351145
+          ]
+        }
+      ],
+      "project_path": "D:/work/corona/CoronaEngine/.workspace/experiments/mitsuba-all-20261104/legacy-inputs/hair-curl",
+      "scene": "scene_v3_normalized.xml",
+      "scene_aabb": null,
+      "scene_name": "hair-curl",
+      "status": "success"
+    },
+    "function": "SceneTools.get_scene_snapshot",
+    "module": "EditorApi",
+    "route": "editor-api",
+    "success": true
+  }
+}

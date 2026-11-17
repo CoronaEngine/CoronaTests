@@ -1,0 +1,122 @@
+{
+  "effective_reblur_before": {
+    "contexts": {
+      "gi": {
+        "count": 3,
+        "settings": {
+          "anti_firefly": true,
+          "antilag_sensitivity": 3,
+          "antilag_sigma": 4,
+          "diffuse_prepass": 15,
+          "fast_history": 6,
+          "history_fix_frames": 3,
+          "history_fix_stride": 14,
+          "lobe_fraction": 0.15000000596046448,
+          "max_history": 63,
+          "max_radius": 30,
+          "min_hit_weight": 0.10000000149011612,
+          "min_radius": 1,
+          "plane_sensitivity": 0.019999999552965164,
+          "reconstruction": 2,
+          "roughness_fraction": 0.15000000596046448,
+          "specular_prepass": 40,
+          "stabilization": 0.984375
+        }
+      },
+      "physical_di": {
+        "count": 1,
+        "ready": false,
+        "settings": {}
+      },
+      "policy": "physical-di-detail-preserving-v1"
+    },
+    "settings": {
+      "anti_firefly": true,
+      "antilag_sensitivity": 3,
+      "antilag_sigma": 4,
+      "diffuse_prepass": 15,
+      "fast_history": 6,
+      "history_fix_frames": 3,
+      "history_fix_stride": 14,
+      "lobe_fraction": 0.15,
+      "max_history": 63,
+      "max_radius": 30,
+      "min_hit_weight": 0.1,
+      "min_radius": 1,
+      "plane_sensitivity": 0.02,
+      "reconstruction": 2,
+      "roughness_fraction": 0.15,
+      "specular_prepass": 40,
+      "stabilization": 0.984375
+    }
+  },
+  "effective_reblur_after": {
+    "contexts": {
+      "gi": {
+        "count": 3,
+        "settings": {
+          "anti_firefly": true,
+          "antilag_sensitivity": 3,
+          "antilag_sigma": 4,
+          "diffuse_prepass": 15,
+          "fast_history": 6,
+          "history_fix_frames": 3,
+          "history_fix_stride": 14,
+          "lobe_fraction": 0.15000000596046448,
+          "max_history": 63,
+          "max_radius": 30,
+          "min_hit_weight": 0.10000000149011612,
+          "min_radius": 1,
+          "plane_sensitivity": 0.019999999552965164,
+          "reconstruction": 2,
+          "roughness_fraction": 0.15000000596046448,
+          "specular_prepass": 40,
+          "stabilization": 0.984375
+        }
+      },
+      "physical_di": {
+        "count": 1,
+        "ready": true,
+        "settings": {
+          "anti_firefly": true,
+          "antilag_sensitivity": 3,
+          "antilag_sigma": 4,
+          "diffuse_prepass": 0,
+          "fast_history": 6,
+          "history_fix_frames": 3,
+          "history_fix_stride": 14,
+          "lobe_fraction": 0.15000000596046448,
+          "max_history": 63,
+          "max_radius": 10,
+          "min_hit_weight": 0.10000000149011612,
+          "min_radius": 1,
+          "plane_sensitivity": 0.019999999552965164,
+          "reconstruction": 2,
+          "roughness_fraction": 0.15000000596046448,
+          "specular_prepass": 40,
+          "stabilization": 0.984375
+        }
+      },
+      "policy": "physical-di-detail-preserving-v1"
+    },
+    "settings": {
+      "anti_firefly": true,
+      "antilag_sensitivity": 3,
+      "antilag_sigma": 4,
+      "diffuse_prepass": 15,
+      "fast_history": 6,
+      "history_fix_frames": 3,
+      "history_fix_stride": 14,
+      "lobe_fraction": 0.15,
+      "max_history": 63,
+      "max_radius": 30,
+      "min_hit_weight": 0.1,
+      "min_radius": 1,
+      "plane_sensitivity": 0.02,
+      "reconstruction": 2,
+      "roughness_fraction": 0.15,
+      "specular_prepass": 40,
+      "stabilization": 0.984375
+    }
+  }
+}

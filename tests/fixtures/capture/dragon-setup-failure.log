@@ -1,0 +1,14 @@
+[2026-11-16T17:25:22.736001124][40296][WARNING][logging.cpp:18] Falcor DI unavailable, using native ReSTIR DI: Falcor DI found no finite light power
+[2026-11-16T17:25:22.736001124][40296][WARNING][logging.cpp:18]     Source: 
+[2026-11-16T17:25:22.736001124][40296][WARNING][logging.cpp:18] D:\work\corona\CoronaEngine\vision\src\render_core\integrator\rt.cpp:603
+[2026-11-16T17:25:22.736006604][40296][ERROR][logging.cpp:19] RTXPT GI + REBLUR requires active Falcor DI: RGB, normal framebuffer, max_recursion=1, centered primary rays and no media.
+[2026-11-16T17:25:22.736006604][40296][ERROR][logging.cpp:19]     Source: 
+[2026-11-16T17:25:22.736006604][40296][ERROR][logging.cpp:19] D:\work\corona\CoronaEngine\vision\src\render_core\integrator\rt.cpp:608
+[2026-11-16T17:25:23.387340464][40296][INFO][SignalHandler:~] Received exception: EXCEPTION_ACCESS_VIOLATION (Code: 3221225477)
+[2026-11-16T17:25:23.387341203][40296][CRITICAL][SignalHandler:~] Program terminated unexpectedly due to exception: EXCEPTION_ACCESS_VIOLATION (Code: 3221225477)
+[2026-11-16T17:25:24.753831417][35012][INFO][SignalHandler:~] Received exception: EXCEPTION_ACCESS_VIOLATION (Code: 3221225477)
+[2026-11-16T17:25:24.754139471][35012][CRITICAL][SignalHandler:~] Program terminated unexpectedly due to exception: EXCEPTION_ACCESS_VIOLATION (Code: 3221225477)
+[2026-11-16T17:25:24.864794101][39192][INFO][SignalHandler:~] Received exception: EXCEPTION_ACCESS_VIOLATION (Code: 3221225477)
+[2026-11-16T17:25:24.864795842][39192][CRITICAL][SignalHandler:~] Program terminated unexpectedly due to exception: EXCEPTION_ACCESS_VIOLATION (Code: 3221225477)
+[2026-11-16T17:25:25.270896234][6300][INFO][SignalHandler:~] Received exception: EXCEPTION_ACCESS_VIOLATION (Code: 3221225477)
+[2026-11-16T17:25:25.272529593][6300][CRITICAL][SignalHandler:~] Program terminated unexpectedly due to exception: EXCEPTION_ACCESS_VIOLATION (Code: 3221225477)

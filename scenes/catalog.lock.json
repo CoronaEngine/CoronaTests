@@ -1,0 +1,1258 @@
+{
+  "schema": 1,
+  "source_url": "https://benedikt-bitterli.me/resources/",
+  "retrieved_utc": "2026-10-29T14:58:00.995962+00:00",
+  "source_manifest_sha256": "1f3344360db195d812f2c6d5c1c6657634858c522079867d261b747557e4685a",
+  "scene_count": 35,
+  "preparation_contract": 1,
+  "scenes": [
+    {
+      "name": "Contemporary Bathroom",
+      "id": "bathroom",
+      "format_label": "Mitsuba 3",
+      "url": "https://benedikt-bitterli.me/resources/mitsuba/bathroom.zip",
+      "archive": "archives/bathroom.zip",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "expected_bytes": 26111702,
+      "last_modified": "Thu, 21 Jul 2022 08:57:06 GMT",
+      "etag": "\"62d914e2-18e6ed6\"",
+      "sha256": "59cf1c96e916d6873c0a421cd54b2be55b4da68f5f25720525f75d9afdbea562",
+      "downloaded_bytes": 26111702,
+      "zip_crc_verified": true,
+      "directory": "bathroom",
+      "archive_prefix_removed": "bathroom/",
+      "file_count": 870,
+      "extracted_bytes": 72030229,
+      "xml_files": [
+        "scene_v0.6.xml",
+        "scene_v3.xml"
+      ],
+      "license_files": [
+        "LICENSE.txt"
+      ],
+      "completed_utc": "2026-10-29T14:58:58.585120+00:00",
+      "status": "complete",
+      "xml_versions": [
+        {
+          "file": "scene_v0.6.xml",
+          "version": "0.5.0"
+        },
+        {
+          "file": "scene_v3.xml",
+          "version": "3.0.0"
+        }
+      ]
+    },
+    {
+      "name": "The Grey & White Room",
+      "id": "living-room",
+      "format_label": "Mitsuba 3",
+      "url": "https://benedikt-bitterli.me/resources/mitsuba/living-room.zip",
+      "archive": "archives/living-room.zip",
+      "license_url": "https://creativecommons.org/licenses/by/3.0/",
+      "expected_bytes": 9867976,
+      "last_modified": "Thu, 21 Jul 2022 09:00:10 GMT",
+      "etag": "\"62d9159a-9692c8\"",
+      "sha256": "e028f7148c18355b1141e148439f371330b9499d4fab85491eca9b52c59728be",
+      "downloaded_bytes": 9867976,
+      "zip_crc_verified": true,
+      "directory": "living-room",
+      "archive_prefix_removed": "living-room/",
+      "file_count": 76,
+      "extracted_bytes": 23743486,
+      "xml_files": [
+        "scene_v0.6.xml",
+        "scene_v3.xml"
+      ],
+      "license_files": [
+        "LICENSE.txt"
+      ],
+      "completed_utc": "2026-10-29T14:58:55.923573+00:00",
+      "status": "complete",
+      "xml_versions": [
+        {
+          "file": "scene_v0.6.xml",
+          "version": "0.5.0"
+        },
+        {
+          "file": "scene_v3.xml",
+          "version": "3.0.0"
+        }
+      ]
+    },
+    {
+      "name": "Bedroom",
+      "id": "bedroom",
+      "format_label": "Mitsuba 3",
+      "url": "https://benedikt-bitterli.me/resources/mitsuba/bedroom.zip",
+      "archive": "archives/bedroom.zip",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "expected_bytes": 34886729,
+      "last_modified": "Thu, 21 Jul 2022 08:57:57 GMT",
+      "etag": "\"62d91515-2145449\"",
+      "sha256": "4822faa52b80ec3bc2b08f5bb7714565614444709f46d7630c203a9f16faad3f",
+      "downloaded_bytes": 34886729,
+      "zip_crc_verified": true,
+      "directory": "bedroom",
+      "archive_prefix_removed": "bedroom/",
+      "file_count": 78,
+      "extracted_bytes": 183475882,
+      "xml_files": [
+        "scene_v0.6.xml",
+        "scene_v3.xml"
+      ],
+      "license_files": [
+        "LICENSE.txt"
+      ],
+      "completed_utc": "2026-10-29T14:58:58.641622+00:00",
+      "status": "complete",
+      "xml_versions": [
+        {
+          "file": "scene_v0.6.xml",
+          "version": "0.5.0"
+        },
+        {
+          "file": "scene_v3.xml",
+          "version": "3.0.0"
+        }
+      ]
+    },
+    {
+      "name": "Country Kitchen",
+      "id": "kitchen",
+      "format_label": "Mitsuba 3",
+      "url": "https://benedikt-bitterli.me/resources/mitsuba/kitchen.zip",
+      "archive": "archives/kitchen.zip",
+      "license_url": "https://creativecommons.org/licenses/by/3.0/",
+      "expected_bytes": 26620413,
+      "last_modified": "Thu, 21 Jul 2022 08:59:46 GMT",
+      "etag": "\"62d91582-19631fd\"",
+      "sha256": "a5bf67b75ec4da835b3de4ff36a3dd25b11575fab715b6242116bfb98c80f637",
+      "downloaded_bytes": 26620413,
+      "zip_crc_verified": true,
+      "directory": "kitchen",
+      "archive_prefix_removed": "kitchen/",
+      "file_count": 313,
+      "extracted_bytes": 143346369,
+      "xml_files": [
+        "scene_v0.6.xml",
+        "scene_v3.xml"
+      ],
+      "license_files": [
+        "LICENSE.txt"
+      ],
+      "completed_utc": "2026-10-29T14:58:57.171986+00:00",
+      "status": "complete",
+      "xml_versions": [
+        {
+          "file": "scene_v0.6.xml",
+          "version": "0.5.0"
+        },
+        {
+          "file": "scene_v3.xml",
+          "version": "3.0.0"
+        }
+      ]
+    },
+    {
+      "name": "Modern Hall",
+      "id": "staircase2",
+      "format_label": "Mitsuba 3",
+      "url": "https://benedikt-bitterli.me/resources/mitsuba/staircase2.zip",
+      "archive": "archives/staircase2.zip",
+      "license_url": "https://creativecommons.org/licenses/by/3.0/",
+      "expected_bytes": 5284547,
+      "last_modified": "Thu, 21 Jul 2022 09:01:01 GMT",
+      "etag": "\"62d915cd-50a2c3\"",
+      "sha256": "922bfaf428c58a7ea3886f5367194b68132b254b6ea6ba5414c12fe7bfce939e",
+      "downloaded_bytes": 5284547,
+      "zip_crc_verified": true,
+      "directory": "staircase2",
+      "archive_prefix_removed": "staircase2/",
+      "file_count": 27,
+      "extracted_bytes": 8040571,
+      "xml_files": [
+        "scene_v0.6.xml",
+        "scene_v3.xml"
+      ],
+      "license_files": [
+        "LICENSE.txt"
+      ],
+      "completed_utc": "2026-10-29T14:58:59.960155+00:00",
+      "status": "complete",
+      "xml_versions": [
+        {
+          "file": "scene_v0.6.xml",
+          "version": "0.5.0"
+        },
+        {
+          "file": "scene_v3.xml",
+          "version": "3.0.0"
+        }
+      ]
+    },
+    {
+      "name": "The Wooden Staircase",
+      "id": "staircase",
+      "format_label": "Mitsuba 3",
+      "url": "https://benedikt-bitterli.me/resources/mitsuba/staircase.zip",
+      "archive": "archives/staircase.zip",
+      "license_url": "https://creativecommons.org/licenses/by/3.0/",
+      "expected_bytes": 17010962,
+      "last_modified": "Thu, 21 Jul 2022 09:01:00 GMT",
+      "etag": "\"62d915cc-1039112\"",
+      "sha256": "4c37c5a16711395f76c9fcf5956428695859eca61dc41dc0168af48343e3ada0",
+      "downloaded_bytes": 17010962,
+      "zip_crc_verified": true,
+      "directory": "staircase",
+      "archive_prefix_removed": "staircase/",
+      "file_count": 789,
+      "extracted_bytes": 39099547,
+      "xml_files": [
+        "scene_v0.6.xml",
+        "scene_v3.xml"
+      ],
+      "license_files": [
+        "LICENSE.txt"
+      ],
+      "completed_utc": "2026-10-29T14:59:01.778990+00:00",
+      "status": "complete",
+      "xml_versions": [
+        {
+          "file": "scene_v0.6.xml",
+          "version": "0.5.0"
+        },
+        {
+          "file": "scene_v3.xml",
+          "version": "3.0.0"
+        }
+      ]
+    },
+    {
+      "name": "Salle de bain",
+      "id": "bathroom2",
+      "format_label": "Mitsuba 3",
+      "url": "https://benedikt-bitterli.me/resources/mitsuba/bathroom2.zip",
+      "archive": "archives/bathroom2.zip",
+      "license_url": "https://creativecommons.org/licenses/by/3.0/",
+      "expected_bytes": 26884624,
+      "last_modified": "Thu, 21 Jul 2022 08:57:22 GMT",
+      "etag": "\"62d914f2-19a3a10\"",
+      "sha256": "0a450cac2278849205b920f1df2f3eba615377dc8d9a5f4911f2fc83d3efbb37",
+      "downloaded_bytes": 26884624,
+      "zip_crc_verified": true,
+      "directory": "bathroom2",
+      "archive_prefix_removed": "bathroom2/",
+      "file_count": 69,
+      "extracted_bytes": 131974757,
+      "xml_files": [
+        "scene_v0.6.xml",
+        "scene_v3.xml"
+      ],
+      "license_files": [
+        "LICENSE.txt"
+      ],
+      "completed_utc": "2026-10-29T14:59:03.884748+00:00",
+      "status": "complete",
+      "xml_versions": [
+        {
+          "file": "scene_v0.6.xml",
+          "version": "0.5.0"
+        },
+        {
+          "file": "scene_v3.xml",
+          "version": "3.0.0"
+        }
+      ]
+    },
+    {
+      "name": "The White Room",
+      "id": "living-room-2",
+      "format_label": "Mitsuba 3",
+      "url": "https://benedikt-bitterli.me/resources/mitsuba/living-room-2.zip",
+      "archive": "archives/living-room-2.zip",
+      "license_url": "https://creativecommons.org/licenses/by/3.0/",
+      "expected_bytes": 15719296,
+      "last_modified": "Thu, 21 Jul 2022 09:00:17 GMT",
+      "etag": "\"62d915a1-efdb80\"",
+      "sha256": "848553497c430de971e6924487ca0ac15629b61d61e276a454be1635d5b137d7",
+      "downloaded_bytes": 15719296,
+      "zip_crc_verified": true,
+      "directory": "living-room-2",
+      "archive_prefix_removed": "living-room-2/",
+      "file_count": 198,
+      "extracted_bytes": 65954909,
+      "xml_files": [
+        "scene_v0.6.xml",
+        "scene_v3.xml"
+      ],
+      "license_files": [
+        "LICENSE.txt"
+      ],
+      "completed_utc": "2026-10-29T14:59:02.981111+00:00",
+      "status": "complete",
+      "xml_versions": [
+        {
+          "file": "scene_v0.6.xml",
+          "version": "0.5.0"
+        },
+        {
+          "file": "scene_v3.xml",
+          "version": "3.0.0"
+        }
+      ]
+    },
+    {
+      "name": "The Modern Living Room",
+      "id": "living-room-3",
+      "format_label": "Mitsuba 3",
+      "url": "https://benedikt-bitterli.me/resources/mitsuba/living-room-3.zip",
+      "archive": "archives/living-room-3.zip",
+      "license_url": "https://creativecommons.org/licenses/by/3.0/",
+      "expected_bytes": 24054323,
+      "last_modified": "Thu, 21 Jul 2022 09:00:30 GMT",
+      "etag": "\"62d915ae-16f0a33\"",
+      "sha256": "443202681ef4bde506b6749544a55d1400a018ac9b8f805fd68dd3284c575402",
+      "downloaded_bytes": 24054323,
+      "zip_crc_verified": true,
+      "directory": "living-room-3",
+      "archive_prefix_removed": "living-room-3/",
+      "file_count": 44,
+      "extracted_bytes": 96505340,
+      "xml_files": [
+        "scene_v0.6.xml",
+        "scene_v3.xml"
+      ],
+      "license_files": [
+        "LICENSE.txt"
+      ],
+      "completed_utc": "2026-10-29T14:59:04.992615+00:00",
+      "status": "complete",
+      "xml_versions": [
+        {
+          "file": "scene_v0.6.xml",
+          "version": "0.5.0"
+        },
+        {
+          "file": "scene_v3.xml",
+          "version": "3.0.0"
+        }
+      ]
+    },
+    {
+      "name": "The Breakfast Room",
+      "id": "dining-room",
+      "format_label": "Mitsuba 3",
+      "url": "https://benedikt-bitterli.me/resources/mitsuba/dining-room.zip",
+      "archive": "archives/dining-room.zip",
+      "license_url": "https://creativecommons.org/licenses/by/3.0/",
+      "expected_bytes": 29930707,
+      "last_modified": "Thu, 21 Jul 2022 08:58:38 GMT",
+      "etag": "\"62d9153e-1c8b4d3\"",
+      "sha256": "46425c5a38efc1678049aa7f853caae5789b4c61a9f771ca3d870b1a0335c2cc",
+      "downloaded_bytes": 29930707,
+      "zip_crc_verified": true,
+      "directory": "dining-room",
+      "archive_prefix_removed": "dining-room/",
+      "file_count": 61,
+      "extracted_bytes": 51154895,
+      "xml_files": [
+        "scene_v0.6.xml",
+        "scene_v3.xml"
+      ],
+      "license_files": [
+        "LICENSE.txt"
+      ],
+      "completed_utc": "2026-10-29T14:59:07.951931+00:00",
+      "status": "complete",
+      "xml_versions": [
+        {
+          "file": "scene_v0.6.xml",
+          "version": "0.5.0"
+        },
+        {
+          "file": "scene_v3.xml",
+          "version": "3.0.0"
+        }
+      ]
+    },
+    {
+      "name": "Glass of Water",
+      "id": "glass-of-water",
+      "format_label": "Mitsuba 3",
+      "url": "https://benedikt-bitterli.me/resources/mitsuba/glass-of-water.zip",
+      "archive": "archives/glass-of-water.zip",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "expected_bytes": 11401226,
+      "last_modified": "Thu, 21 Jul 2022 08:59:03 GMT",
+      "etag": "\"62d91557-adf80a\"",
+      "sha256": "0b27c1d45e570da9cd24196106d7ec8af6388bb8f092979bda7e789e0194cc88",
+      "downloaded_bytes": 11401226,
+      "zip_crc_verified": true,
+      "directory": "glass-of-water",
+      "archive_prefix_removed": "glass-of-water/",
+      "file_count": 21,
+      "extracted_bytes": 50923597,
+      "xml_files": [
+        "scene_v0.6.xml",
+        "scene_v3.xml"
+      ],
+      "license_files": [
+        "LICENSE.txt"
+      ],
+      "completed_utc": "2026-10-29T14:59:07.749070+00:00",
+      "status": "complete",
+      "xml_versions": [
+        {
+          "file": "scene_v0.6.xml",
+          "version": "0.5.0"
+        },
+        {
+          "file": "scene_v3.xml",
+          "version": "3.0.0"
+        }
+      ]
+    },
+    {
+      "name": "Pontiac GTO 67",
+      "id": "car2",
+      "format_label": "Mitsuba 3",
+      "url": "https://benedikt-bitterli.me/resources/mitsuba/car2.zip",
+      "archive": "archives/car2.zip",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "expected_bytes": 27570789,
+      "last_modified": "Thu, 21 Jul 2022 08:58:27 GMT",
+      "etag": "\"62d91533-1a4b265\"",
+      "sha256": "473ea0ff46a7ba29c6c0f00c4f06ef3e96bfaac9ebdc6d9f2a06758f7780f15a",
+      "downloaded_bytes": 27570789,
+      "zip_crc_verified": true,
+      "directory": "car2",
+      "archive_prefix_removed": "car2/",
+      "file_count": 69,
+      "extracted_bytes": 122125921,
+      "xml_files": [
+        "scene_v0.6.xml",
+        "scene_v3.xml"
+      ],
+      "license_files": [
+        "LICENSE.txt"
+      ],
+      "completed_utc": "2026-10-29T14:59:10.238472+00:00",
+      "status": "complete",
+      "xml_versions": [
+        {
+          "file": "scene_v0.6.xml",
+          "version": "0.5.0"
+        },
+        {
+          "file": "scene_v3.xml",
+          "version": "3.0.0"
+        }
+      ]
+    },
+    {
+      "name": "Old vintage car",
+      "id": "car",
+      "format_label": "Mitsuba 3",
+      "url": "https://benedikt-bitterli.me/resources/mitsuba/car.zip",
+      "archive": "archives/car.zip",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "expected_bytes": 17776107,
+      "last_modified": "Thu, 21 Jul 2022 08:58:10 GMT",
+      "etag": "\"62d91522-10f3deb\"",
+      "sha256": "b3e216865d63d80fc54ef8af5a9e994a8e65cc338f89978e915e640d50536460",
+      "downloaded_bytes": 17776107,
+      "zip_crc_verified": true,
+      "directory": "car",
+      "archive_prefix_removed": "car/",
+      "file_count": 54,
+      "extracted_bytes": 92352752,
+      "xml_files": [
+        "scene_v0.6.xml",
+        "scene_v3.xml"
+      ],
+      "license_files": [
+        "LICENSE.txt"
+      ],
+      "completed_utc": "2026-10-29T14:59:10.394661+00:00",
+      "status": "complete",
+      "xml_versions": [
+        {
+          "file": "scene_v0.6.xml",
+          "version": "0.5.0"
+        },
+        {
+          "file": "scene_v3.xml",
+          "version": "3.0.0"
+        }
+      ]
+    },
+    {
+      "name": "Coffee Maker",
+      "id": "coffee",
+      "format_label": "Mitsuba 3",
+      "url": "https://benedikt-bitterli.me/resources/mitsuba/coffee.zip",
+      "archive": "archives/coffee.zip",
+      "license_url": "https://creativecommons.org/licenses/by/3.0/",
+      "expected_bytes": 6177591,
+      "last_modified": "Thu, 21 Jul 2022 08:58:33 GMT",
+      "etag": "\"62d91539-5e4337\"",
+      "sha256": "44dbbffd646f160a0d9fd62a053e79494288e5987dec33b536fbb61fe3307333",
+      "downloaded_bytes": 6177591,
+      "zip_crc_verified": true,
+      "directory": "coffee",
+      "archive_prefix_removed": "coffee/",
+      "file_count": 25,
+      "extracted_bytes": 25214088,
+      "xml_files": [
+        "scene_v0.6.xml",
+        "scene_v3.xml"
+      ],
+      "license_files": [
+        "LICENSE.txt"
+      ],
+      "completed_utc": "2026-10-29T14:59:12.227580+00:00",
+      "status": "complete",
+      "xml_versions": [
+        {
+          "file": "scene_v0.6.xml",
+          "version": "0.5.0"
+        },
+        {
+          "file": "scene_v3.xml",
+          "version": "3.0.0"
+        }
+      ]
+    },
+    {
+      "name": "Little Lamp",
+      "id": "lamp",
+      "format_label": "Mitsuba 3",
+      "url": "https://benedikt-bitterli.me/resources/mitsuba/lamp.zip",
+      "archive": "archives/lamp.zip",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "expected_bytes": 20967786,
+      "last_modified": "Thu, 21 Jul 2022 08:59:59 GMT",
+      "etag": "\"62d9158f-13ff16a\"",
+      "sha256": "614cbb8b4fb12592e575a13bfd343265b7065f393e9b9efd7d9baa990687cfcf",
+      "downloaded_bytes": 20967786,
+      "zip_crc_verified": true,
+      "directory": "lamp",
+      "archive_prefix_removed": "lamp/",
+      "file_count": 58,
+      "extracted_bytes": 102969217,
+      "xml_files": [
+        "scene_v0.6.xml",
+        "scene_v3.xml"
+      ],
+      "license_files": [
+        "LICENSE.txt"
+      ],
+      "completed_utc": "2026-10-29T14:59:12.730957+00:00",
+      "status": "complete",
+      "xml_versions": [
+        {
+          "file": "scene_v0.6.xml",
+          "version": "0.5.0"
+        },
+        {
+          "file": "scene_v3.xml",
+          "version": "3.0.0"
+        }
+      ]
+    },
+    {
+      "name": "Hair Curls",
+      "id": "hair-curl",
+      "format_label": "Mitsuba",
+      "url": "https://benedikt-bitterli.me/resources/mitsuba/hair-curl.zip",
+      "archive": "archives/hair-curl.zip",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "expected_bytes": 30968945,
+      "last_modified": "Thu, 21 Jul 2022 08:59:05 GMT",
+      "etag": "\"62d91559-1d88c71\"",
+      "sha256": "b06d88705efe6c7301bf939a86e26c694574ffab4b7cb64556d861b96d1ec50d",
+      "downloaded_bytes": 30968945,
+      "zip_crc_verified": true,
+      "directory": "hair-curl",
+      "archive_prefix_removed": "hair-curl/",
+      "file_count": 8,
+      "extracted_bytes": 33796708,
+      "xml_files": [
+        "scene_v0.6.xml"
+      ],
+      "license_files": [
+        "LICENSE.txt"
+      ],
+      "completed_utc": "2026-10-29T14:59:16.651831+00:00",
+      "status": "complete",
+      "xml_versions": [
+        {
+          "file": "scene_v0.6.xml",
+          "version": "0.5.0"
+        }
+      ]
+    },
+    {
+      "name": "Curly Hair",
+      "id": "curly-hair",
+      "format_label": "Mitsuba",
+      "url": "https://benedikt-bitterli.me/resources/mitsuba/curly-hair.zip",
+      "archive": "archives/curly-hair.zip",
+      "license_url": "http://www.cemyuksel.com/research/hairmodels/",
+      "expected_bytes": 41542677,
+      "last_modified": "Thu, 21 Jul 2022 08:58:34 GMT",
+      "etag": "\"62d9153a-279e415\"",
+      "sha256": "d288d828e666d6cc8a49ff22db9bd2c9a129d1df2129750bdf49a05c077f081f",
+      "downloaded_bytes": 41542677,
+      "zip_crc_verified": true,
+      "directory": "curly-hair",
+      "archive_prefix_removed": "curly-hair/",
+      "file_count": 5,
+      "extracted_bytes": 45232256,
+      "xml_files": [
+        "scene_v0.6.xml"
+      ],
+      "license_files": [
+        "LICENSE.txt"
+      ],
+      "completed_utc": "2026-10-29T14:59:17.750014+00:00",
+      "status": "complete",
+      "xml_versions": [
+        {
+          "file": "scene_v0.6.xml",
+          "version": "0.5.0"
+        }
+      ]
+    },
+    {
+      "name": "Straight Hair",
+      "id": "straight-hair",
+      "format_label": "Mitsuba",
+      "url": "https://benedikt-bitterli.me/resources/mitsuba/straight-hair.zip",
+      "archive": "archives/straight-hair.zip",
+      "license_url": "http://www.cemyuksel.com/research/hairmodels/",
+      "expected_bytes": 16867063,
+      "last_modified": "Thu, 21 Jul 2022 09:01:01 GMT",
+      "etag": "\"62d915cd-1015ef7\"",
+      "sha256": "69ffee4a85be3e4d7ae080bcb7158b529738f5bc0452a153f33c716a83433098",
+      "downloaded_bytes": 16867063,
+      "zip_crc_verified": true,
+      "directory": "straight-hair",
+      "archive_prefix_removed": "straight-hair/",
+      "file_count": 5,
+      "extracted_bytes": 18240187,
+      "xml_files": [
+        "scene_v0.6.xml"
+      ],
+      "license_files": [
+        "LICENSE.txt"
+      ],
+      "completed_utc": "2026-10-29T14:59:17.492865+00:00",
+      "status": "complete",
+      "xml_versions": [
+        {
+          "file": "scene_v0.6.xml",
+          "version": "0.5.0"
+        }
+      ]
+    },
+    {
+      "name": "Victorian Style House",
+      "id": "house",
+      "format_label": "Mitsuba 3",
+      "url": "https://benedikt-bitterli.me/resources/mitsuba/house.zip",
+      "archive": "archives/house.zip",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "expected_bytes": 47768482,
+      "last_modified": "Thu, 21 Jul 2022 08:59:29 GMT",
+      "etag": "\"62d91571-2d8e3a2\"",
+      "sha256": "c9bf94cf089a5ceaa01f39467ce1b202403666bda5d451a364bcfc0de45235f2",
+      "downloaded_bytes": 47768482,
+      "zip_crc_verified": true,
+      "directory": "house",
+      "archive_prefix_removed": "house/",
+      "file_count": 279,
+      "extracted_bytes": 205257921,
+      "xml_files": [
+        "scene_v0.6.xml",
+        "scene_v3.xml"
+      ],
+      "license_files": [
+        "LICENSE.txt"
+      ],
+      "completed_utc": "2026-10-29T14:59:19.695235+00:00",
+      "status": "complete",
+      "xml_versions": [
+        {
+          "file": "scene_v0.6.xml",
+          "version": "0.5.0"
+        },
+        {
+          "file": "scene_v3.xml",
+          "version": "3.0.0"
+        }
+      ]
+    },
+    {
+      "name": "4060.b Spaceship",
+      "id": "spaceship",
+      "format_label": "Mitsuba 3",
+      "url": "https://benedikt-bitterli.me/resources/mitsuba/spaceship.zip",
+      "archive": "archives/spaceship.zip",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "expected_bytes": 11575044,
+      "last_modified": "Thu, 21 Jul 2022 09:00:58 GMT",
+      "etag": "\"62d915ca-b09f04\"",
+      "sha256": "0b52ed82bfdb392965e33a869790f94c8709b5db86993ce91ba6bf1cd85994b0",
+      "downloaded_bytes": 11575044,
+      "zip_crc_verified": true,
+      "directory": "spaceship",
+      "archive_prefix_removed": "spaceship/",
+      "file_count": 93,
+      "extracted_bytes": 55735709,
+      "xml_files": [
+        "scene_v0.6.xml",
+        "scene_v3.xml"
+      ],
+      "license_files": [
+        "LICENSE.txt"
+      ],
+      "completed_utc": "2026-10-29T14:59:20.635335+00:00",
+      "status": "complete",
+      "xml_versions": [
+        {
+          "file": "scene_v0.6.xml",
+          "version": "0.5.0"
+        },
+        {
+          "file": "scene_v3.xml",
+          "version": "3.0.0"
+        }
+      ]
+    },
+    {
+      "name": "Japanese Classroom",
+      "id": "classroom",
+      "format_label": "Mitsuba 3",
+      "url": "https://benedikt-bitterli.me/resources/mitsuba/classroom.zip",
+      "archive": "archives/classroom.zip",
+      "license_url": "https://creativecommons.org/licenses/by/3.0/",
+      "expected_bytes": 27531111,
+      "last_modified": "Thu, 21 Jul 2022 08:58:29 GMT",
+      "etag": "\"62d91535-1a41767\"",
+      "sha256": "a421390a9e37e844ae43b43c76d7a94b0ba34c295a4f411406aaa73ff57803f0",
+      "downloaded_bytes": 27531111,
+      "zip_crc_verified": true,
+      "directory": "classroom",
+      "archive_prefix_removed": "classroom/",
+      "file_count": 88,
+      "extracted_bytes": 40203876,
+      "xml_files": [
+        "scene_v0.6.xml",
+        "scene_v3.xml"
+      ],
+      "license_files": [
+        "LICENSE.txt"
+      ],
+      "completed_utc": "2026-10-29T14:59:23.387717+00:00",
+      "status": "complete",
+      "xml_versions": [
+        {
+          "file": "scene_v0.6.xml",
+          "version": "0.5.0"
+        },
+        {
+          "file": "scene_v3.xml",
+          "version": "3.0.0"
+        }
+      ]
+    },
+    {
+      "name": "Dragon",
+      "id": "dragon",
+      "format_label": "Mitsuba 3",
+      "url": "https://benedikt-bitterli.me/resources/mitsuba/dragon.zip",
+      "archive": "archives/dragon.zip",
+      "license_url": "https://creativecommons.org/licenses/by/3.0/",
+      "expected_bytes": 15004810,
+      "last_modified": "Thu, 21 Jul 2022 08:58:53 GMT",
+      "etag": "\"62d9154d-e4f48a\"",
+      "sha256": "01de13b85e3cdcd4443d5b190a8a76e6c58d1ac39adca17890ba0e2fa03f3980",
+      "downloaded_bytes": 15004810,
+      "zip_crc_verified": true,
+      "directory": "dragon",
+      "archive_prefix_removed": "dragon/",
+      "file_count": 21,
+      "extracted_bytes": 81852228,
+      "xml_files": [
+        "scene_v0.6.xml",
+        "scene_v3.xml"
+      ],
+      "license_files": [
+        "LICENSE.txt"
+      ],
+      "completed_utc": "2026-10-29T14:59:22.054187+00:00",
+      "status": "complete",
+      "xml_versions": [
+        {
+          "file": "scene_v0.6.xml",
+          "version": "0.5.0"
+        },
+        {
+          "file": "scene_v3.xml",
+          "version": "3.0.0"
+        }
+      ]
+    },
+    {
+      "name": "Utah Teapot (full)",
+      "id": "teapot-full",
+      "format_label": "Mitsuba 3",
+      "url": "https://benedikt-bitterli.me/resources/mitsuba/teapot-full.zip",
+      "archive": "archives/teapot-full.zip",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "expected_bytes": 6788859,
+      "last_modified": "Thu, 21 Jul 2022 09:01:06 GMT",
+      "etag": "\"62d915d2-6796fb\"",
+      "sha256": "8c7540e5421ed81270b8ca083ecef030936f589a2208cafd970756c04ca74c1f",
+      "downloaded_bytes": 6788859,
+      "zip_crc_verified": true,
+      "directory": "teapot-full",
+      "archive_prefix_removed": "teapot-full/",
+      "file_count": 10,
+      "extracted_bytes": 17204266,
+      "xml_files": [
+        "scene_v0.6.xml",
+        "scene_v3.xml"
+      ],
+      "license_files": [
+        "LICENSE.txt"
+      ],
+      "completed_utc": "2026-10-29T14:59:23.838369+00:00",
+      "status": "complete",
+      "xml_versions": [
+        {
+          "file": "scene_v0.6.xml",
+          "version": "0.5.0"
+        },
+        {
+          "file": "scene_v3.xml",
+          "version": "3.0.0"
+        }
+      ]
+    },
+    {
+      "name": "Utah Teapot",
+      "id": "teapot",
+      "format_label": "Mitsuba 3",
+      "url": "https://benedikt-bitterli.me/resources/mitsuba/teapot.zip",
+      "archive": "archives/teapot.zip",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "expected_bytes": 6156421,
+      "last_modified": "Thu, 21 Jul 2022 09:01:04 GMT",
+      "etag": "\"62d915d0-5df085\"",
+      "sha256": "bf8a6121fac8ae118fe567aa6bac29ed46b874ca4bb8f05903b35fc8f392f9e8",
+      "downloaded_bytes": 6156421,
+      "zip_crc_verified": true,
+      "directory": "teapot",
+      "archive_prefix_removed": "teapot/",
+      "file_count": 8,
+      "extracted_bytes": 16549235,
+      "xml_files": [
+        "scene_v0.6.xml",
+        "scene_v3.xml"
+      ],
+      "license_files": [
+        "LICENSE.txt"
+      ],
+      "completed_utc": "2026-10-29T14:59:24.215797+00:00",
+      "status": "complete",
+      "xml_versions": [
+        {
+          "file": "scene_v0.6.xml",
+          "version": "0.5.0"
+        },
+        {
+          "file": "scene_v3.xml",
+          "version": "3.0.0"
+        }
+      ]
+    },
+    {
+      "name": "Cornell Box",
+      "id": "cornell-box",
+      "format_label": "Mitsuba 3",
+      "url": "https://benedikt-bitterli.me/resources/mitsuba/cornell-box.zip",
+      "archive": "archives/cornell-box.zip",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "expected_bytes": 3375919,
+      "last_modified": "Thu, 21 Jul 2022 08:58:33 GMT",
+      "etag": "\"62d91539-33832f\"",
+      "sha256": "d57ffb9d176d34cc45d3d570b51e75be1dc6a4edc78879ba6fe40e2ce093e645",
+      "downloaded_bytes": 3375919,
+      "zip_crc_verified": true,
+      "directory": "cornell-box",
+      "archive_prefix_removed": "cornell-box/",
+      "file_count": 5,
+      "extracted_bytes": 3421653,
+      "xml_files": [
+        "scene_v0.6.xml",
+        "scene_v3.xml"
+      ],
+      "license_files": [
+        "LICENSE.txt"
+      ],
+      "completed_utc": "2026-10-29T14:59:25.412948+00:00",
+      "status": "complete",
+      "xml_versions": [
+        {
+          "file": "scene_v0.6.xml",
+          "version": "0.5.0"
+        },
+        {
+          "file": "scene_v3.xml",
+          "version": "3.0.0"
+        }
+      ]
+    },
+    {
+      "name": "Volumetric Caustic",
+      "id": "volumetric-caustic",
+      "format_label": "Mitsuba 3",
+      "url": "https://benedikt-bitterli.me/resources/mitsuba/volumetric-caustic.zip",
+      "archive": "archives/volumetric-caustic.zip",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "expected_bytes": 3055265,
+      "last_modified": "Thu, 21 Jul 2022 09:01:08 GMT",
+      "etag": "\"62d915d4-2e9ea1\"",
+      "sha256": "f79327fbf6904bb36b438bd2675acf44abcaced42e51b633c40af9f9ef6901eb",
+      "downloaded_bytes": 3055265,
+      "zip_crc_verified": true,
+      "directory": "volumetric-caustic",
+      "archive_prefix_removed": "volumetric-caustic/",
+      "file_count": 5,
+      "extracted_bytes": 3116369,
+      "xml_files": [
+        "scene_v0.6.xml",
+        "scene_v3.xml"
+      ],
+      "license_files": [
+        "LICENSE.txt"
+      ],
+      "completed_utc": "2026-10-29T14:59:26.568234+00:00",
+      "status": "complete",
+      "xml_versions": [
+        {
+          "file": "scene_v0.6.xml",
+          "version": "0.5.0"
+        },
+        {
+          "file": "scene_v3.xml",
+          "version": "3.0.0"
+        }
+      ]
+    },
+    {
+      "name": "Water Caustic",
+      "id": "water-caustic",
+      "format_label": "Mitsuba 3",
+      "url": "https://benedikt-bitterli.me/resources/mitsuba/water-caustic.zip",
+      "archive": "archives/water-caustic.zip",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "expected_bytes": 6838237,
+      "last_modified": "Thu, 21 Jul 2022 09:01:10 GMT",
+      "etag": "\"62d915d6-6857dd\"",
+      "sha256": "054d899c6da58532ba0e1055ed185fa4415519d4a34f79cd5dc94a20b4daa8ba",
+      "downloaded_bytes": 6838237,
+      "zip_crc_verified": true,
+      "directory": "water-caustic",
+      "archive_prefix_removed": "water-caustic/",
+      "file_count": 6,
+      "extracted_bytes": 15139647,
+      "xml_files": [
+        "scene_v0.6.xml"
+      ],
+      "license_files": [
+        "LICENSE.txt"
+      ],
+      "completed_utc": "2026-10-29T14:59:27.493978+00:00",
+      "status": "complete",
+      "xml_versions": [
+        {
+          "file": "scene_v0.6.xml",
+          "version": "0.5.0"
+        }
+      ]
+    },
+    {
+      "name": "Veach, Ajar",
+      "id": "veach-ajar",
+      "format_label": "Mitsuba 3",
+      "url": "https://benedikt-bitterli.me/resources/mitsuba/veach-ajar.zip",
+      "archive": "archives/veach-ajar.zip",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "expected_bytes": 9421239,
+      "last_modified": "Thu, 21 Jul 2022 09:01:08 GMT",
+      "etag": "\"62d915d4-8fc1b7\"",
+      "sha256": "70f1cf84b1c4cbeead3c26d3bc6cab60519febf1b2076bc635af1eed3cdd3da2",
+      "downloaded_bytes": 9421239,
+      "zip_crc_verified": true,
+      "directory": "veach-ajar",
+      "archive_prefix_removed": "veach-ajar/",
+      "file_count": 25,
+      "extracted_bytes": 20069900,
+      "xml_files": [
+        "scene_v0.6.xml",
+        "scene_v3.xml"
+      ],
+      "license_files": [
+        "LICENSE.txt"
+      ],
+      "completed_utc": "2026-10-29T14:59:28.121141+00:00",
+      "status": "complete",
+      "xml_versions": [
+        {
+          "file": "scene_v0.6.xml",
+          "version": "0.5.0"
+        },
+        {
+          "file": "scene_v3.xml",
+          "version": "3.0.0"
+        }
+      ]
+    },
+    {
+      "name": "Veach, Bidir Room",
+      "id": "veach-bidir",
+      "format_label": "Mitsuba 3",
+      "url": "https://benedikt-bitterli.me/resources/mitsuba/veach-bidir.zip",
+      "archive": "archives/veach-bidir.zip",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "expected_bytes": 3617538,
+      "last_modified": "Thu, 21 Jul 2022 09:01:08 GMT",
+      "etag": "\"62d915d4-373302\"",
+      "sha256": "22c93fdf6fa94b95a13e670f168d77dd7e91c02b9dbb55564692244b45dc313d",
+      "downloaded_bytes": 3617538,
+      "zip_crc_verified": true,
+      "directory": "veach-bidir",
+      "archive_prefix_removed": "veach-bidir/",
+      "file_count": 17,
+      "extracted_bytes": 4507749,
+      "xml_files": [
+        "scene_v0.6.xml",
+        "scene_v3.xml"
+      ],
+      "license_files": [
+        "LICENSE.txt"
+      ],
+      "completed_utc": "2026-10-29T14:59:29.345464+00:00",
+      "status": "complete",
+      "xml_versions": [
+        {
+          "file": "scene_v0.6.xml",
+          "version": "0.5.0"
+        },
+        {
+          "file": "scene_v3.xml",
+          "version": "3.0.0"
+        }
+      ]
+    },
+    {
+      "name": "Veach, MIS",
+      "id": "veach-mis",
+      "format_label": "Mitsuba 3",
+      "url": "https://benedikt-bitterli.me/resources/mitsuba/veach-mis.zip",
+      "archive": "archives/veach-mis.zip",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "expected_bytes": 1999395,
+      "last_modified": "Thu, 21 Jul 2022 09:01:08 GMT",
+      "etag": "\"62d915d4-1e8223\"",
+      "sha256": "b90851ba861c802ace8a61cde43116576edc754a12b1ddd7308b68d65371770c",
+      "downloaded_bytes": 1999395,
+      "zip_crc_verified": true,
+      "directory": "veach-mis",
+      "archive_prefix_removed": "veach-mis/",
+      "file_count": 5,
+      "extracted_bytes": 2149818,
+      "xml_files": [
+        "scene_v0.6.xml",
+        "scene_v3.xml"
+      ],
+      "license_files": [
+        "LICENSE.txt"
+      ],
+      "completed_utc": "2026-10-29T14:59:30.159844+00:00",
+      "status": "complete",
+      "xml_versions": [
+        {
+          "file": "scene_v0.6.xml",
+          "version": "0.5.0"
+        },
+        {
+          "file": "scene_v3.xml",
+          "version": "3.0.0"
+        }
+      ]
+    },
+    {
+      "name": "Material Test Ball",
+      "id": "material-testball",
+      "format_label": "Mitsuba",
+      "url": "https://benedikt-bitterli.me/resources/mitsuba/material-testball.zip",
+      "archive": "archives/material-testball.zip",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "expected_bytes": 7631282,
+      "last_modified": "Thu, 21 Jul 2022 09:00:32 GMT",
+      "etag": "\"62d915b0-7471b2\"",
+      "sha256": "ec46ee6199aa779f8998f8716677003b7e325004b1361d7096660531d9d4445b",
+      "downloaded_bytes": 7631282,
+      "zip_crc_verified": true,
+      "directory": "material-testball",
+      "archive_prefix_removed": "material-testball/",
+      "file_count": 8,
+      "extracted_bytes": 22980517,
+      "xml_files": [
+        "scene_v0.6.xml"
+      ],
+      "license_files": [
+        "LICENSE.txt"
+      ],
+      "completed_utc": "2026-10-29T14:59:31.103919+00:00",
+      "status": "complete",
+      "xml_versions": [
+        {
+          "file": "scene_v0.6.xml",
+          "version": "0.5.0"
+        }
+      ]
+    },
+    {
+      "name": "Fur Ball",
+      "id": "furball",
+      "format_label": "Mitsuba",
+      "url": "https://benedikt-bitterli.me/resources/mitsuba/furball.zip",
+      "archive": "archives/furball.zip",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "expected_bytes": 62584655,
+      "last_modified": "Thu, 21 Jul 2022 08:58:56 GMT",
+      "etag": "\"62d91550-3baf74f\"",
+      "sha256": "7a13bd928682cda307cf2ceed59e9d4f60da027c625c7229d54b3c43380206dd",
+      "downloaded_bytes": 62584655,
+      "zip_crc_verified": true,
+      "directory": "furball",
+      "archive_prefix_removed": "furball/",
+      "file_count": 5,
+      "extracted_bytes": 72915052,
+      "xml_files": [
+        "scene_v0.6.xml"
+      ],
+      "license_files": [
+        "LICENSE.txt"
+      ],
+      "completed_utc": "2026-10-29T14:59:35.955946+00:00",
+      "status": "complete",
+      "xml_versions": [
+        {
+          "file": "scene_v0.6.xml",
+          "version": "0.5.0"
+        }
+      ]
+    },
+    {
+      "name": "Lego Digger",
+      "id": "lego",
+      "format_label": "Mitsuba 3",
+      "url": "https://benedikt-bitterli.me/resources/mitsuba/lego.zip",
+      "archive": "archives/lego.zip",
+      "license_url": "https://creativecommons.org/licenses/by-nc/3.0/",
+      "expected_bytes": 29113757,
+      "last_modified": "Thu, 21 Jul 2022 09:00:08 GMT",
+      "etag": "\"62d91598-1bc3d9d\"",
+      "sha256": "19c9de677728a455aeac88f22955266ef6e79e6e67c4683cb2cf5531cbc52e1a",
+      "downloaded_bytes": 29113757,
+      "zip_crc_verified": true,
+      "directory": "lego",
+      "archive_prefix_removed": "lego/",
+      "file_count": 448,
+      "extracted_bytes": 77751515,
+      "xml_files": [
+        "scene_v3.xml"
+      ],
+      "license_files": [
+        "LICENSE.txt"
+      ],
+      "completed_utc": "2026-10-29T14:59:34.979260+00:00",
+      "status": "complete",
+      "xml_versions": [
+        {
+          "file": "scene_v3.xml",
+          "version": "3.0.0"
+        }
+      ]
+    },
+    {
+      "name": "Rover",
+      "id": "rover",
+      "format_label": "Mitsuba 3",
+      "url": "https://benedikt-bitterli.me/resources/mitsuba/rover.zip",
+      "archive": "archives/rover.zip",
+      "license_url": "https://creativecommons.org/licenses/by/3.0/",
+      "expected_bytes": 62520778,
+      "last_modified": "Thu, 21 Jul 2022 09:00:51 GMT",
+      "etag": "\"62d915c3-3b9fdca\"",
+      "sha256": "7a8d93504f520350cf506c0b351282b1d9000272e858943c38760be96ba0018b",
+      "downloaded_bytes": 62520778,
+      "zip_crc_verified": true,
+      "directory": "rover",
+      "archive_prefix_removed": "rover/",
+      "file_count": 161,
+      "extracted_bytes": 153109980,
+      "xml_files": [
+        "scene_v3.xml"
+      ],
+      "license_files": [
+        "LICENSE.txt"
+      ],
+      "completed_utc": "2026-10-29T14:59:38.190942+00:00",
+      "status": "complete",
+      "xml_versions": [
+        {
+          "file": "scene_v3.xml",
+          "version": "3.0.0"
+        }
+      ]
+    },
+    {
+      "name": "Mitsuba Material Ball",
+      "id": "matpreview",
+      "format_label": "Mitsuba 3",
+      "url": "https://benedikt-bitterli.me/resources/mitsuba/matpreview.zip",
+      "archive": "archives/matpreview.zip",
+      "license_url": "https://github.com/mitsuba-renderer/mitsuba3/blob/master/LICENSE",
+      "expected_bytes": 2635941,
+      "last_modified": "Thu, 21 Jul 2022 09:00:32 GMT",
+      "etag": "\"62d915b0-2838a5\"",
+      "sha256": "56062997ae7152af786855ef73bbd6fc093980e6575aa40c22ed20fb63e816bb",
+      "downloaded_bytes": 2635941,
+      "zip_crc_verified": true,
+      "directory": "matpreview",
+      "archive_prefix_removed": "matpreview/",
+      "file_count": 5,
+      "extracted_bytes": 2679297,
+      "xml_files": [
+        "scene_v3.xml"
+      ],
+      "license_files": [],
+      "completed_utc": "2026-10-29T14:59:34.326857+00:00",
+      "status": "complete",
+      "xml_versions": [
+        {
+          "file": "scene_v3.xml",
+          "version": "3.0.0"
+        }
+      ]
+    }
+  ]
+}

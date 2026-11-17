@@ -1,0 +1,11 @@
+* text=auto
+*.py text eol=lf
+*.json text eol=lf
+*.md text eol=lf
+*.cmd text eol=crlf
+tests/fixtures/**/*.csv binary
+tests/fixtures/**/*.log binary
+
+# Store the formal reference PNG payloads in Git LFS.
+golden/** -text
+golden/**/*.png filter=lfs diff=lfs merge=lfs -text

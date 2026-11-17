@@ -1,0 +1,6692 @@
+{
+  "schema": 1,
+  "golden_id": "full-20261116-v2",
+  "profiles": {
+    "bathroom--gi": {
+      "status": "calibrated",
+      "thresholds": {
+        "full": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        },
+        "regions": {
+          "center": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "lower-left": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "upper-right": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          }
+        }
+      },
+      "region_bounds": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      },
+      "provenance": {
+        "golden_id": "full-20261116-v2",
+        "job_id": "bathroom--gi",
+        "input_fingerprint": "eed7d8f3f43c31283a3ad5e768baf05765e2b94f90f55e70aa764c2eb351fb06",
+        "engine_fingerprint": "abf138679bc03f9c101ef9931740f72cfe7e3803ce6fbbfbd87de09cff31c3fc"
+      },
+      "policy": {
+        "noise_multiplier": 1.75,
+        "ceilings": {
+          "mae": 0.035,
+          "rmse": 0.07,
+          "ssim_loss": 0.12,
+          "luminance_deviation": 0.12
+        },
+        "floors": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        }
+      },
+      "reasons": []
+    },
+    "bathroom--pt-reblur": {
+      "status": "calibrated",
+      "thresholds": {
+        "full": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        },
+        "regions": {
+          "center": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "lower-left": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "upper-right": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          }
+        }
+      },
+      "region_bounds": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      },
+      "provenance": {
+        "golden_id": "full-20261116-v2",
+        "job_id": "bathroom--pt-reblur",
+        "input_fingerprint": "daf1149eccb22422e6880c233a19abaad707e914142309d5bba73f1416c93610",
+        "engine_fingerprint": "abf138679bc03f9c101ef9931740f72cfe7e3803ce6fbbfbd87de09cff31c3fc"
+      },
+      "policy": {
+        "noise_multiplier": 1.75,
+        "ceilings": {
+          "mae": 0.035,
+          "rmse": 0.07,
+          "ssim_loss": 0.12,
+          "luminance_deviation": 0.12
+        },
+        "floors": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        }
+      },
+      "reasons": []
+    },
+    "bathroom--pt2048": {
+      "status": "calibrated",
+      "thresholds": {
+        "full": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        },
+        "regions": {
+          "center": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "lower-left": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "upper-right": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          }
+        }
+      },
+      "region_bounds": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      },
+      "provenance": {
+        "golden_id": "full-20261116-v2",
+        "job_id": "bathroom--pt2048",
+        "input_fingerprint": "f4771785569a2bae0e0be163782b429aff6a03862ebfe0bccbe849771bdc65ab",
+        "engine_fingerprint": "abf138679bc03f9c101ef9931740f72cfe7e3803ce6fbbfbd87de09cff31c3fc"
+      },
+      "policy": {
+        "noise_multiplier": 1.75,
+        "ceilings": {
+          "mae": 0.035,
+          "rmse": 0.07,
+          "ssim_loss": 0.12,
+          "luminance_deviation": 0.12
+        },
+        "floors": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        }
+      },
+      "reasons": []
+    },
+    "living-room--gi": {
+      "status": "calibrated",
+      "thresholds": {
+        "full": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        },
+        "regions": {
+          "center": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "lower-left": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "upper-right": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          }
+        }
+      },
+      "region_bounds": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      },
+      "provenance": {
+        "golden_id": "full-20261116-v2",
+        "job_id": "living-room--gi",
+        "input_fingerprint": "4cae5c41ffcc50d44159667e9dc3d341239c0eea593901420ad2566d31c45ae4",
+        "engine_fingerprint": "abf138679bc03f9c101ef9931740f72cfe7e3803ce6fbbfbd87de09cff31c3fc"
+      },
+      "policy": {
+        "noise_multiplier": 1.75,
+        "ceilings": {
+          "mae": 0.035,
+          "rmse": 0.07,
+          "ssim_loss": 0.12,
+          "luminance_deviation": 0.12
+        },
+        "floors": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        }
+      },
+      "reasons": []
+    },
+    "living-room--pt-reblur": {
+      "status": "calibrated",
+      "thresholds": {
+        "full": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        },
+        "regions": {
+          "center": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "lower-left": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "upper-right": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          }
+        }
+      },
+      "region_bounds": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      },
+      "provenance": {
+        "golden_id": "full-20261116-v2",
+        "job_id": "living-room--pt-reblur",
+        "input_fingerprint": "b7eb2719a3f4927f0d52660df6c8732700499e63d5c1e2bc6394102a77e47b8e",
+        "engine_fingerprint": "abf138679bc03f9c101ef9931740f72cfe7e3803ce6fbbfbd87de09cff31c3fc"
+      },
+      "policy": {
+        "noise_multiplier": 1.75,
+        "ceilings": {
+          "mae": 0.035,
+          "rmse": 0.07,
+          "ssim_loss": 0.12,
+          "luminance_deviation": 0.12
+        },
+        "floors": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        }
+      },
+      "reasons": []
+    },
+    "living-room--pt2048": {
+      "status": "calibrated",
+      "thresholds": {
+        "full": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        },
+        "regions": {
+          "center": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "lower-left": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "upper-right": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          }
+        }
+      },
+      "region_bounds": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      },
+      "provenance": {
+        "golden_id": "full-20261116-v2",
+        "job_id": "living-room--pt2048",
+        "input_fingerprint": "5a01cd7a9bbaa236d15372ee5d1a3df4652daadfdf9af9c93795bb3134626ca2",
+        "engine_fingerprint": "abf138679bc03f9c101ef9931740f72cfe7e3803ce6fbbfbd87de09cff31c3fc"
+      },
+      "policy": {
+        "noise_multiplier": 1.75,
+        "ceilings": {
+          "mae": 0.035,
+          "rmse": 0.07,
+          "ssim_loss": 0.12,
+          "luminance_deviation": 0.12
+        },
+        "floors": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        }
+      },
+      "reasons": []
+    },
+    "bedroom--gi": {
+      "schema": 1,
+      "status": "fixed",
+      "provenance": {
+        "golden_id": "full-20261116-v2",
+        "job_id": "bedroom--gi",
+        "input_fingerprint": "084a528a6f1ab3a930795063ef62a30eff4f7025f61305f57f4f94ae5659bb25",
+        "engine_fingerprint": "8f8377526453366832fe3daf3b000e7cb53ce62c5220f6a7dbd9a3f32c71f755"
+      },
+      "thresholds": {
+        "full": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        },
+        "regions": {
+          "center": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "lower-left": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "upper-right": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          }
+        }
+      },
+      "region_bounds": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      },
+      "policy": {
+        "method": "fixed-thresholds",
+        "captures_per_job": 1
+      },
+      "reasons": []
+    },
+    "bedroom--pt-reblur": {
+      "schema": 1,
+      "status": "fixed",
+      "provenance": {
+        "golden_id": "full-20261116-v2",
+        "job_id": "bedroom--pt-reblur",
+        "input_fingerprint": "5bfb6998d82609e0836572f81f42fdfb0c354f99613cc97d8b49402bfa65cf8d",
+        "engine_fingerprint": "8f8377526453366832fe3daf3b000e7cb53ce62c5220f6a7dbd9a3f32c71f755"
+      },
+      "thresholds": {
+        "full": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        },
+        "regions": {
+          "center": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "lower-left": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "upper-right": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          }
+        }
+      },
+      "region_bounds": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      },
+      "policy": {
+        "method": "fixed-thresholds",
+        "captures_per_job": 1
+      },
+      "reasons": []
+    },
+    "bedroom--pt2048": {
+      "schema": 1,
+      "status": "fixed",
+      "provenance": {
+        "golden_id": "full-20261116-v2",
+        "job_id": "bedroom--pt2048",
+        "input_fingerprint": "4b7dbf72c94428a038f87dab13bf656d9810ba7ce8987c0e06badd75a8b73369",
+        "engine_fingerprint": "8f8377526453366832fe3daf3b000e7cb53ce62c5220f6a7dbd9a3f32c71f755"
+      },
+      "thresholds": {
+        "full": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        },
+        "regions": {
+          "center": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "lower-left": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "upper-right": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          }
+        }
+      },
+      "region_bounds": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      },
+      "policy": {
+        "method": "fixed-thresholds",
+        "captures_per_job": 1
+      },
+      "reasons": []
+    },
+    "kitchen--gi": {
+      "status": "calibrated",
+      "thresholds": {
+        "full": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        },
+        "regions": {
+          "center": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "lower-left": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "upper-right": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          }
+        }
+      },
+      "region_bounds": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      },
+      "provenance": {
+        "golden_id": "full-20261116-v2",
+        "job_id": "kitchen--gi",
+        "input_fingerprint": "191f7d6f47535c5e0285116baa59329c12e99feb59d15f4fc2437c89e9909fe8",
+        "engine_fingerprint": "abf138679bc03f9c101ef9931740f72cfe7e3803ce6fbbfbd87de09cff31c3fc"
+      },
+      "policy": {
+        "noise_multiplier": 1.75,
+        "ceilings": {
+          "mae": 0.035,
+          "rmse": 0.07,
+          "ssim_loss": 0.12,
+          "luminance_deviation": 0.12
+        },
+        "floors": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        }
+      },
+      "reasons": []
+    },
+    "kitchen--pt-reblur": {
+      "status": "calibrated",
+      "thresholds": {
+        "full": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        },
+        "regions": {
+          "center": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "lower-left": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "upper-right": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          }
+        }
+      },
+      "region_bounds": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      },
+      "provenance": {
+        "golden_id": "full-20261116-v2",
+        "job_id": "kitchen--pt-reblur",
+        "input_fingerprint": "5de89ad1e5551eedd351e910c1ac74e2ce865dba892b53f53fa546b42a65faad",
+        "engine_fingerprint": "abf138679bc03f9c101ef9931740f72cfe7e3803ce6fbbfbd87de09cff31c3fc"
+      },
+      "policy": {
+        "noise_multiplier": 1.75,
+        "ceilings": {
+          "mae": 0.035,
+          "rmse": 0.07,
+          "ssim_loss": 0.12,
+          "luminance_deviation": 0.12
+        },
+        "floors": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        }
+      },
+      "reasons": []
+    },
+    "kitchen--pt2048": {
+      "status": "calibrated",
+      "thresholds": {
+        "full": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        },
+        "regions": {
+          "center": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "lower-left": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "upper-right": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          }
+        }
+      },
+      "region_bounds": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      },
+      "provenance": {
+        "golden_id": "full-20261116-v2",
+        "job_id": "kitchen--pt2048",
+        "input_fingerprint": "17de639b9564b49aebf8597b154927a3d4353e7e40a5a978f0d0b37debba7ee0",
+        "engine_fingerprint": "abf138679bc03f9c101ef9931740f72cfe7e3803ce6fbbfbd87de09cff31c3fc"
+      },
+      "policy": {
+        "noise_multiplier": 1.75,
+        "ceilings": {
+          "mae": 0.035,
+          "rmse": 0.07,
+          "ssim_loss": 0.12,
+          "luminance_deviation": 0.12
+        },
+        "floors": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        }
+      },
+      "reasons": []
+    },
+    "staircase2--gi": {
+      "status": "calibrated",
+      "thresholds": {
+        "full": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        },
+        "regions": {
+          "center": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "lower-left": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "upper-right": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          }
+        }
+      },
+      "region_bounds": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      },
+      "provenance": {
+        "golden_id": "full-20261116-v2",
+        "job_id": "staircase2--gi",
+        "input_fingerprint": "4abc6888f63ac50f904cbe6adfbf24a689e656c5d8d7026d42638f0cd1b67034",
+        "engine_fingerprint": "abf138679bc03f9c101ef9931740f72cfe7e3803ce6fbbfbd87de09cff31c3fc"
+      },
+      "policy": {
+        "noise_multiplier": 1.75,
+        "ceilings": {
+          "mae": 0.035,
+          "rmse": 0.07,
+          "ssim_loss": 0.12,
+          "luminance_deviation": 0.12
+        },
+        "floors": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        }
+      },
+      "reasons": []
+    },
+    "staircase2--pt-reblur": {
+      "status": "calibrated",
+      "thresholds": {
+        "full": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        },
+        "regions": {
+          "center": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "lower-left": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "upper-right": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          }
+        }
+      },
+      "region_bounds": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      },
+      "provenance": {
+        "golden_id": "full-20261116-v2",
+        "job_id": "staircase2--pt-reblur",
+        "input_fingerprint": "74f1257864fd14c96ce8f526d3cced957162e051570ea5d615911fd86e2d2010",
+        "engine_fingerprint": "abf138679bc03f9c101ef9931740f72cfe7e3803ce6fbbfbd87de09cff31c3fc"
+      },
+      "policy": {
+        "noise_multiplier": 1.75,
+        "ceilings": {
+          "mae": 0.035,
+          "rmse": 0.07,
+          "ssim_loss": 0.12,
+          "luminance_deviation": 0.12
+        },
+        "floors": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        }
+      },
+      "reasons": []
+    },
+    "staircase2--pt2048": {
+      "status": "calibrated",
+      "thresholds": {
+        "full": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        },
+        "regions": {
+          "center": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "lower-left": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "upper-right": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          }
+        }
+      },
+      "region_bounds": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      },
+      "provenance": {
+        "golden_id": "full-20261116-v2",
+        "job_id": "staircase2--pt2048",
+        "input_fingerprint": "4fbc1f99eaf23196c899541c4247471c3ddd95ae905879a2a3b475d9bcbf9f47",
+        "engine_fingerprint": "abf138679bc03f9c101ef9931740f72cfe7e3803ce6fbbfbd87de09cff31c3fc"
+      },
+      "policy": {
+        "noise_multiplier": 1.75,
+        "ceilings": {
+          "mae": 0.035,
+          "rmse": 0.07,
+          "ssim_loss": 0.12,
+          "luminance_deviation": 0.12
+        },
+        "floors": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        }
+      },
+      "reasons": []
+    },
+    "staircase--gi": {
+      "status": "calibrated",
+      "thresholds": {
+        "full": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        },
+        "regions": {
+          "center": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "lower-left": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "upper-right": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          }
+        }
+      },
+      "region_bounds": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      },
+      "provenance": {
+        "golden_id": "full-20261116-v2",
+        "job_id": "staircase--gi",
+        "input_fingerprint": "e9e67dc373fdd07b344d7305f70013bd5ea6d28ec266403358657f1deebf4464",
+        "engine_fingerprint": "abf138679bc03f9c101ef9931740f72cfe7e3803ce6fbbfbd87de09cff31c3fc"
+      },
+      "policy": {
+        "noise_multiplier": 1.75,
+        "ceilings": {
+          "mae": 0.035,
+          "rmse": 0.07,
+          "ssim_loss": 0.12,
+          "luminance_deviation": 0.12
+        },
+        "floors": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        }
+      },
+      "reasons": []
+    },
+    "staircase--pt-reblur": {
+      "status": "calibrated",
+      "thresholds": {
+        "full": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        },
+        "regions": {
+          "center": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "lower-left": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "upper-right": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          }
+        }
+      },
+      "region_bounds": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      },
+      "provenance": {
+        "golden_id": "full-20261116-v2",
+        "job_id": "staircase--pt-reblur",
+        "input_fingerprint": "ac010da987882fe01868e0094d100a41b187affa09eefc3d376dd44f6d48bee6",
+        "engine_fingerprint": "abf138679bc03f9c101ef9931740f72cfe7e3803ce6fbbfbd87de09cff31c3fc"
+      },
+      "policy": {
+        "noise_multiplier": 1.75,
+        "ceilings": {
+          "mae": 0.035,
+          "rmse": 0.07,
+          "ssim_loss": 0.12,
+          "luminance_deviation": 0.12
+        },
+        "floors": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        }
+      },
+      "reasons": []
+    },
+    "staircase--pt2048": {
+      "status": "calibrated",
+      "thresholds": {
+        "full": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        },
+        "regions": {
+          "center": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "lower-left": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "upper-right": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          }
+        }
+      },
+      "region_bounds": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      },
+      "provenance": {
+        "golden_id": "full-20261116-v2",
+        "job_id": "staircase--pt2048",
+        "input_fingerprint": "0823685fb8d403f4d990781160032654c3a349fe516516087e8f0ecf680c7648",
+        "engine_fingerprint": "abf138679bc03f9c101ef9931740f72cfe7e3803ce6fbbfbd87de09cff31c3fc"
+      },
+      "policy": {
+        "noise_multiplier": 1.75,
+        "ceilings": {
+          "mae": 0.035,
+          "rmse": 0.07,
+          "ssim_loss": 0.12,
+          "luminance_deviation": 0.12
+        },
+        "floors": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        }
+      },
+      "reasons": []
+    },
+    "bathroom2--gi": {
+      "status": "calibrated",
+      "thresholds": {
+        "full": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        },
+        "regions": {
+          "center": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "lower-left": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "upper-right": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          }
+        }
+      },
+      "region_bounds": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      },
+      "provenance": {
+        "golden_id": "full-20261116-v2",
+        "job_id": "bathroom2--gi",
+        "input_fingerprint": "52cf0a8c4e91e6202ed11d1973c22b59cc2e51ee11782d94df377c8197e5020f",
+        "engine_fingerprint": "abf138679bc03f9c101ef9931740f72cfe7e3803ce6fbbfbd87de09cff31c3fc"
+      },
+      "policy": {
+        "noise_multiplier": 1.75,
+        "ceilings": {
+          "mae": 0.035,
+          "rmse": 0.07,
+          "ssim_loss": 0.12,
+          "luminance_deviation": 0.12
+        },
+        "floors": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        }
+      },
+      "reasons": []
+    },
+    "bathroom2--pt-reblur": {
+      "status": "calibrated",
+      "thresholds": {
+        "full": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        },
+        "regions": {
+          "center": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "lower-left": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "upper-right": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          }
+        }
+      },
+      "region_bounds": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      },
+      "provenance": {
+        "golden_id": "full-20261116-v2",
+        "job_id": "bathroom2--pt-reblur",
+        "input_fingerprint": "9e712764a1e20ee68193503d02607115373fd86ce7798398fb60c7b6933bd9f1",
+        "engine_fingerprint": "abf138679bc03f9c101ef9931740f72cfe7e3803ce6fbbfbd87de09cff31c3fc"
+      },
+      "policy": {
+        "noise_multiplier": 1.75,
+        "ceilings": {
+          "mae": 0.035,
+          "rmse": 0.07,
+          "ssim_loss": 0.12,
+          "luminance_deviation": 0.12
+        },
+        "floors": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        }
+      },
+      "reasons": []
+    },
+    "bathroom2--pt2048": {
+      "status": "calibrated",
+      "thresholds": {
+        "full": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        },
+        "regions": {
+          "center": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "lower-left": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "upper-right": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          }
+        }
+      },
+      "region_bounds": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      },
+      "provenance": {
+        "golden_id": "full-20261116-v2",
+        "job_id": "bathroom2--pt2048",
+        "input_fingerprint": "414d06604799ad0dbe53a7ec2df27630dd0f9d91513e1a510bd9c7f98b0f9d4e",
+        "engine_fingerprint": "abf138679bc03f9c101ef9931740f72cfe7e3803ce6fbbfbd87de09cff31c3fc"
+      },
+      "policy": {
+        "noise_multiplier": 1.75,
+        "ceilings": {
+          "mae": 0.035,
+          "rmse": 0.07,
+          "ssim_loss": 0.12,
+          "luminance_deviation": 0.12
+        },
+        "floors": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        }
+      },
+      "reasons": []
+    },
+    "living-room-2--gi": {
+      "status": "calibrated",
+      "thresholds": {
+        "full": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        },
+        "regions": {
+          "center": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "lower-left": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "upper-right": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          }
+        }
+      },
+      "region_bounds": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      },
+      "provenance": {
+        "golden_id": "full-20261116-v2",
+        "job_id": "living-room-2--gi",
+        "input_fingerprint": "1386089bfad8a16fdcd74e76ac9bf9682431faf2598c803fcd9046eaf8753d6a",
+        "engine_fingerprint": "abf138679bc03f9c101ef9931740f72cfe7e3803ce6fbbfbd87de09cff31c3fc"
+      },
+      "policy": {
+        "noise_multiplier": 1.75,
+        "ceilings": {
+          "mae": 0.035,
+          "rmse": 0.07,
+          "ssim_loss": 0.12,
+          "luminance_deviation": 0.12
+        },
+        "floors": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        }
+      },
+      "reasons": []
+    },
+    "living-room-2--pt-reblur": {
+      "status": "calibrated",
+      "thresholds": {
+        "full": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        },
+        "regions": {
+          "center": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "lower-left": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "upper-right": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          }
+        }
+      },
+      "region_bounds": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      },
+      "provenance": {
+        "golden_id": "full-20261116-v2",
+        "job_id": "living-room-2--pt-reblur",
+        "input_fingerprint": "6892504cd4e2ea16db628e91f205f2cc614886c6902a17d2a62fafb7ae25e422",
+        "engine_fingerprint": "abf138679bc03f9c101ef9931740f72cfe7e3803ce6fbbfbd87de09cff31c3fc"
+      },
+      "policy": {
+        "noise_multiplier": 1.75,
+        "ceilings": {
+          "mae": 0.035,
+          "rmse": 0.07,
+          "ssim_loss": 0.12,
+          "luminance_deviation": 0.12
+        },
+        "floors": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        }
+      },
+      "reasons": []
+    },
+    "living-room-2--pt2048": {
+      "status": "calibrated",
+      "thresholds": {
+        "full": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        },
+        "regions": {
+          "center": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "lower-left": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "upper-right": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          }
+        }
+      },
+      "region_bounds": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      },
+      "provenance": {
+        "golden_id": "full-20261116-v2",
+        "job_id": "living-room-2--pt2048",
+        "input_fingerprint": "e8910fd73654d6bb2f5aef35295fc05a5f7b748ee3268ccf3c32e33eca9328e2",
+        "engine_fingerprint": "abf138679bc03f9c101ef9931740f72cfe7e3803ce6fbbfbd87de09cff31c3fc"
+      },
+      "policy": {
+        "noise_multiplier": 1.75,
+        "ceilings": {
+          "mae": 0.035,
+          "rmse": 0.07,
+          "ssim_loss": 0.12,
+          "luminance_deviation": 0.12
+        },
+        "floors": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        }
+      },
+      "reasons": []
+    },
+    "living-room-3--gi": {
+      "status": "calibrated",
+      "thresholds": {
+        "full": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        },
+        "regions": {
+          "center": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "lower-left": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "upper-right": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          }
+        }
+      },
+      "region_bounds": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      },
+      "provenance": {
+        "golden_id": "full-20261116-v2",
+        "job_id": "living-room-3--gi",
+        "input_fingerprint": "54c056d085937884e2b1bbc7445f1cf61f832abc5bea4ba70565437a358617ba",
+        "engine_fingerprint": "abf138679bc03f9c101ef9931740f72cfe7e3803ce6fbbfbd87de09cff31c3fc"
+      },
+      "policy": {
+        "noise_multiplier": 1.75,
+        "ceilings": {
+          "mae": 0.035,
+          "rmse": 0.07,
+          "ssim_loss": 0.12,
+          "luminance_deviation": 0.12
+        },
+        "floors": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        }
+      },
+      "reasons": []
+    },
+    "living-room-3--pt-reblur": {
+      "status": "calibrated",
+      "thresholds": {
+        "full": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        },
+        "regions": {
+          "center": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "lower-left": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "upper-right": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          }
+        }
+      },
+      "region_bounds": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      },
+      "provenance": {
+        "golden_id": "full-20261116-v2",
+        "job_id": "living-room-3--pt-reblur",
+        "input_fingerprint": "5df69411cb5cb010af3b884dda847f2f51a0bfb6ccec5cca531ce31ac819feb8",
+        "engine_fingerprint": "abf138679bc03f9c101ef9931740f72cfe7e3803ce6fbbfbd87de09cff31c3fc"
+      },
+      "policy": {
+        "noise_multiplier": 1.75,
+        "ceilings": {
+          "mae": 0.035,
+          "rmse": 0.07,
+          "ssim_loss": 0.12,
+          "luminance_deviation": 0.12
+        },
+        "floors": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        }
+      },
+      "reasons": []
+    },
+    "living-room-3--pt2048": {
+      "status": "calibrated",
+      "thresholds": {
+        "full": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        },
+        "regions": {
+          "center": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "lower-left": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "upper-right": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          }
+        }
+      },
+      "region_bounds": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      },
+      "provenance": {
+        "golden_id": "full-20261116-v2",
+        "job_id": "living-room-3--pt2048",
+        "input_fingerprint": "0ce1b429c84f2a3565c1c32344c417d2e7782c5a769f089a73f9fe4055b88a7c",
+        "engine_fingerprint": "abf138679bc03f9c101ef9931740f72cfe7e3803ce6fbbfbd87de09cff31c3fc"
+      },
+      "policy": {
+        "noise_multiplier": 1.75,
+        "ceilings": {
+          "mae": 0.035,
+          "rmse": 0.07,
+          "ssim_loss": 0.12,
+          "luminance_deviation": 0.12
+        },
+        "floors": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        }
+      },
+      "reasons": []
+    },
+    "dining-room--gi": {
+      "status": "calibrated",
+      "thresholds": {
+        "full": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        },
+        "regions": {
+          "center": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "lower-left": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "upper-right": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          }
+        }
+      },
+      "region_bounds": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      },
+      "provenance": {
+        "golden_id": "full-20261116-v2",
+        "job_id": "dining-room--gi",
+        "input_fingerprint": "4bec4ea9d366cf8038c87e1a6b13628fc1a5f3dbcd0d54b6e604472a5aee4e67",
+        "engine_fingerprint": "abf138679bc03f9c101ef9931740f72cfe7e3803ce6fbbfbd87de09cff31c3fc"
+      },
+      "policy": {
+        "noise_multiplier": 1.75,
+        "ceilings": {
+          "mae": 0.035,
+          "rmse": 0.07,
+          "ssim_loss": 0.12,
+          "luminance_deviation": 0.12
+        },
+        "floors": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        }
+      },
+      "reasons": []
+    },
+    "dining-room--pt-reblur": {
+      "status": "calibrated",
+      "thresholds": {
+        "full": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        },
+        "regions": {
+          "center": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "lower-left": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "upper-right": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          }
+        }
+      },
+      "region_bounds": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      },
+      "provenance": {
+        "golden_id": "full-20261116-v2",
+        "job_id": "dining-room--pt-reblur",
+        "input_fingerprint": "c7e3fc053cd7a3a7b24cb157319d92f0693509eaf5a1ba629c2220dc89626032",
+        "engine_fingerprint": "abf138679bc03f9c101ef9931740f72cfe7e3803ce6fbbfbd87de09cff31c3fc"
+      },
+      "policy": {
+        "noise_multiplier": 1.75,
+        "ceilings": {
+          "mae": 0.035,
+          "rmse": 0.07,
+          "ssim_loss": 0.12,
+          "luminance_deviation": 0.12
+        },
+        "floors": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        }
+      },
+      "reasons": []
+    },
+    "dining-room--pt2048": {
+      "status": "calibrated",
+      "thresholds": {
+        "full": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        },
+        "regions": {
+          "center": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "lower-left": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "upper-right": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          }
+        }
+      },
+      "region_bounds": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      },
+      "provenance": {
+        "golden_id": "full-20261116-v2",
+        "job_id": "dining-room--pt2048",
+        "input_fingerprint": "53f6c2be12fad94931513feb3ed4284040c6db9c1ad0f956db76777ed79533be",
+        "engine_fingerprint": "abf138679bc03f9c101ef9931740f72cfe7e3803ce6fbbfbd87de09cff31c3fc"
+      },
+      "policy": {
+        "noise_multiplier": 1.75,
+        "ceilings": {
+          "mae": 0.035,
+          "rmse": 0.07,
+          "ssim_loss": 0.12,
+          "luminance_deviation": 0.12
+        },
+        "floors": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        }
+      },
+      "reasons": []
+    },
+    "glass-of-water--gi": {
+      "status": "calibrated",
+      "thresholds": {
+        "full": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        },
+        "regions": {
+          "center": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "lower-left": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "upper-right": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          }
+        }
+      },
+      "region_bounds": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      },
+      "provenance": {
+        "golden_id": "full-20261116-v2",
+        "job_id": "glass-of-water--gi",
+        "input_fingerprint": "a795abe4ec72a9c4cbee8426d3eeaad1a379631b94252677b537f2bbdb71a53c",
+        "engine_fingerprint": "abf138679bc03f9c101ef9931740f72cfe7e3803ce6fbbfbd87de09cff31c3fc"
+      },
+      "policy": {
+        "noise_multiplier": 1.75,
+        "ceilings": {
+          "mae": 0.035,
+          "rmse": 0.07,
+          "ssim_loss": 0.12,
+          "luminance_deviation": 0.12
+        },
+        "floors": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        }
+      },
+      "reasons": []
+    },
+    "glass-of-water--pt-reblur": {
+      "status": "calibrated",
+      "thresholds": {
+        "full": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        },
+        "regions": {
+          "center": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "lower-left": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "upper-right": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          }
+        }
+      },
+      "region_bounds": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      },
+      "provenance": {
+        "golden_id": "full-20261116-v2",
+        "job_id": "glass-of-water--pt-reblur",
+        "input_fingerprint": "33fa22631ad4c093497263827e42aaff91581a9f07e423f7e9caabc9bb4aeead",
+        "engine_fingerprint": "abf138679bc03f9c101ef9931740f72cfe7e3803ce6fbbfbd87de09cff31c3fc"
+      },
+      "policy": {
+        "noise_multiplier": 1.75,
+        "ceilings": {
+          "mae": 0.035,
+          "rmse": 0.07,
+          "ssim_loss": 0.12,
+          "luminance_deviation": 0.12
+        },
+        "floors": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        }
+      },
+      "reasons": []
+    },
+    "glass-of-water--pt2048": {
+      "status": "calibrated",
+      "thresholds": {
+        "full": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        },
+        "regions": {
+          "center": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "lower-left": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "upper-right": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          }
+        }
+      },
+      "region_bounds": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      },
+      "provenance": {
+        "golden_id": "full-20261116-v2",
+        "job_id": "glass-of-water--pt2048",
+        "input_fingerprint": "eeb525b6e891b6752daac94a5a6cf636de1a83a23af4e85208173cbf35bce546",
+        "engine_fingerprint": "abf138679bc03f9c101ef9931740f72cfe7e3803ce6fbbfbd87de09cff31c3fc"
+      },
+      "policy": {
+        "noise_multiplier": 1.75,
+        "ceilings": {
+          "mae": 0.035,
+          "rmse": 0.07,
+          "ssim_loss": 0.12,
+          "luminance_deviation": 0.12
+        },
+        "floors": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        }
+      },
+      "reasons": []
+    },
+    "car2--gi": {
+      "status": "calibrated",
+      "thresholds": {
+        "full": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        },
+        "regions": {
+          "center": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "lower-left": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "upper-right": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          }
+        }
+      },
+      "region_bounds": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      },
+      "provenance": {
+        "golden_id": "full-20261116-v2",
+        "job_id": "car2--gi",
+        "input_fingerprint": "d6bfe835ff7bffc2081a18aa8ca32876cba9dfc621ac2fc9053766db2c05315a",
+        "engine_fingerprint": "abf138679bc03f9c101ef9931740f72cfe7e3803ce6fbbfbd87de09cff31c3fc"
+      },
+      "policy": {
+        "noise_multiplier": 1.75,
+        "ceilings": {
+          "mae": 0.035,
+          "rmse": 0.07,
+          "ssim_loss": 0.12,
+          "luminance_deviation": 0.12
+        },
+        "floors": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        }
+      },
+      "reasons": []
+    },
+    "car2--pt-reblur": {
+      "status": "calibrated",
+      "thresholds": {
+        "full": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        },
+        "regions": {
+          "center": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "lower-left": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "upper-right": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          }
+        }
+      },
+      "region_bounds": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      },
+      "provenance": {
+        "golden_id": "full-20261116-v2",
+        "job_id": "car2--pt-reblur",
+        "input_fingerprint": "7054b63bf3697234e8b831910d6fd2cffc19b861c54bb3b3bb4cb4dac7c44ba9",
+        "engine_fingerprint": "abf138679bc03f9c101ef9931740f72cfe7e3803ce6fbbfbd87de09cff31c3fc"
+      },
+      "policy": {
+        "noise_multiplier": 1.75,
+        "ceilings": {
+          "mae": 0.035,
+          "rmse": 0.07,
+          "ssim_loss": 0.12,
+          "luminance_deviation": 0.12
+        },
+        "floors": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        }
+      },
+      "reasons": []
+    },
+    "car2--pt2048": {
+      "status": "calibrated",
+      "thresholds": {
+        "full": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        },
+        "regions": {
+          "center": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "lower-left": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "upper-right": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          }
+        }
+      },
+      "region_bounds": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      },
+      "provenance": {
+        "golden_id": "full-20261116-v2",
+        "job_id": "car2--pt2048",
+        "input_fingerprint": "728554507308c971c54248dda3d22f1ce8cf844404c6dbb74fca35a153adb53b",
+        "engine_fingerprint": "abf138679bc03f9c101ef9931740f72cfe7e3803ce6fbbfbd87de09cff31c3fc"
+      },
+      "policy": {
+        "noise_multiplier": 1.75,
+        "ceilings": {
+          "mae": 0.035,
+          "rmse": 0.07,
+          "ssim_loss": 0.12,
+          "luminance_deviation": 0.12
+        },
+        "floors": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        }
+      },
+      "reasons": []
+    },
+    "car--gi": {
+      "status": "calibrated",
+      "thresholds": {
+        "full": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        },
+        "regions": {
+          "center": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "lower-left": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "upper-right": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          }
+        }
+      },
+      "region_bounds": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      },
+      "provenance": {
+        "golden_id": "full-20261116-v2",
+        "job_id": "car--gi",
+        "input_fingerprint": "d8a1724ca89ed6c45c359cc12a2d5484e9539382fc4fda2a4e30fb3124ea04fa",
+        "engine_fingerprint": "abf138679bc03f9c101ef9931740f72cfe7e3803ce6fbbfbd87de09cff31c3fc"
+      },
+      "policy": {
+        "noise_multiplier": 1.75,
+        "ceilings": {
+          "mae": 0.035,
+          "rmse": 0.07,
+          "ssim_loss": 0.12,
+          "luminance_deviation": 0.12
+        },
+        "floors": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        }
+      },
+      "reasons": []
+    },
+    "car--pt-reblur": {
+      "status": "calibrated",
+      "thresholds": {
+        "full": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        },
+        "regions": {
+          "center": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "lower-left": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "upper-right": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          }
+        }
+      },
+      "region_bounds": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      },
+      "provenance": {
+        "golden_id": "full-20261116-v2",
+        "job_id": "car--pt-reblur",
+        "input_fingerprint": "b2444f650535b836641528665c0672675e4fabac6404dd479c55355f6143b45f",
+        "engine_fingerprint": "abf138679bc03f9c101ef9931740f72cfe7e3803ce6fbbfbd87de09cff31c3fc"
+      },
+      "policy": {
+        "noise_multiplier": 1.75,
+        "ceilings": {
+          "mae": 0.035,
+          "rmse": 0.07,
+          "ssim_loss": 0.12,
+          "luminance_deviation": 0.12
+        },
+        "floors": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        }
+      },
+      "reasons": []
+    },
+    "car--pt2048": {
+      "status": "calibrated",
+      "thresholds": {
+        "full": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        },
+        "regions": {
+          "center": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "lower-left": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "upper-right": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          }
+        }
+      },
+      "region_bounds": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      },
+      "provenance": {
+        "golden_id": "full-20261116-v2",
+        "job_id": "car--pt2048",
+        "input_fingerprint": "8fa3d0021f0ee15db39d1b098153fd574f418a1cf42d64b937f2dea21dc06cf0",
+        "engine_fingerprint": "abf138679bc03f9c101ef9931740f72cfe7e3803ce6fbbfbd87de09cff31c3fc"
+      },
+      "policy": {
+        "noise_multiplier": 1.75,
+        "ceilings": {
+          "mae": 0.035,
+          "rmse": 0.07,
+          "ssim_loss": 0.12,
+          "luminance_deviation": 0.12
+        },
+        "floors": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        }
+      },
+      "reasons": []
+    },
+    "coffee--gi": {
+      "status": "calibrated",
+      "thresholds": {
+        "full": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        },
+        "regions": {
+          "center": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "lower-left": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "upper-right": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          }
+        }
+      },
+      "region_bounds": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      },
+      "provenance": {
+        "golden_id": "full-20261116-v2",
+        "job_id": "coffee--gi",
+        "input_fingerprint": "93fd4263e8e522cb7948648a82f52ca7366ca1e55480d3cbcfbbf556568ce5ed",
+        "engine_fingerprint": "abf138679bc03f9c101ef9931740f72cfe7e3803ce6fbbfbd87de09cff31c3fc"
+      },
+      "policy": {
+        "noise_multiplier": 1.75,
+        "ceilings": {
+          "mae": 0.035,
+          "rmse": 0.07,
+          "ssim_loss": 0.12,
+          "luminance_deviation": 0.12
+        },
+        "floors": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        }
+      },
+      "reasons": []
+    },
+    "coffee--pt-reblur": {
+      "status": "calibrated",
+      "thresholds": {
+        "full": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        },
+        "regions": {
+          "center": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "lower-left": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "upper-right": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          }
+        }
+      },
+      "region_bounds": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      },
+      "provenance": {
+        "golden_id": "full-20261116-v2",
+        "job_id": "coffee--pt-reblur",
+        "input_fingerprint": "939eb2c257325c323f9e063dd322593b5a524d1864b98accede89d26b65934a0",
+        "engine_fingerprint": "abf138679bc03f9c101ef9931740f72cfe7e3803ce6fbbfbd87de09cff31c3fc"
+      },
+      "policy": {
+        "noise_multiplier": 1.75,
+        "ceilings": {
+          "mae": 0.035,
+          "rmse": 0.07,
+          "ssim_loss": 0.12,
+          "luminance_deviation": 0.12
+        },
+        "floors": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        }
+      },
+      "reasons": []
+    },
+    "coffee--pt2048": {
+      "status": "calibrated",
+      "thresholds": {
+        "full": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        },
+        "regions": {
+          "center": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "lower-left": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "upper-right": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          }
+        }
+      },
+      "region_bounds": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      },
+      "provenance": {
+        "golden_id": "full-20261116-v2",
+        "job_id": "coffee--pt2048",
+        "input_fingerprint": "e98481bd92ba96319d8b75f815e3640cbf437f59e940f0b7c986450748feab3c",
+        "engine_fingerprint": "abf138679bc03f9c101ef9931740f72cfe7e3803ce6fbbfbd87de09cff31c3fc"
+      },
+      "policy": {
+        "noise_multiplier": 1.75,
+        "ceilings": {
+          "mae": 0.035,
+          "rmse": 0.07,
+          "ssim_loss": 0.12,
+          "luminance_deviation": 0.12
+        },
+        "floors": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        }
+      },
+      "reasons": []
+    },
+    "lamp--gi": {
+      "status": "calibrated",
+      "thresholds": {
+        "full": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        },
+        "regions": {
+          "center": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "lower-left": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "upper-right": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          }
+        }
+      },
+      "region_bounds": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      },
+      "provenance": {
+        "golden_id": "full-20261116-v2",
+        "job_id": "lamp--gi",
+        "input_fingerprint": "32e3ec7542482cb3ef022521ac0c47b6e1689418de5d817af1d18f07c98eb7b3",
+        "engine_fingerprint": "abf138679bc03f9c101ef9931740f72cfe7e3803ce6fbbfbd87de09cff31c3fc"
+      },
+      "policy": {
+        "noise_multiplier": 1.75,
+        "ceilings": {
+          "mae": 0.035,
+          "rmse": 0.07,
+          "ssim_loss": 0.12,
+          "luminance_deviation": 0.12
+        },
+        "floors": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        }
+      },
+      "reasons": []
+    },
+    "lamp--pt-reblur": {
+      "status": "calibrated",
+      "thresholds": {
+        "full": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        },
+        "regions": {
+          "center": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "lower-left": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "upper-right": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          }
+        }
+      },
+      "region_bounds": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      },
+      "provenance": {
+        "golden_id": "full-20261116-v2",
+        "job_id": "lamp--pt-reblur",
+        "input_fingerprint": "dfefd7d33f0b1f5d00a82489327d00453e9a980ae9034222041f942597811225",
+        "engine_fingerprint": "abf138679bc03f9c101ef9931740f72cfe7e3803ce6fbbfbd87de09cff31c3fc"
+      },
+      "policy": {
+        "noise_multiplier": 1.75,
+        "ceilings": {
+          "mae": 0.035,
+          "rmse": 0.07,
+          "ssim_loss": 0.12,
+          "luminance_deviation": 0.12
+        },
+        "floors": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        }
+      },
+      "reasons": []
+    },
+    "lamp--pt2048": {
+      "status": "calibrated",
+      "thresholds": {
+        "full": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        },
+        "regions": {
+          "center": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "lower-left": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "upper-right": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          }
+        }
+      },
+      "region_bounds": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      },
+      "provenance": {
+        "golden_id": "full-20261116-v2",
+        "job_id": "lamp--pt2048",
+        "input_fingerprint": "e94d1e82456d0ccae905a46626271cca75aff3ba8ea626303be9e100dd53f8a1",
+        "engine_fingerprint": "abf138679bc03f9c101ef9931740f72cfe7e3803ce6fbbfbd87de09cff31c3fc"
+      },
+      "policy": {
+        "noise_multiplier": 1.75,
+        "ceilings": {
+          "mae": 0.035,
+          "rmse": 0.07,
+          "ssim_loss": 0.12,
+          "luminance_deviation": 0.12
+        },
+        "floors": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        }
+      },
+      "reasons": []
+    },
+    "house--gi": {
+      "status": "calibrated",
+      "thresholds": {
+        "full": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        },
+        "regions": {
+          "center": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "lower-left": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "upper-right": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          }
+        }
+      },
+      "region_bounds": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      },
+      "provenance": {
+        "golden_id": "full-20261116-v2",
+        "job_id": "house--gi",
+        "input_fingerprint": "39275b7849b871fb57cb3122c17e22df6c291979f7ffaa3093e06362829739ef",
+        "engine_fingerprint": "abf138679bc03f9c101ef9931740f72cfe7e3803ce6fbbfbd87de09cff31c3fc"
+      },
+      "policy": {
+        "noise_multiplier": 1.75,
+        "ceilings": {
+          "mae": 0.035,
+          "rmse": 0.07,
+          "ssim_loss": 0.12,
+          "luminance_deviation": 0.12
+        },
+        "floors": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        }
+      },
+      "reasons": []
+    },
+    "house--pt-reblur": {
+      "status": "calibrated",
+      "thresholds": {
+        "full": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        },
+        "regions": {
+          "center": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "lower-left": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "upper-right": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          }
+        }
+      },
+      "region_bounds": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      },
+      "provenance": {
+        "golden_id": "full-20261116-v2",
+        "job_id": "house--pt-reblur",
+        "input_fingerprint": "aa5a8c5af16d202d13e688f1f9f5d7d784b481987ce03641f9f7788f3ea96635",
+        "engine_fingerprint": "abf138679bc03f9c101ef9931740f72cfe7e3803ce6fbbfbd87de09cff31c3fc"
+      },
+      "policy": {
+        "noise_multiplier": 1.75,
+        "ceilings": {
+          "mae": 0.035,
+          "rmse": 0.07,
+          "ssim_loss": 0.12,
+          "luminance_deviation": 0.12
+        },
+        "floors": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        }
+      },
+      "reasons": []
+    },
+    "house--pt2048": {
+      "status": "calibrated",
+      "thresholds": {
+        "full": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        },
+        "regions": {
+          "center": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "lower-left": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "upper-right": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          }
+        }
+      },
+      "region_bounds": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      },
+      "provenance": {
+        "golden_id": "full-20261116-v2",
+        "job_id": "house--pt2048",
+        "input_fingerprint": "f0c7ccbc3dc751c9e2e3e7ba59297a749e95ea8e3d7015dc0bb3b924ae9a0112",
+        "engine_fingerprint": "abf138679bc03f9c101ef9931740f72cfe7e3803ce6fbbfbd87de09cff31c3fc"
+      },
+      "policy": {
+        "noise_multiplier": 1.75,
+        "ceilings": {
+          "mae": 0.035,
+          "rmse": 0.07,
+          "ssim_loss": 0.12,
+          "luminance_deviation": 0.12
+        },
+        "floors": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        }
+      },
+      "reasons": []
+    },
+    "spaceship--gi": {
+      "status": "calibrated",
+      "thresholds": {
+        "full": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        },
+        "regions": {
+          "center": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "lower-left": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "upper-right": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          }
+        }
+      },
+      "region_bounds": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      },
+      "provenance": {
+        "golden_id": "full-20261116-v2",
+        "job_id": "spaceship--gi",
+        "input_fingerprint": "9ab418f5c2cf9e668a52bd3c25f729f569c88067be05f36ca8b07b54b0c5ffb5",
+        "engine_fingerprint": "abf138679bc03f9c101ef9931740f72cfe7e3803ce6fbbfbd87de09cff31c3fc"
+      },
+      "policy": {
+        "noise_multiplier": 1.75,
+        "ceilings": {
+          "mae": 0.035,
+          "rmse": 0.07,
+          "ssim_loss": 0.12,
+          "luminance_deviation": 0.12
+        },
+        "floors": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        }
+      },
+      "reasons": []
+    },
+    "spaceship--pt-reblur": {
+      "status": "calibrated",
+      "thresholds": {
+        "full": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        },
+        "regions": {
+          "center": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "lower-left": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "upper-right": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          }
+        }
+      },
+      "region_bounds": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      },
+      "provenance": {
+        "golden_id": "full-20261116-v2",
+        "job_id": "spaceship--pt-reblur",
+        "input_fingerprint": "00c6e75a4b495b8ef8f4a9e45aea8cfdc3c53ad132603f886d5d71c2cf5d7f73",
+        "engine_fingerprint": "abf138679bc03f9c101ef9931740f72cfe7e3803ce6fbbfbd87de09cff31c3fc"
+      },
+      "policy": {
+        "noise_multiplier": 1.75,
+        "ceilings": {
+          "mae": 0.035,
+          "rmse": 0.07,
+          "ssim_loss": 0.12,
+          "luminance_deviation": 0.12
+        },
+        "floors": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        }
+      },
+      "reasons": []
+    },
+    "spaceship--pt2048": {
+      "status": "calibrated",
+      "thresholds": {
+        "full": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        },
+        "regions": {
+          "center": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "lower-left": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "upper-right": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          }
+        }
+      },
+      "region_bounds": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      },
+      "provenance": {
+        "golden_id": "full-20261116-v2",
+        "job_id": "spaceship--pt2048",
+        "input_fingerprint": "9c4ae5eb3b54934ca90c778af1995bfb54fabf2cd2a9618601b12b832284877e",
+        "engine_fingerprint": "abf138679bc03f9c101ef9931740f72cfe7e3803ce6fbbfbd87de09cff31c3fc"
+      },
+      "policy": {
+        "noise_multiplier": 1.75,
+        "ceilings": {
+          "mae": 0.035,
+          "rmse": 0.07,
+          "ssim_loss": 0.12,
+          "luminance_deviation": 0.12
+        },
+        "floors": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        }
+      },
+      "reasons": []
+    },
+    "classroom--gi": {
+      "status": "calibrated",
+      "thresholds": {
+        "full": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        },
+        "regions": {
+          "center": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "lower-left": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "upper-right": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          }
+        }
+      },
+      "region_bounds": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      },
+      "provenance": {
+        "golden_id": "full-20261116-v2",
+        "job_id": "classroom--gi",
+        "input_fingerprint": "09cd82597fdcdc24345cd38652ea43909a6da36b2a123712982d0c43f8f937b6",
+        "engine_fingerprint": "abf138679bc03f9c101ef9931740f72cfe7e3803ce6fbbfbd87de09cff31c3fc"
+      },
+      "policy": {
+        "noise_multiplier": 1.75,
+        "ceilings": {
+          "mae": 0.035,
+          "rmse": 0.07,
+          "ssim_loss": 0.12,
+          "luminance_deviation": 0.12
+        },
+        "floors": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        }
+      },
+      "reasons": []
+    },
+    "classroom--pt-reblur": {
+      "status": "calibrated",
+      "thresholds": {
+        "full": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        },
+        "regions": {
+          "center": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "lower-left": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "upper-right": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          }
+        }
+      },
+      "region_bounds": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      },
+      "provenance": {
+        "golden_id": "full-20261116-v2",
+        "job_id": "classroom--pt-reblur",
+        "input_fingerprint": "d82131a45fb480d72deeba7d6acdc535b0b67e42044a7659e08b040dc0724a70",
+        "engine_fingerprint": "abf138679bc03f9c101ef9931740f72cfe7e3803ce6fbbfbd87de09cff31c3fc"
+      },
+      "policy": {
+        "noise_multiplier": 1.75,
+        "ceilings": {
+          "mae": 0.035,
+          "rmse": 0.07,
+          "ssim_loss": 0.12,
+          "luminance_deviation": 0.12
+        },
+        "floors": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        }
+      },
+      "reasons": []
+    },
+    "classroom--pt2048": {
+      "status": "calibrated",
+      "thresholds": {
+        "full": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        },
+        "regions": {
+          "center": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "lower-left": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "upper-right": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          }
+        }
+      },
+      "region_bounds": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      },
+      "provenance": {
+        "golden_id": "full-20261116-v2",
+        "job_id": "classroom--pt2048",
+        "input_fingerprint": "bc189f84be9e9a156cf7d6884d94f17f80f1dace75a8fbb53a03028f467a4959",
+        "engine_fingerprint": "abf138679bc03f9c101ef9931740f72cfe7e3803ce6fbbfbd87de09cff31c3fc"
+      },
+      "policy": {
+        "noise_multiplier": 1.75,
+        "ceilings": {
+          "mae": 0.035,
+          "rmse": 0.07,
+          "ssim_loss": 0.12,
+          "luminance_deviation": 0.12
+        },
+        "floors": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        }
+      },
+      "reasons": []
+    },
+    "dragon--pt-reblur": {
+      "status": "calibrated",
+      "thresholds": {
+        "full": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        },
+        "regions": {
+          "center": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "lower-left": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "upper-right": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          }
+        }
+      },
+      "region_bounds": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      },
+      "provenance": {
+        "golden_id": "full-20261116-v2",
+        "job_id": "dragon--pt-reblur",
+        "input_fingerprint": "c4d3215f540c09ecc419634382626c5fa4ac1fee338df56e9f4e2aebd104ac7e",
+        "engine_fingerprint": "abf138679bc03f9c101ef9931740f72cfe7e3803ce6fbbfbd87de09cff31c3fc"
+      },
+      "policy": {
+        "noise_multiplier": 1.75,
+        "ceilings": {
+          "mae": 0.035,
+          "rmse": 0.07,
+          "ssim_loss": 0.12,
+          "luminance_deviation": 0.12
+        },
+        "floors": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        }
+      },
+      "reasons": []
+    },
+    "dragon--pt2048": {
+      "status": "calibrated",
+      "thresholds": {
+        "full": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        },
+        "regions": {
+          "center": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "lower-left": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "upper-right": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          }
+        }
+      },
+      "region_bounds": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      },
+      "provenance": {
+        "golden_id": "full-20261116-v2",
+        "job_id": "dragon--pt2048",
+        "input_fingerprint": "d38b0c9cd8bac03167c3a4ed73c33a5c100201d128fb3e0be644597d1697d5f9",
+        "engine_fingerprint": "abf138679bc03f9c101ef9931740f72cfe7e3803ce6fbbfbd87de09cff31c3fc"
+      },
+      "policy": {
+        "noise_multiplier": 1.75,
+        "ceilings": {
+          "mae": 0.035,
+          "rmse": 0.07,
+          "ssim_loss": 0.12,
+          "luminance_deviation": 0.12
+        },
+        "floors": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        }
+      },
+      "reasons": []
+    },
+    "teapot-full--gi": {
+      "status": "calibrated",
+      "thresholds": {
+        "full": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        },
+        "regions": {
+          "center": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "lower-left": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "upper-right": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          }
+        }
+      },
+      "region_bounds": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      },
+      "provenance": {
+        "golden_id": "full-20261116-v2",
+        "job_id": "teapot-full--gi",
+        "input_fingerprint": "f6997f207118c6fdea9b424a59cb62f48e7cb0ba8513fe4d3d8622f064197e9b",
+        "engine_fingerprint": "abf138679bc03f9c101ef9931740f72cfe7e3803ce6fbbfbd87de09cff31c3fc"
+      },
+      "policy": {
+        "noise_multiplier": 1.75,
+        "ceilings": {
+          "mae": 0.035,
+          "rmse": 0.07,
+          "ssim_loss": 0.12,
+          "luminance_deviation": 0.12
+        },
+        "floors": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        }
+      },
+      "reasons": []
+    },
+    "teapot-full--pt-reblur": {
+      "status": "calibrated",
+      "thresholds": {
+        "full": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        },
+        "regions": {
+          "center": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "lower-left": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "upper-right": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          }
+        }
+      },
+      "region_bounds": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      },
+      "provenance": {
+        "golden_id": "full-20261116-v2",
+        "job_id": "teapot-full--pt-reblur",
+        "input_fingerprint": "772465a2a6ddb45161e0211369b6acf50acfaf32377abb730631f1526874497f",
+        "engine_fingerprint": "abf138679bc03f9c101ef9931740f72cfe7e3803ce6fbbfbd87de09cff31c3fc"
+      },
+      "policy": {
+        "noise_multiplier": 1.75,
+        "ceilings": {
+          "mae": 0.035,
+          "rmse": 0.07,
+          "ssim_loss": 0.12,
+          "luminance_deviation": 0.12
+        },
+        "floors": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        }
+      },
+      "reasons": []
+    },
+    "teapot-full--pt2048": {
+      "status": "calibrated",
+      "thresholds": {
+        "full": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        },
+        "regions": {
+          "center": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "lower-left": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "upper-right": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          }
+        }
+      },
+      "region_bounds": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      },
+      "provenance": {
+        "golden_id": "full-20261116-v2",
+        "job_id": "teapot-full--pt2048",
+        "input_fingerprint": "d940a226cd1e2cfee81acf136bab880073f95659440dcbe990a52dbbf89ac179",
+        "engine_fingerprint": "abf138679bc03f9c101ef9931740f72cfe7e3803ce6fbbfbd87de09cff31c3fc"
+      },
+      "policy": {
+        "noise_multiplier": 1.75,
+        "ceilings": {
+          "mae": 0.035,
+          "rmse": 0.07,
+          "ssim_loss": 0.12,
+          "luminance_deviation": 0.12
+        },
+        "floors": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        }
+      },
+      "reasons": []
+    },
+    "teapot--gi": {
+      "status": "calibrated",
+      "thresholds": {
+        "full": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        },
+        "regions": {
+          "center": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "lower-left": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "upper-right": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          }
+        }
+      },
+      "region_bounds": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      },
+      "provenance": {
+        "golden_id": "full-20261116-v2",
+        "job_id": "teapot--gi",
+        "input_fingerprint": "d6df7b8777cc666e9016be3a30d9d1ad10a9b5495439b9ba254a7402f1bb51f6",
+        "engine_fingerprint": "abf138679bc03f9c101ef9931740f72cfe7e3803ce6fbbfbd87de09cff31c3fc"
+      },
+      "policy": {
+        "noise_multiplier": 1.75,
+        "ceilings": {
+          "mae": 0.035,
+          "rmse": 0.07,
+          "ssim_loss": 0.12,
+          "luminance_deviation": 0.12
+        },
+        "floors": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        }
+      },
+      "reasons": []
+    },
+    "teapot--pt-reblur": {
+      "status": "calibrated",
+      "thresholds": {
+        "full": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        },
+        "regions": {
+          "center": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "lower-left": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "upper-right": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          }
+        }
+      },
+      "region_bounds": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      },
+      "provenance": {
+        "golden_id": "full-20261116-v2",
+        "job_id": "teapot--pt-reblur",
+        "input_fingerprint": "d0d64cb0f8b38629f7006bbdf0693a9a50d688d100738d275e0cb6a0bb4ae748",
+        "engine_fingerprint": "abf138679bc03f9c101ef9931740f72cfe7e3803ce6fbbfbd87de09cff31c3fc"
+      },
+      "policy": {
+        "noise_multiplier": 1.75,
+        "ceilings": {
+          "mae": 0.035,
+          "rmse": 0.07,
+          "ssim_loss": 0.12,
+          "luminance_deviation": 0.12
+        },
+        "floors": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        }
+      },
+      "reasons": []
+    },
+    "teapot--pt2048": {
+      "status": "calibrated",
+      "thresholds": {
+        "full": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        },
+        "regions": {
+          "center": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "lower-left": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "upper-right": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          }
+        }
+      },
+      "region_bounds": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      },
+      "provenance": {
+        "golden_id": "full-20261116-v2",
+        "job_id": "teapot--pt2048",
+        "input_fingerprint": "1f5c887f03b499c8a85e5886b9d63777987346e4a52541caaacd33a74a45e81d",
+        "engine_fingerprint": "abf138679bc03f9c101ef9931740f72cfe7e3803ce6fbbfbd87de09cff31c3fc"
+      },
+      "policy": {
+        "noise_multiplier": 1.75,
+        "ceilings": {
+          "mae": 0.035,
+          "rmse": 0.07,
+          "ssim_loss": 0.12,
+          "luminance_deviation": 0.12
+        },
+        "floors": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        }
+      },
+      "reasons": []
+    },
+    "cornell-box--gi": {
+      "status": "calibrated",
+      "thresholds": {
+        "full": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        },
+        "regions": {
+          "center": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "lower-left": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "upper-right": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          }
+        }
+      },
+      "region_bounds": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      },
+      "provenance": {
+        "golden_id": "full-20261116-v2",
+        "job_id": "cornell-box--gi",
+        "input_fingerprint": "465f718302a555e2c2df6d878b9f89c7d7e10b9212c50889abeda1aa485ca5d3",
+        "engine_fingerprint": "abf138679bc03f9c101ef9931740f72cfe7e3803ce6fbbfbd87de09cff31c3fc"
+      },
+      "policy": {
+        "noise_multiplier": 1.75,
+        "ceilings": {
+          "mae": 0.035,
+          "rmse": 0.07,
+          "ssim_loss": 0.12,
+          "luminance_deviation": 0.12
+        },
+        "floors": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        }
+      },
+      "reasons": []
+    },
+    "cornell-box--pt-reblur": {
+      "status": "calibrated",
+      "thresholds": {
+        "full": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        },
+        "regions": {
+          "center": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "lower-left": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "upper-right": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          }
+        }
+      },
+      "region_bounds": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      },
+      "provenance": {
+        "golden_id": "full-20261116-v2",
+        "job_id": "cornell-box--pt-reblur",
+        "input_fingerprint": "bd28e6bdefecc77674503a5db02d9775e7b6c3d2a0b55cd87a569c2c1be0222c",
+        "engine_fingerprint": "abf138679bc03f9c101ef9931740f72cfe7e3803ce6fbbfbd87de09cff31c3fc"
+      },
+      "policy": {
+        "noise_multiplier": 1.75,
+        "ceilings": {
+          "mae": 0.035,
+          "rmse": 0.07,
+          "ssim_loss": 0.12,
+          "luminance_deviation": 0.12
+        },
+        "floors": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        }
+      },
+      "reasons": []
+    },
+    "cornell-box--pt2048": {
+      "status": "calibrated",
+      "thresholds": {
+        "full": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        },
+        "regions": {
+          "center": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "lower-left": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "upper-right": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          }
+        }
+      },
+      "region_bounds": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      },
+      "provenance": {
+        "golden_id": "full-20261116-v2",
+        "job_id": "cornell-box--pt2048",
+        "input_fingerprint": "41695d3abd225b28d18c60b7e464090642fa3c4e42050adff002a1f2bacac1b6",
+        "engine_fingerprint": "abf138679bc03f9c101ef9931740f72cfe7e3803ce6fbbfbd87de09cff31c3fc"
+      },
+      "policy": {
+        "noise_multiplier": 1.75,
+        "ceilings": {
+          "mae": 0.035,
+          "rmse": 0.07,
+          "ssim_loss": 0.12,
+          "luminance_deviation": 0.12
+        },
+        "floors": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        }
+      },
+      "reasons": []
+    },
+    "volumetric-caustic--gi": {
+      "status": "calibrated",
+      "thresholds": {
+        "full": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        },
+        "regions": {
+          "center": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "lower-left": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "upper-right": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          }
+        }
+      },
+      "region_bounds": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      },
+      "provenance": {
+        "golden_id": "full-20261116-v2",
+        "job_id": "volumetric-caustic--gi",
+        "input_fingerprint": "4df102ad23578dff8c394e829e981291126e5b4e05ed2d93d6bdad4f561af5bf",
+        "engine_fingerprint": "abf138679bc03f9c101ef9931740f72cfe7e3803ce6fbbfbd87de09cff31c3fc"
+      },
+      "policy": {
+        "noise_multiplier": 1.75,
+        "ceilings": {
+          "mae": 0.035,
+          "rmse": 0.07,
+          "ssim_loss": 0.12,
+          "luminance_deviation": 0.12
+        },
+        "floors": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        }
+      },
+      "reasons": []
+    },
+    "volumetric-caustic--pt-reblur": {
+      "status": "calibrated",
+      "thresholds": {
+        "full": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        },
+        "regions": {
+          "center": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "lower-left": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "upper-right": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          }
+        }
+      },
+      "region_bounds": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      },
+      "provenance": {
+        "golden_id": "full-20261116-v2",
+        "job_id": "volumetric-caustic--pt-reblur",
+        "input_fingerprint": "b4c5fdec5d9010f6c22603bbe739e573fc327ad3b1ff38a36cd0636085c544e8",
+        "engine_fingerprint": "abf138679bc03f9c101ef9931740f72cfe7e3803ce6fbbfbd87de09cff31c3fc"
+      },
+      "policy": {
+        "noise_multiplier": 1.75,
+        "ceilings": {
+          "mae": 0.035,
+          "rmse": 0.07,
+          "ssim_loss": 0.12,
+          "luminance_deviation": 0.12
+        },
+        "floors": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        }
+      },
+      "reasons": []
+    },
+    "volumetric-caustic--pt2048": {
+      "status": "calibrated",
+      "thresholds": {
+        "full": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        },
+        "regions": {
+          "center": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "lower-left": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "upper-right": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          }
+        }
+      },
+      "region_bounds": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      },
+      "provenance": {
+        "golden_id": "full-20261116-v2",
+        "job_id": "volumetric-caustic--pt2048",
+        "input_fingerprint": "b5fe5482f31d009cd3cce26b82cd4c8483c9acf1b26a3311b79b00b4b4c32b14",
+        "engine_fingerprint": "abf138679bc03f9c101ef9931740f72cfe7e3803ce6fbbfbd87de09cff31c3fc"
+      },
+      "policy": {
+        "noise_multiplier": 1.75,
+        "ceilings": {
+          "mae": 0.035,
+          "rmse": 0.07,
+          "ssim_loss": 0.12,
+          "luminance_deviation": 0.12
+        },
+        "floors": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        }
+      },
+      "reasons": []
+    },
+    "water-caustic--gi": {
+      "status": "calibrated",
+      "thresholds": {
+        "full": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        },
+        "regions": {
+          "center": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "lower-left": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "upper-right": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          }
+        }
+      },
+      "region_bounds": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      },
+      "provenance": {
+        "golden_id": "full-20261116-v2",
+        "job_id": "water-caustic--gi",
+        "input_fingerprint": "09e742d1953203c1b2d8782a18020c63ec943b5d0d580b736a3a1f4c6b06484f",
+        "engine_fingerprint": "abf138679bc03f9c101ef9931740f72cfe7e3803ce6fbbfbd87de09cff31c3fc"
+      },
+      "policy": {
+        "noise_multiplier": 1.75,
+        "ceilings": {
+          "mae": 0.035,
+          "rmse": 0.07,
+          "ssim_loss": 0.12,
+          "luminance_deviation": 0.12
+        },
+        "floors": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        }
+      },
+      "reasons": []
+    },
+    "water-caustic--pt-reblur": {
+      "status": "calibrated",
+      "thresholds": {
+        "full": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        },
+        "regions": {
+          "center": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "lower-left": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "upper-right": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          }
+        }
+      },
+      "region_bounds": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      },
+      "provenance": {
+        "golden_id": "full-20261116-v2",
+        "job_id": "water-caustic--pt-reblur",
+        "input_fingerprint": "e8e1f70df1f48a25e5ebf504fe4477f18e3a7f5ab7ae0adedb7937526b466c74",
+        "engine_fingerprint": "abf138679bc03f9c101ef9931740f72cfe7e3803ce6fbbfbd87de09cff31c3fc"
+      },
+      "policy": {
+        "noise_multiplier": 1.75,
+        "ceilings": {
+          "mae": 0.035,
+          "rmse": 0.07,
+          "ssim_loss": 0.12,
+          "luminance_deviation": 0.12
+        },
+        "floors": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        }
+      },
+      "reasons": []
+    },
+    "water-caustic--pt2048": {
+      "status": "calibrated",
+      "thresholds": {
+        "full": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        },
+        "regions": {
+          "center": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "lower-left": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "upper-right": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          }
+        }
+      },
+      "region_bounds": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      },
+      "provenance": {
+        "golden_id": "full-20261116-v2",
+        "job_id": "water-caustic--pt2048",
+        "input_fingerprint": "b4b8b3a5329ee55fcd71e78cb3196e7d9fd7ccff7d38e7b6feea6b5d1a5166e8",
+        "engine_fingerprint": "abf138679bc03f9c101ef9931740f72cfe7e3803ce6fbbfbd87de09cff31c3fc"
+      },
+      "policy": {
+        "noise_multiplier": 1.75,
+        "ceilings": {
+          "mae": 0.035,
+          "rmse": 0.07,
+          "ssim_loss": 0.12,
+          "luminance_deviation": 0.12
+        },
+        "floors": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        }
+      },
+      "reasons": []
+    },
+    "veach-ajar--gi": {
+      "status": "calibrated",
+      "thresholds": {
+        "full": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        },
+        "regions": {
+          "center": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "lower-left": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "upper-right": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          }
+        }
+      },
+      "region_bounds": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      },
+      "provenance": {
+        "golden_id": "full-20261116-v2",
+        "job_id": "veach-ajar--gi",
+        "input_fingerprint": "7b2b58b967e81a85eee48d7b51a0e6df1d3b3ee137afe5b31db7d7963d15200d",
+        "engine_fingerprint": "abf138679bc03f9c101ef9931740f72cfe7e3803ce6fbbfbd87de09cff31c3fc"
+      },
+      "policy": {
+        "noise_multiplier": 1.75,
+        "ceilings": {
+          "mae": 0.035,
+          "rmse": 0.07,
+          "ssim_loss": 0.12,
+          "luminance_deviation": 0.12
+        },
+        "floors": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        }
+      },
+      "reasons": []
+    },
+    "veach-ajar--pt-reblur": {
+      "status": "calibrated",
+      "thresholds": {
+        "full": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        },
+        "regions": {
+          "center": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "lower-left": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "upper-right": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          }
+        }
+      },
+      "region_bounds": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      },
+      "provenance": {
+        "golden_id": "full-20261116-v2",
+        "job_id": "veach-ajar--pt-reblur",
+        "input_fingerprint": "03f36d84cb71d0a8ef5416e019f7bcbf01dba23ef6bcff556d362a6be20530b2",
+        "engine_fingerprint": "abf138679bc03f9c101ef9931740f72cfe7e3803ce6fbbfbd87de09cff31c3fc"
+      },
+      "policy": {
+        "noise_multiplier": 1.75,
+        "ceilings": {
+          "mae": 0.035,
+          "rmse": 0.07,
+          "ssim_loss": 0.12,
+          "luminance_deviation": 0.12
+        },
+        "floors": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        }
+      },
+      "reasons": []
+    },
+    "veach-ajar--pt2048": {
+      "status": "calibrated",
+      "thresholds": {
+        "full": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        },
+        "regions": {
+          "center": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "lower-left": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "upper-right": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          }
+        }
+      },
+      "region_bounds": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      },
+      "provenance": {
+        "golden_id": "full-20261116-v2",
+        "job_id": "veach-ajar--pt2048",
+        "input_fingerprint": "3f56fa7c47c0a748968924341579b32e506f50f563cda5bc246435bed98763ea",
+        "engine_fingerprint": "abf138679bc03f9c101ef9931740f72cfe7e3803ce6fbbfbd87de09cff31c3fc"
+      },
+      "policy": {
+        "noise_multiplier": 1.75,
+        "ceilings": {
+          "mae": 0.035,
+          "rmse": 0.07,
+          "ssim_loss": 0.12,
+          "luminance_deviation": 0.12
+        },
+        "floors": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        }
+      },
+      "reasons": []
+    },
+    "veach-bidir--gi": {
+      "status": "calibrated",
+      "thresholds": {
+        "full": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        },
+        "regions": {
+          "center": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "lower-left": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "upper-right": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          }
+        }
+      },
+      "region_bounds": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      },
+      "provenance": {
+        "golden_id": "full-20261116-v2",
+        "job_id": "veach-bidir--gi",
+        "input_fingerprint": "be44967f1c4bf5561853679b36eaa7a974935e5305cf5e96a52bb40fd8e2a2e4",
+        "engine_fingerprint": "abf138679bc03f9c101ef9931740f72cfe7e3803ce6fbbfbd87de09cff31c3fc"
+      },
+      "policy": {
+        "noise_multiplier": 1.75,
+        "ceilings": {
+          "mae": 0.035,
+          "rmse": 0.07,
+          "ssim_loss": 0.12,
+          "luminance_deviation": 0.12
+        },
+        "floors": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        }
+      },
+      "reasons": []
+    },
+    "veach-bidir--pt-reblur": {
+      "status": "calibrated",
+      "thresholds": {
+        "full": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        },
+        "regions": {
+          "center": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "lower-left": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "upper-right": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          }
+        }
+      },
+      "region_bounds": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      },
+      "provenance": {
+        "golden_id": "full-20261116-v2",
+        "job_id": "veach-bidir--pt-reblur",
+        "input_fingerprint": "9d724bff989843bc80ce41203f00584bc048fc76bf7e3c8774aa2f86739423a1",
+        "engine_fingerprint": "abf138679bc03f9c101ef9931740f72cfe7e3803ce6fbbfbd87de09cff31c3fc"
+      },
+      "policy": {
+        "noise_multiplier": 1.75,
+        "ceilings": {
+          "mae": 0.035,
+          "rmse": 0.07,
+          "ssim_loss": 0.12,
+          "luminance_deviation": 0.12
+        },
+        "floors": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        }
+      },
+      "reasons": []
+    },
+    "veach-bidir--pt2048": {
+      "status": "calibrated",
+      "thresholds": {
+        "full": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        },
+        "regions": {
+          "center": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "lower-left": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "upper-right": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          }
+        }
+      },
+      "region_bounds": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      },
+      "provenance": {
+        "golden_id": "full-20261116-v2",
+        "job_id": "veach-bidir--pt2048",
+        "input_fingerprint": "389b9f32937070ef17550b4554639e47be9ce7b56caa7a5b0781cc53db1eecab",
+        "engine_fingerprint": "abf138679bc03f9c101ef9931740f72cfe7e3803ce6fbbfbd87de09cff31c3fc"
+      },
+      "policy": {
+        "noise_multiplier": 1.75,
+        "ceilings": {
+          "mae": 0.035,
+          "rmse": 0.07,
+          "ssim_loss": 0.12,
+          "luminance_deviation": 0.12
+        },
+        "floors": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        }
+      },
+      "reasons": []
+    },
+    "veach-mis--gi": {
+      "status": "calibrated",
+      "thresholds": {
+        "full": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        },
+        "regions": {
+          "center": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "lower-left": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "upper-right": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          }
+        }
+      },
+      "region_bounds": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      },
+      "provenance": {
+        "golden_id": "full-20261116-v2",
+        "job_id": "veach-mis--gi",
+        "input_fingerprint": "b473259ddf199bd87cc72884c31b4c8456599143a430262cbb85c0d25cc6e0f6",
+        "engine_fingerprint": "abf138679bc03f9c101ef9931740f72cfe7e3803ce6fbbfbd87de09cff31c3fc"
+      },
+      "policy": {
+        "noise_multiplier": 1.75,
+        "ceilings": {
+          "mae": 0.035,
+          "rmse": 0.07,
+          "ssim_loss": 0.12,
+          "luminance_deviation": 0.12
+        },
+        "floors": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        }
+      },
+      "reasons": []
+    },
+    "veach-mis--pt-reblur": {
+      "status": "calibrated",
+      "thresholds": {
+        "full": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        },
+        "regions": {
+          "center": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "lower-left": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "upper-right": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          }
+        }
+      },
+      "region_bounds": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      },
+      "provenance": {
+        "golden_id": "full-20261116-v2",
+        "job_id": "veach-mis--pt-reblur",
+        "input_fingerprint": "ef412fdd55ebbd2a80ea527db28259c68dcde6c5682adb3e38b628aed477d1bb",
+        "engine_fingerprint": "abf138679bc03f9c101ef9931740f72cfe7e3803ce6fbbfbd87de09cff31c3fc"
+      },
+      "policy": {
+        "noise_multiplier": 1.75,
+        "ceilings": {
+          "mae": 0.035,
+          "rmse": 0.07,
+          "ssim_loss": 0.12,
+          "luminance_deviation": 0.12
+        },
+        "floors": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        }
+      },
+      "reasons": []
+    },
+    "veach-mis--pt2048": {
+      "status": "calibrated",
+      "thresholds": {
+        "full": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        },
+        "regions": {
+          "center": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "lower-left": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "upper-right": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          }
+        }
+      },
+      "region_bounds": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      },
+      "provenance": {
+        "golden_id": "full-20261116-v2",
+        "job_id": "veach-mis--pt2048",
+        "input_fingerprint": "9e28ba912a2d81808bc89cf577e17936727d1ef0a5a44a697e84eadf9b2962b7",
+        "engine_fingerprint": "abf138679bc03f9c101ef9931740f72cfe7e3803ce6fbbfbd87de09cff31c3fc"
+      },
+      "policy": {
+        "noise_multiplier": 1.75,
+        "ceilings": {
+          "mae": 0.035,
+          "rmse": 0.07,
+          "ssim_loss": 0.12,
+          "luminance_deviation": 0.12
+        },
+        "floors": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        }
+      },
+      "reasons": []
+    },
+    "material-testball--gi": {
+      "status": "calibrated",
+      "thresholds": {
+        "full": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        },
+        "regions": {
+          "center": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "lower-left": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "upper-right": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          }
+        }
+      },
+      "region_bounds": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      },
+      "provenance": {
+        "golden_id": "full-20261116-v2",
+        "job_id": "material-testball--gi",
+        "input_fingerprint": "0fe270146b7cbc08acc02ba8b23cf4a0807046f6ce6cbf46a31fae14aff6226d",
+        "engine_fingerprint": "abf138679bc03f9c101ef9931740f72cfe7e3803ce6fbbfbd87de09cff31c3fc"
+      },
+      "policy": {
+        "noise_multiplier": 1.75,
+        "ceilings": {
+          "mae": 0.035,
+          "rmse": 0.07,
+          "ssim_loss": 0.12,
+          "luminance_deviation": 0.12
+        },
+        "floors": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        }
+      },
+      "reasons": []
+    },
+    "material-testball--pt-reblur": {
+      "status": "calibrated",
+      "thresholds": {
+        "full": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        },
+        "regions": {
+          "center": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "lower-left": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "upper-right": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          }
+        }
+      },
+      "region_bounds": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      },
+      "provenance": {
+        "golden_id": "full-20261116-v2",
+        "job_id": "material-testball--pt-reblur",
+        "input_fingerprint": "7e43d44678a8999ff5665aef7a65f8d1d1647f5c49200f4d611e646265e1f36c",
+        "engine_fingerprint": "abf138679bc03f9c101ef9931740f72cfe7e3803ce6fbbfbd87de09cff31c3fc"
+      },
+      "policy": {
+        "noise_multiplier": 1.75,
+        "ceilings": {
+          "mae": 0.035,
+          "rmse": 0.07,
+          "ssim_loss": 0.12,
+          "luminance_deviation": 0.12
+        },
+        "floors": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        }
+      },
+      "reasons": []
+    },
+    "material-testball--pt2048": {
+      "status": "calibrated",
+      "thresholds": {
+        "full": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        },
+        "regions": {
+          "center": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "lower-left": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "upper-right": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          }
+        }
+      },
+      "region_bounds": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      },
+      "provenance": {
+        "golden_id": "full-20261116-v2",
+        "job_id": "material-testball--pt2048",
+        "input_fingerprint": "f0fbc307c4d1739e0b4315dee3cde7aca87656ed80cf3e3d0276ec9477e26a06",
+        "engine_fingerprint": "abf138679bc03f9c101ef9931740f72cfe7e3803ce6fbbfbd87de09cff31c3fc"
+      },
+      "policy": {
+        "noise_multiplier": 1.75,
+        "ceilings": {
+          "mae": 0.035,
+          "rmse": 0.07,
+          "ssim_loss": 0.12,
+          "luminance_deviation": 0.12
+        },
+        "floors": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        }
+      },
+      "reasons": []
+    },
+    "lego--gi": {
+      "status": "calibrated",
+      "thresholds": {
+        "full": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        },
+        "regions": {
+          "center": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "lower-left": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "upper-right": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          }
+        }
+      },
+      "region_bounds": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      },
+      "provenance": {
+        "golden_id": "full-20261116-v2",
+        "job_id": "lego--gi",
+        "input_fingerprint": "4478479826ee8a89df0e824906270f3e2fc0432055fd7064eb8e0f3c0d57e001",
+        "engine_fingerprint": "abf138679bc03f9c101ef9931740f72cfe7e3803ce6fbbfbd87de09cff31c3fc"
+      },
+      "policy": {
+        "noise_multiplier": 1.75,
+        "ceilings": {
+          "mae": 0.035,
+          "rmse": 0.07,
+          "ssim_loss": 0.12,
+          "luminance_deviation": 0.12
+        },
+        "floors": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        }
+      },
+      "reasons": []
+    },
+    "lego--pt-reblur": {
+      "status": "calibrated",
+      "thresholds": {
+        "full": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        },
+        "regions": {
+          "center": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "lower-left": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "upper-right": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          }
+        }
+      },
+      "region_bounds": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      },
+      "provenance": {
+        "golden_id": "full-20261116-v2",
+        "job_id": "lego--pt-reblur",
+        "input_fingerprint": "1827ea383b782d3a30fb1d3a5341f7834479142cfac671fb44ae21b7e97a248e",
+        "engine_fingerprint": "abf138679bc03f9c101ef9931740f72cfe7e3803ce6fbbfbd87de09cff31c3fc"
+      },
+      "policy": {
+        "noise_multiplier": 1.75,
+        "ceilings": {
+          "mae": 0.035,
+          "rmse": 0.07,
+          "ssim_loss": 0.12,
+          "luminance_deviation": 0.12
+        },
+        "floors": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        }
+      },
+      "reasons": []
+    },
+    "lego--pt2048": {
+      "status": "calibrated",
+      "thresholds": {
+        "full": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        },
+        "regions": {
+          "center": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "lower-left": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "upper-right": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          }
+        }
+      },
+      "region_bounds": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      },
+      "provenance": {
+        "golden_id": "full-20261116-v2",
+        "job_id": "lego--pt2048",
+        "input_fingerprint": "3c6403f1517f80e37a28ee98f668108f39fac8ef3fdfdd8bb61e7622bf058e99",
+        "engine_fingerprint": "abf138679bc03f9c101ef9931740f72cfe7e3803ce6fbbfbd87de09cff31c3fc"
+      },
+      "policy": {
+        "noise_multiplier": 1.75,
+        "ceilings": {
+          "mae": 0.035,
+          "rmse": 0.07,
+          "ssim_loss": 0.12,
+          "luminance_deviation": 0.12
+        },
+        "floors": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        }
+      },
+      "reasons": []
+    },
+    "rover--gi": {
+      "status": "calibrated",
+      "thresholds": {
+        "full": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        },
+        "regions": {
+          "center": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "lower-left": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "upper-right": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          }
+        }
+      },
+      "region_bounds": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      },
+      "provenance": {
+        "golden_id": "full-20261116-v2",
+        "job_id": "rover--gi",
+        "input_fingerprint": "0a71aa0eabbfc7b694c91c4101d0a78f79a9e633e7e990437cf2a3464572a9c2",
+        "engine_fingerprint": "abf138679bc03f9c101ef9931740f72cfe7e3803ce6fbbfbd87de09cff31c3fc"
+      },
+      "policy": {
+        "noise_multiplier": 1.75,
+        "ceilings": {
+          "mae": 0.035,
+          "rmse": 0.07,
+          "ssim_loss": 0.12,
+          "luminance_deviation": 0.12
+        },
+        "floors": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        }
+      },
+      "reasons": []
+    },
+    "rover--pt-reblur": {
+      "status": "calibrated",
+      "thresholds": {
+        "full": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        },
+        "regions": {
+          "center": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "lower-left": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "upper-right": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          }
+        }
+      },
+      "region_bounds": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      },
+      "provenance": {
+        "golden_id": "full-20261116-v2",
+        "job_id": "rover--pt-reblur",
+        "input_fingerprint": "d6ccbc90f2c079b6bf27eb8ccc0c3fe553da3b13e36721eaf109579622317371",
+        "engine_fingerprint": "abf138679bc03f9c101ef9931740f72cfe7e3803ce6fbbfbd87de09cff31c3fc"
+      },
+      "policy": {
+        "noise_multiplier": 1.75,
+        "ceilings": {
+          "mae": 0.035,
+          "rmse": 0.07,
+          "ssim_loss": 0.12,
+          "luminance_deviation": 0.12
+        },
+        "floors": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        }
+      },
+      "reasons": []
+    },
+    "rover--pt2048": {
+      "status": "calibrated",
+      "thresholds": {
+        "full": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        },
+        "regions": {
+          "center": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "lower-left": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "upper-right": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          }
+        }
+      },
+      "region_bounds": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      },
+      "provenance": {
+        "golden_id": "full-20261116-v2",
+        "job_id": "rover--pt2048",
+        "input_fingerprint": "4a109f15eb496ce17ac348640fb96abc19e99c127293e31cb42999d6758eede7",
+        "engine_fingerprint": "abf138679bc03f9c101ef9931740f72cfe7e3803ce6fbbfbd87de09cff31c3fc"
+      },
+      "policy": {
+        "noise_multiplier": 1.75,
+        "ceilings": {
+          "mae": 0.035,
+          "rmse": 0.07,
+          "ssim_loss": 0.12,
+          "luminance_deviation": 0.12
+        },
+        "floors": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        }
+      },
+      "reasons": []
+    },
+    "matpreview--gi": {
+      "status": "calibrated",
+      "thresholds": {
+        "full": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        },
+        "regions": {
+          "center": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "lower-left": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "upper-right": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          }
+        }
+      },
+      "region_bounds": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      },
+      "provenance": {
+        "golden_id": "full-20261116-v2",
+        "job_id": "matpreview--gi",
+        "input_fingerprint": "de20a17467561321983723e61a4abbe209a92160e4cfd5c322219eb1034761c9",
+        "engine_fingerprint": "abf138679bc03f9c101ef9931740f72cfe7e3803ce6fbbfbd87de09cff31c3fc"
+      },
+      "policy": {
+        "noise_multiplier": 1.75,
+        "ceilings": {
+          "mae": 0.035,
+          "rmse": 0.07,
+          "ssim_loss": 0.12,
+          "luminance_deviation": 0.12
+        },
+        "floors": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        }
+      },
+      "reasons": []
+    },
+    "matpreview--pt-reblur": {
+      "status": "calibrated",
+      "thresholds": {
+        "full": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        },
+        "regions": {
+          "center": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "lower-left": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "upper-right": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          }
+        }
+      },
+      "region_bounds": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      },
+      "provenance": {
+        "golden_id": "full-20261116-v2",
+        "job_id": "matpreview--pt-reblur",
+        "input_fingerprint": "cdb6a6c9f42a338b5363de3937cfc6d3d168e6eb48c5ac70bdc2eec28b25463f",
+        "engine_fingerprint": "abf138679bc03f9c101ef9931740f72cfe7e3803ce6fbbfbd87de09cff31c3fc"
+      },
+      "policy": {
+        "noise_multiplier": 1.75,
+        "ceilings": {
+          "mae": 0.035,
+          "rmse": 0.07,
+          "ssim_loss": 0.12,
+          "luminance_deviation": 0.12
+        },
+        "floors": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        }
+      },
+      "reasons": []
+    },
+    "matpreview--pt2048": {
+      "status": "calibrated",
+      "thresholds": {
+        "full": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        },
+        "regions": {
+          "center": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "lower-left": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "upper-right": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          }
+        }
+      },
+      "region_bounds": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      },
+      "provenance": {
+        "golden_id": "full-20261116-v2",
+        "job_id": "matpreview--pt2048",
+        "input_fingerprint": "ee98afdda6ddcbe5055e3ca832e953b2011dc1ce1aad07fb00871d665ccf93ae",
+        "engine_fingerprint": "abf138679bc03f9c101ef9931740f72cfe7e3803ce6fbbfbd87de09cff31c3fc"
+      },
+      "policy": {
+        "noise_multiplier": 1.75,
+        "ceilings": {
+          "mae": 0.035,
+          "rmse": 0.07,
+          "ssim_loss": 0.12,
+          "luminance_deviation": 0.12
+        },
+        "floors": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        }
+      },
+      "reasons": []
+    }
+  }
+}

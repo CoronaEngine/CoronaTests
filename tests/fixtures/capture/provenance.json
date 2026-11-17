@@ -1,0 +1,5 @@
+{
+  "source_run_sha256": "e1130427ce72a7287609744f8d4b7bbaa204fd87270f6395ed373964673fa188",
+  "source": "fresh93 kitchen-gi, setup and first two raw frames only; diagnostic/GPU rows selected by original mapping, remapped row indices locally.",
+  "fixture_is_not_a_product_capture": true
+}

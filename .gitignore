@@ -1,0 +1,8 @@
+/.workspace/
+/config.local.json
+/config.golden.local.json
+/config.regression.local.json
+/.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/

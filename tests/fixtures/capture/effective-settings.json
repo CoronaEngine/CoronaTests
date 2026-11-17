@@ -1,0 +1,164 @@
+{
+  "gi": {
+    "effective_before": {
+      "ready": true,
+      "settings": {
+        "direct": {
+          "M_bsdf": 1,
+          "M_light": 10,
+          "diffuse_factor": 0.30000001192092896,
+          "max_age": 30,
+          "max_recursion": 1,
+          "open": true,
+          "pairwise": true,
+          "spatial": {
+            "depth": 0.10000000149011612,
+            "open": true,
+            "radius": 32,
+            "sample_num": 2,
+            "theta": 60
+          },
+          "temporal": {
+            "depth": 0.10000000149011612,
+            "history_limit": 10,
+            "open": true,
+            "radius": 0,
+            "theta": 53.13010025024414
+          }
+        },
+        "indirect": {
+          "diffuse_factor": 0.30000001192092896,
+          "max_age": 30,
+          "open": true,
+          "spatial": {
+            "depth": 0.05000000074505806,
+            "open": true,
+            "radius": 16,
+            "sample_num": 4,
+            "theta": 30
+          },
+          "temporal": {
+            "depth": 0.10000000149011612,
+            "history_limit": 10,
+            "open": true,
+            "radius": 0,
+            "theta": 53.13010025024414
+          }
+        },
+        "max_depth": 16,
+        "min_depth": 5,
+        "rr_threshold": 1
+      }
+    },
+    "effective_after": {
+      "ready": true,
+      "settings": {
+        "direct": {
+          "M_bsdf": 1,
+          "M_light": 10,
+          "diffuse_factor": 0.30000001192092896,
+          "max_age": 30,
+          "max_recursion": 1,
+          "open": true,
+          "pairwise": true,
+          "spatial": {
+            "depth": 0.10000000149011612,
+            "open": true,
+            "radius": 32,
+            "sample_num": 2,
+            "theta": 60
+          },
+          "temporal": {
+            "depth": 0.10000000149011612,
+            "history_limit": 10,
+            "open": true,
+            "radius": 0,
+            "theta": 53.13010025024414
+          }
+        },
+        "indirect": {
+          "diffuse_factor": 0.30000001192092896,
+          "max_age": 30,
+          "open": true,
+          "spatial": {
+            "depth": 0.05000000074505806,
+            "open": true,
+            "radius": 16,
+            "sample_num": 4,
+            "theta": 30
+          },
+          "temporal": {
+            "depth": 0.10000000149011612,
+            "history_limit": 10,
+            "open": true,
+            "radius": 0,
+            "theta": 53.13010025024414
+          }
+        },
+        "max_depth": 16,
+        "min_depth": 5,
+        "rr_threshold": 1
+      }
+    }
+  },
+  "pt-reblur": {
+    "effective_before": {
+      "adaptive": {
+        "available": false,
+        "enabled": false,
+        "start_index": 128,
+        "threshold": 0.0010000000474974513
+      },
+      "ready": true,
+      "settings": {
+        "max_depth": 16,
+        "min_depth": 5,
+        "rr_threshold": 1
+      }
+    },
+    "effective_after": {
+      "adaptive": {
+        "available": false,
+        "enabled": false,
+        "start_index": 128,
+        "threshold": 0.0010000000474974513
+      },
+      "ready": true,
+      "settings": {
+        "max_depth": 16,
+        "min_depth": 5,
+        "rr_threshold": 1
+      }
+    }
+  },
+  "pt2048": {
+    "effective_before": {
+      "adaptive": {
+        "available": false,
+        "enabled": false,
+        "start_index": 128,
+        "threshold": 0.0010000000474974513
+      },
+      "ready": true,
+      "settings": {
+        "max_depth": 16,
+        "min_depth": 5,
+        "rr_threshold": 1
+      }
+    },
+    "effective_after": {
+      "adaptive": {
+        "available": false,
+        "enabled": false,
+        "start_index": 128,
+        "threshold": 0.0010000000474974513
+      },
+      "ready": true,
+      "settings": {
+        "max_depth": 16,
+        "min_depth": 5,
+        "rr_threshold": 1
+      }
+    }
+  }
+}

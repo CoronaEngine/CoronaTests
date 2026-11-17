@@ -1,0 +1,2 @@
+frame,integrator_frame,enabled,render_including_denoise_ms,denoise_ms,gbuffer_ms,sampling_mask_ms,path_tracing_ms,stable_build_ms,stable_fill_ms,restir_di_ms,restir_gi_ms,spatial_angular_ms,temporal_ms,combine_ms,postprocess_ms,render_final_ms,frame_qpc_begin,frame_qpc_end,qpc_frequency
+1,1,0,1120.2234,376.209,0,0,0,0,0,0,0,0,0,0,0,0,5673854180990,5673865421462,10000000

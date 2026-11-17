@@ -1,0 +1,356 @@
+{
+  "schema": 1,
+  "provenance": "Final fresh93 settings and audited effective defaults; no runtime dependency on original harness.",
+  "algorithms": {
+    "gi": {
+      "id": "gi",
+      "label": "ReSTIR GI + Falcor DI + Stable Planes + REBLUR",
+      "frames": 192,
+      "warmup": 64,
+      "setup_frames": 1,
+      "screenshot_warmup_frames": 0,
+      "resolution": [
+        1920,
+        1080
+      ],
+      "render_backend": "vision",
+      "render_mode": "restir",
+      "output_mode": "final_color",
+      "denoiser": "reblur",
+      "denoise": true,
+      "accumulation": false,
+      "stable_planes": true,
+      "NEE": [
+        1,
+        1
+      ],
+      "primary_jitter": 0,
+      "spp_per_frame": 1,
+      "PT_settings": {
+        "min_depth": 5,
+        "max_depth": 16,
+        "rr_threshold": 1
+      },
+      "GI_settings": {
+        "max_depth": 16,
+        "min_depth": 5,
+        "rr_threshold": 1,
+        "direct": {
+          "open": true,
+          "M_light": 10,
+          "M_bsdf": 1,
+          "max_age": 30,
+          "pairwise": true,
+          "max_recursion": 1,
+          "temporal": {
+            "open": true,
+            "history_limit": 10,
+            "radius": 0,
+            "theta": 53.130102,
+            "depth": 0.1
+          },
+          "spatial": {
+            "open": true,
+            "sample_num": 2,
+            "radius": 32,
+            "theta": 60,
+            "depth": 0.1
+          },
+          "diffuse_factor": 0.3
+        },
+        "indirect": {
+          "open": true,
+          "max_age": 30,
+          "temporal": {
+            "open": true,
+            "history_limit": 10,
+            "radius": 0,
+            "theta": 53.130102,
+            "depth": 0.1
+          },
+          "spatial": {
+            "open": true,
+            "sample_num": 4,
+            "radius": 16,
+            "theta": 30,
+            "depth": 0.05
+          },
+          "diffuse_factor": 0.3
+        }
+      },
+      "reblur": {
+        "max_history": 63,
+        "fast_history": 6,
+        "history_fix_frames": 3,
+        "history_fix_stride": 14,
+        "diffuse_prepass": 15,
+        "specular_prepass": 40,
+        "min_radius": 1,
+        "max_radius": 30,
+        "lobe_fraction": 0.15,
+        "roughness_fraction": 0.15,
+        "plane_sensitivity": 0.02,
+        "min_hit_weight": 0.1,
+        "stabilization": 0.984375,
+        "antilag_sigma": 4,
+        "antilag_sensitivity": 3,
+        "anti_firefly": true,
+        "reconstruction": 2
+      },
+      "environment": {
+        "VISION_MATERIAL_SEPARATE": "0",
+        "CORONA_VISION_CAPTURE_PROFILE": "1",
+        "CORONA_OPTICS_MEASURE_RENDER_TIME": "0",
+        "REBLUR_GPU_PROFILE": "{output}/gpu.csv",
+        "REBLUR_GPU_PROFILE_MODE": "dispatch",
+        "REBLUR_GPU_PROFILE_DIAGNOSTICS": "{output}/gpu-diagnostics.csv",
+        "VISION_RESTIR_GI_BACKEND": "rtxpt",
+        "VISION_RESTIR_PRIMARY_JITTER": "0",
+        "VISION_FALCOR_DI_MODE": "pairwise",
+        "VISION_GI_NEE_DIAGNOSTIC": "1x1",
+        "VISION_RTXPT_GI_LIGHT_FEEDBACK": "1"
+      },
+      "reblur_contexts": [
+        "physical-DI",
+        "GI0",
+        "GI1",
+        "GI2"
+      ],
+      "PT_adaptive": {
+        "available": false,
+        "enabled": false,
+        "start_index": 128,
+        "threshold": 0.001
+      }
+    },
+    "pt-reblur": {
+      "id": "pt-reblur",
+      "label": "PT + REBLUR",
+      "frames": 192,
+      "warmup": 64,
+      "setup_frames": 1,
+      "screenshot_warmup_frames": 0,
+      "resolution": [
+        1920,
+        1080
+      ],
+      "render_backend": "vision",
+      "render_mode": "path_tracing",
+      "output_mode": "final_color",
+      "denoiser": "reblur",
+      "denoise": true,
+      "accumulation": false,
+      "stable_planes": false,
+      "NEE": [
+        1,
+        1
+      ],
+      "primary_jitter": 0,
+      "spp_per_frame": 1,
+      "PT_settings": {
+        "min_depth": 5,
+        "max_depth": 16,
+        "rr_threshold": 1
+      },
+      "GI_settings": {
+        "max_depth": 16,
+        "min_depth": 5,
+        "rr_threshold": 1,
+        "direct": {
+          "open": true,
+          "M_light": 10,
+          "M_bsdf": 1,
+          "max_age": 30,
+          "pairwise": true,
+          "max_recursion": 1,
+          "temporal": {
+            "open": true,
+            "history_limit": 10,
+            "radius": 0,
+            "theta": 53.130102,
+            "depth": 0.1
+          },
+          "spatial": {
+            "open": true,
+            "sample_num": 2,
+            "radius": 32,
+            "theta": 60,
+            "depth": 0.1
+          },
+          "diffuse_factor": 0.3
+        },
+        "indirect": {
+          "open": true,
+          "max_age": 30,
+          "temporal": {
+            "open": true,
+            "history_limit": 10,
+            "radius": 0,
+            "theta": 53.130102,
+            "depth": 0.1
+          },
+          "spatial": {
+            "open": true,
+            "sample_num": 4,
+            "radius": 16,
+            "theta": 30,
+            "depth": 0.05
+          },
+          "diffuse_factor": 0.3
+        }
+      },
+      "reblur": {
+        "max_history": 63,
+        "fast_history": 6,
+        "history_fix_frames": 3,
+        "history_fix_stride": 14,
+        "diffuse_prepass": 0,
+        "specular_prepass": 40,
+        "min_radius": 1,
+        "max_radius": 10,
+        "lobe_fraction": 0.15,
+        "roughness_fraction": 0.15,
+        "plane_sensitivity": 0.02,
+        "min_hit_weight": 0.1,
+        "stabilization": 0.984375,
+        "antilag_sigma": 4,
+        "antilag_sensitivity": 3,
+        "anti_firefly": true,
+        "reconstruction": 2
+      },
+      "environment": {
+        "VISION_MATERIAL_SEPARATE": "0",
+        "CORONA_VISION_CAPTURE_PROFILE": "1",
+        "CORONA_OPTICS_MEASURE_RENDER_TIME": "0",
+        "REBLUR_GPU_PROFILE": "{output}/gpu.csv",
+        "REBLUR_GPU_PROFILE_MODE": "dispatch",
+        "REBLUR_GPU_PROFILE_DIAGNOSTICS": "{output}/gpu-diagnostics.csv",
+        "VISION_RESTIR_GI_BACKEND": "legacy",
+        "VISION_PT_PRIMARY_JITTER": "0"
+      },
+      "reblur_contexts": [
+        "PT"
+      ],
+      "PT_adaptive": {
+        "available": false,
+        "enabled": false,
+        "start_index": 128,
+        "threshold": 0.001
+      }
+    },
+    "pt2048": {
+      "id": "pt2048",
+      "label": "PT 2048 samples",
+      "frames": 2048,
+      "warmup": 64,
+      "setup_frames": 1,
+      "screenshot_warmup_frames": 0,
+      "resolution": [
+        1920,
+        1080
+      ],
+      "render_backend": "vision",
+      "render_mode": "path_tracing",
+      "output_mode": "final_color",
+      "denoiser": "reblur",
+      "denoise": false,
+      "accumulation": true,
+      "stable_planes": false,
+      "NEE": [
+        1,
+        1
+      ],
+      "primary_jitter": 0,
+      "spp_per_frame": 1,
+      "PT_settings": {
+        "min_depth": 5,
+        "max_depth": 16,
+        "rr_threshold": 1
+      },
+      "GI_settings": {
+        "max_depth": 16,
+        "min_depth": 5,
+        "rr_threshold": 1,
+        "direct": {
+          "open": true,
+          "M_light": 10,
+          "M_bsdf": 1,
+          "max_age": 30,
+          "pairwise": true,
+          "max_recursion": 1,
+          "temporal": {
+            "open": true,
+            "history_limit": 10,
+            "radius": 0,
+            "theta": 53.130102,
+            "depth": 0.1
+          },
+          "spatial": {
+            "open": true,
+            "sample_num": 2,
+            "radius": 32,
+            "theta": 60,
+            "depth": 0.1
+          },
+          "diffuse_factor": 0.3
+        },
+        "indirect": {
+          "open": true,
+          "max_age": 30,
+          "temporal": {
+            "open": true,
+            "history_limit": 10,
+            "radius": 0,
+            "theta": 53.130102,
+            "depth": 0.1
+          },
+          "spatial": {
+            "open": true,
+            "sample_num": 4,
+            "radius": 16,
+            "theta": 30,
+            "depth": 0.05
+          },
+          "diffuse_factor": 0.3
+        }
+      },
+      "reblur": {
+        "max_history": 63,
+        "fast_history": 6,
+        "history_fix_frames": 3,
+        "history_fix_stride": 14,
+        "diffuse_prepass": 15,
+        "specular_prepass": 40,
+        "min_radius": 1,
+        "max_radius": 30,
+        "lobe_fraction": 0.15,
+        "roughness_fraction": 0.15,
+        "plane_sensitivity": 0.02,
+        "min_hit_weight": 0.1,
+        "stabilization": 0.984375,
+        "antilag_sigma": 4,
+        "antilag_sensitivity": 3,
+        "anti_firefly": true,
+        "reconstruction": 2
+      },
+      "environment": {
+        "VISION_MATERIAL_SEPARATE": "0",
+        "CORONA_VISION_CAPTURE_PROFILE": "1",
+        "CORONA_OPTICS_MEASURE_RENDER_TIME": "0",
+        "REBLUR_GPU_PROFILE": "{output}/gpu.csv",
+        "REBLUR_GPU_PROFILE_MODE": "dispatch",
+        "REBLUR_GPU_PROFILE_DIAGNOSTICS": "{output}/gpu-diagnostics.csv",
+        "VISION_RESTIR_GI_BACKEND": "legacy",
+        "VISION_PT_PRIMARY_JITTER": "0",
+        "VISION_DISABLE_DENOISER": "1"
+      },
+      "reblur_contexts": [],
+      "PT_adaptive": {
+        "available": false,
+        "enabled": false,
+        "start_index": 128,
+        "threshold": 0.001
+      }
+    }
+  }
+}
