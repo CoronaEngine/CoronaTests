@@ -96,7 +96,7 @@ def test_pt512_multiscale_drives_gate_and_report_instead_of_raw_noise(project):
     assert row['comparison']['multiscale_evaluation']['scale_verdicts'] == {'DS8': 'pass', 'DS4': 'pass'}
     output = Path(result['output'])
     assert workflow.load(output / 'pt512-policy.json') == policy
-    html = (output / 'index.html').read_text(encoding='utf-8')
+    html = (output / 'pages/box.html').read_text(encoding='utf-8')
     assert 'DS8' in html and 'DS4' in html and 'diagnostic only' in html
     assert 'Golden thresholds unchanged' not in html
     saved = workflow.load(output / row['comparison_json'])
@@ -132,6 +132,32 @@ def test_pt512_policy_cannot_mask_execution_failure(project):
                 'error': 'fixture crash', 'owned_engine_closed': True}
     result, code = execute(project, 'regression', extra=['--golden', golden['output'], '--pt-spp', '512'], capture=failed)
     assert code != 0 and result['records'][0]['status'] == 'failed'
+
+
+def test_regeneration_preserves_saved_results_and_rejects_wrong_reference(project):
+    from scripts.regenerate_report import regenerate
+    golden, code = execute(project, 'golden', extra=['--baseline-id', 'presentation'])
+    result, code = execute(project, 'regression', extra=['--golden', golden['output']])
+    assert code == 0
+    output = Path(result['output'])
+    for name in ('report.json', 'workflow-result.json'):
+        saved = workflow.load(output / name)
+        saved['records'][0]['comparison'].pop('raw_thresholds', None)
+        workflow.save(output / name, saved)
+    protected = {p: p.read_bytes() for p in output.rglob('*') if p.is_file() and p.suffix in ('.json', '.csv', '.png')}
+    regenerate(output, golden=golden['output'])
+    assert all(p.read_bytes() == before for p, before in protected.items())
+    html = (output / 'pages/box.html').read_text(encoding='utf-8')
+    assert '0.003000' in html
+    other_golden, _ = execute(project, 'golden', extra=['--baseline-id', 'other-presentation'])
+    with pytest.raises(ValueError, match='version|fingerprint'):
+        regenerate(output, golden=other_golden['output'])
+    reference = output / result['records'][0]['baseline_image']
+    Image.new('RGB', (1920, 1080), 'black').save(reference)
+    with pytest.raises(ValueError, match='reference|Golden'):
+        regenerate(output, golden=golden['output'])
+    with pytest.raises(ValueError, match='Sealed'):
+        regenerate(golden['output'])
 
 
 def test_golden_fresh_directory_is_sealed_and_can_regress(project):
@@ -400,8 +426,8 @@ def test_custom_sampling_golden_compares_other_budgets_without_relaxing_threshol
     thresholds_before = (output / 'thresholds.json').read_bytes()
     row = json.loads(manifest_before)['records'][0]
     assert row['configuration']['frames'] == row['timing']['frames'] == 5
-    html = (output / 'index.html').read_text(encoding='utf8')
-    assert '<h3>PT5</h3>' in html and '5-sample total' in html
+    html = (output / 'pages/box.html').read_text(encoding='utf8')
+    assert '<h2>PT5 ' in html and '5-sample total' in html
     _, code = execute(project, 'regression', extra=['--golden', str(output), *sampling], capture=sampled_capture)
     assert code == 0 and captures == [(5, 1)] * 2
     other, code = execute(project, 'regression', extra=['--golden', str(output), '--pt-spp', '7',

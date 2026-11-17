@@ -1,0 +1,395 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Country Kitchen · full-20261116-v2</title><link rel="stylesheet" href="../assets/report.css"><script defer src="../assets/report.js"></script></head><body><main><nav class="scene-nav"><a href="../index.html">← 返回场景列表</a><div><a href="bedroom.html">← 上一场景</a><a href="staircase2.html">下一场景 →</a></div></nav><div class="eyebrow">CORONA TESTS / SCENE 4 OF 35</div><h1>Country Kitchen</h1><p class="subtitle">kitchen · full-20261116-v2</p><div class="tabs" role="tablist" aria-label="渲染算法"><button role="tab" id="tab-gi" aria-controls="panel-gi" data-tab="gi" aria-selected="true" tabindex="0">GI <span class="status status-good" title="complete">采集完成</span></button><button role="tab" id="tab-pt-reblur" aria-controls="panel-pt-reblur" data-tab="pt-reblur" aria-selected="false" tabindex="-1">PT+REBLUR <span class="status status-good" title="complete">采集完成</span></button><button role="tab" id="tab-pt2048" aria-controls="panel-pt2048" data-tab="pt2048" aria-selected="false" tabindex="-1">PT2048 <span class="status status-good" title="complete">采集完成</span></button></div><article class="algorithm-panel" data-algorithm="gi" id="panel-gi" role="tabpanel" aria-labelledby="tab-gi"><h2>GI <span class="status status-good" title="complete">采集完成</span></h2><p class="sampling">Budget: 192 frames; 64 warmup; 1 spp/frame.</p><strong class="timing">Shown frame 49.449 ms; steady mean 49.585 ms</strong><div class="views"><figure><figcaption>Golden · 正式图片</figcaption><a href="../golden/kitchen/gi.png"><img loading="lazy" src="../golden/kitchen/gi.png" alt="Golden · 正式图片"></a><a href="../golden/kitchen/gi.png" download>下载原图</a></figure></div><div class="roi-controls"><label>局部检查<select data-roi-select><option value="full">整图（不显示局部放大）</option><option value="center">center</option><option value="lower-left">lower-left</option><option value="upper-right">upper-right</option></select></label></div><div data-roi-panel="center" hidden><h3>ROI · center</h3><div class="roi-views"><figure><figcaption>Golden · 正式图片</figcaption><svg viewBox="576 324 768 432" style="display:block;width:100%;aspect-ratio:768/432" role="img" aria-label="Golden · 正式图片"><image href="../golden/kitchen/gi.png" width="1920" height="1080"/></svg><a href="../golden/kitchen/gi.png" download>下载原图</a></figure></div></div><div data-roi-panel="lower-left" hidden><h3>ROI · lower-left</h3><div class="roi-views"><figure><figcaption>Golden · 正式图片</figcaption><svg viewBox="96 648 576 324" style="display:block;width:100%;aspect-ratio:576/324" role="img" aria-label="Golden · 正式图片"><image href="../golden/kitchen/gi.png" width="1920" height="1080"/></svg><a href="../golden/kitchen/gi.png" download>下载原图</a></figure></div></div><div data-roi-panel="upper-right" hidden><h3>ROI · upper-right</h3><div class="roi-views"><figure><figcaption>Golden · 正式图片</figcaption><svg viewBox="1248 108 576 324" style="display:block;width:100%;aspect-ratio:576/324" role="img" aria-label="Golden · 正式图片"><image href="../golden/kitchen/gi.png" width="1920" height="1080"/></svg><a href="../golden/kitchen/gi.png" download>下载原图</a></figure></div></div><details><summary>详细配置与证据</summary><div class="evidence"></div><pre>{
+  &quot;status&quot;: &quot;complete&quot;,
+  &quot;configuration&quot;: {
+    &quot;id&quot;: &quot;gi&quot;,
+    &quot;label&quot;: &quot;ReSTIR GI + Falcor DI + Stable Planes + REBLUR&quot;,
+    &quot;frames&quot;: 192,
+    &quot;warmup&quot;: 64,
+    &quot;setup_frames&quot;: 1,
+    &quot;screenshot_warmup_frames&quot;: 0,
+    &quot;resolution&quot;: [
+      1920,
+      1080
+    ],
+    &quot;render_backend&quot;: &quot;vision&quot;,
+    &quot;render_mode&quot;: &quot;restir&quot;,
+    &quot;output_mode&quot;: &quot;final_color&quot;,
+    &quot;denoiser&quot;: &quot;reblur&quot;,
+    &quot;denoise&quot;: true,
+    &quot;accumulation&quot;: false,
+    &quot;stable_planes&quot;: true,
+    &quot;NEE&quot;: [
+      1,
+      1
+    ],
+    &quot;primary_jitter&quot;: 0,
+    &quot;spp_per_frame&quot;: 1,
+    &quot;PT_settings&quot;: {
+      &quot;min_depth&quot;: 5,
+      &quot;max_depth&quot;: 16,
+      &quot;rr_threshold&quot;: 1
+    },
+    &quot;GI_settings&quot;: {
+      &quot;max_depth&quot;: 16,
+      &quot;min_depth&quot;: 5,
+      &quot;rr_threshold&quot;: 1,
+      &quot;direct&quot;: {
+        &quot;open&quot;: true,
+        &quot;M_light&quot;: 10,
+        &quot;M_bsdf&quot;: 1,
+        &quot;max_age&quot;: 30,
+        &quot;pairwise&quot;: true,
+        &quot;max_recursion&quot;: 1,
+        &quot;temporal&quot;: {
+          &quot;open&quot;: true,
+          &quot;history_limit&quot;: 10,
+          &quot;radius&quot;: 0,
+          &quot;theta&quot;: 53.130102,
+          &quot;depth&quot;: 0.1
+        },
+        &quot;spatial&quot;: {
+          &quot;open&quot;: true,
+          &quot;sample_num&quot;: 2,
+          &quot;radius&quot;: 32,
+          &quot;theta&quot;: 60,
+          &quot;depth&quot;: 0.1
+        },
+        &quot;diffuse_factor&quot;: 0.3
+      },
+      &quot;indirect&quot;: {
+        &quot;open&quot;: true,
+        &quot;max_age&quot;: 30,
+        &quot;temporal&quot;: {
+          &quot;open&quot;: true,
+          &quot;history_limit&quot;: 10,
+          &quot;radius&quot;: 0,
+          &quot;theta&quot;: 53.130102,
+          &quot;depth&quot;: 0.1
+        },
+        &quot;spatial&quot;: {
+          &quot;open&quot;: true,
+          &quot;sample_num&quot;: 4,
+          &quot;radius&quot;: 16,
+          &quot;theta&quot;: 30,
+          &quot;depth&quot;: 0.05
+        },
+        &quot;diffuse_factor&quot;: 0.3
+      }
+    },
+    &quot;reblur&quot;: {
+      &quot;max_history&quot;: 63,
+      &quot;fast_history&quot;: 6,
+      &quot;history_fix_frames&quot;: 3,
+      &quot;history_fix_stride&quot;: 14,
+      &quot;diffuse_prepass&quot;: 15,
+      &quot;specular_prepass&quot;: 40,
+      &quot;min_radius&quot;: 1,
+      &quot;max_radius&quot;: 30,
+      &quot;lobe_fraction&quot;: 0.15,
+      &quot;roughness_fraction&quot;: 0.15,
+      &quot;plane_sensitivity&quot;: 0.02,
+      &quot;min_hit_weight&quot;: 0.1,
+      &quot;stabilization&quot;: 0.984375,
+      &quot;antilag_sigma&quot;: 4,
+      &quot;antilag_sensitivity&quot;: 3,
+      &quot;anti_firefly&quot;: true,
+      &quot;reconstruction&quot;: 2
+    },
+    &quot;environment&quot;: {
+      &quot;VISION_MATERIAL_SEPARATE&quot;: &quot;0&quot;,
+      &quot;CORONA_VISION_CAPTURE_PROFILE&quot;: &quot;1&quot;,
+      &quot;CORONA_OPTICS_MEASURE_RENDER_TIME&quot;: &quot;0&quot;,
+      &quot;REBLUR_GPU_PROFILE&quot;: &quot;{output}/gpu.csv&quot;,
+      &quot;REBLUR_GPU_PROFILE_MODE&quot;: &quot;dispatch&quot;,
+      &quot;REBLUR_GPU_PROFILE_DIAGNOSTICS&quot;: &quot;{output}/gpu-diagnostics.csv&quot;,
+      &quot;VISION_RESTIR_GI_BACKEND&quot;: &quot;rtxpt&quot;,
+      &quot;VISION_RESTIR_PRIMARY_JITTER&quot;: &quot;0&quot;,
+      &quot;VISION_FALCOR_DI_MODE&quot;: &quot;pairwise&quot;,
+      &quot;VISION_GI_NEE_DIAGNOSTIC&quot;: &quot;1x1&quot;,
+      &quot;VISION_RTXPT_GI_LIGHT_FEEDBACK&quot;: &quot;1&quot;
+    },
+    &quot;reblur_contexts&quot;: [
+      &quot;physical-DI&quot;,
+      &quot;GI0&quot;,
+      &quot;GI1&quot;,
+      &quot;GI2&quot;
+    ],
+    &quot;PT_adaptive&quot;: {
+      &quot;available&quot;: false,
+      &quot;enabled&quot;: false,
+      &quot;start_index&quot;: 128,
+      &quot;threshold&quot;: 0.001
+    }
+  }
+}</pre></details></article><article class="algorithm-panel" data-algorithm="pt-reblur" id="panel-pt-reblur" role="tabpanel" aria-labelledby="tab-pt-reblur" hidden><h2>PT+REBLUR <span class="status status-good" title="complete">采集完成</span></h2><p class="sampling">Budget: 192 frames; 64 warmup; 1 spp/frame.</p><strong class="timing">Shown frame 20.125 ms; steady mean 20.508 ms</strong><div class="views"><figure><figcaption>Golden · 正式图片</figcaption><a href="../golden/kitchen/pt-reblur.png"><img loading="lazy" src="../golden/kitchen/pt-reblur.png" alt="Golden · 正式图片"></a><a href="../golden/kitchen/pt-reblur.png" download>下载原图</a></figure></div><div class="roi-controls"><label>局部检查<select data-roi-select><option value="full">整图（不显示局部放大）</option><option value="center">center</option><option value="lower-left">lower-left</option><option value="upper-right">upper-right</option></select></label></div><div data-roi-panel="center" hidden><h3>ROI · center</h3><div class="roi-views"><figure><figcaption>Golden · 正式图片</figcaption><svg viewBox="576 324 768 432" style="display:block;width:100%;aspect-ratio:768/432" role="img" aria-label="Golden · 正式图片"><image href="../golden/kitchen/pt-reblur.png" width="1920" height="1080"/></svg><a href="../golden/kitchen/pt-reblur.png" download>下载原图</a></figure></div></div><div data-roi-panel="lower-left" hidden><h3>ROI · lower-left</h3><div class="roi-views"><figure><figcaption>Golden · 正式图片</figcaption><svg viewBox="96 648 576 324" style="display:block;width:100%;aspect-ratio:576/324" role="img" aria-label="Golden · 正式图片"><image href="../golden/kitchen/pt-reblur.png" width="1920" height="1080"/></svg><a href="../golden/kitchen/pt-reblur.png" download>下载原图</a></figure></div></div><div data-roi-panel="upper-right" hidden><h3>ROI · upper-right</h3><div class="roi-views"><figure><figcaption>Golden · 正式图片</figcaption><svg viewBox="1248 108 576 324" style="display:block;width:100%;aspect-ratio:576/324" role="img" aria-label="Golden · 正式图片"><image href="../golden/kitchen/pt-reblur.png" width="1920" height="1080"/></svg><a href="../golden/kitchen/pt-reblur.png" download>下载原图</a></figure></div></div><details><summary>详细配置与证据</summary><div class="evidence"></div><pre>{
+  &quot;status&quot;: &quot;complete&quot;,
+  &quot;configuration&quot;: {
+    &quot;id&quot;: &quot;pt-reblur&quot;,
+    &quot;label&quot;: &quot;PT + REBLUR&quot;,
+    &quot;frames&quot;: 192,
+    &quot;warmup&quot;: 64,
+    &quot;setup_frames&quot;: 1,
+    &quot;screenshot_warmup_frames&quot;: 0,
+    &quot;resolution&quot;: [
+      1920,
+      1080
+    ],
+    &quot;render_backend&quot;: &quot;vision&quot;,
+    &quot;render_mode&quot;: &quot;path_tracing&quot;,
+    &quot;output_mode&quot;: &quot;final_color&quot;,
+    &quot;denoiser&quot;: &quot;reblur&quot;,
+    &quot;denoise&quot;: true,
+    &quot;accumulation&quot;: false,
+    &quot;stable_planes&quot;: false,
+    &quot;NEE&quot;: [
+      1,
+      1
+    ],
+    &quot;primary_jitter&quot;: 0,
+    &quot;spp_per_frame&quot;: 1,
+    &quot;PT_settings&quot;: {
+      &quot;min_depth&quot;: 5,
+      &quot;max_depth&quot;: 16,
+      &quot;rr_threshold&quot;: 1
+    },
+    &quot;GI_settings&quot;: {
+      &quot;max_depth&quot;: 16,
+      &quot;min_depth&quot;: 5,
+      &quot;rr_threshold&quot;: 1,
+      &quot;direct&quot;: {
+        &quot;open&quot;: true,
+        &quot;M_light&quot;: 10,
+        &quot;M_bsdf&quot;: 1,
+        &quot;max_age&quot;: 30,
+        &quot;pairwise&quot;: true,
+        &quot;max_recursion&quot;: 1,
+        &quot;temporal&quot;: {
+          &quot;open&quot;: true,
+          &quot;history_limit&quot;: 10,
+          &quot;radius&quot;: 0,
+          &quot;theta&quot;: 53.130102,
+          &quot;depth&quot;: 0.1
+        },
+        &quot;spatial&quot;: {
+          &quot;open&quot;: true,
+          &quot;sample_num&quot;: 2,
+          &quot;radius&quot;: 32,
+          &quot;theta&quot;: 60,
+          &quot;depth&quot;: 0.1
+        },
+        &quot;diffuse_factor&quot;: 0.3
+      },
+      &quot;indirect&quot;: {
+        &quot;open&quot;: true,
+        &quot;max_age&quot;: 30,
+        &quot;temporal&quot;: {
+          &quot;open&quot;: true,
+          &quot;history_limit&quot;: 10,
+          &quot;radius&quot;: 0,
+          &quot;theta&quot;: 53.130102,
+          &quot;depth&quot;: 0.1
+        },
+        &quot;spatial&quot;: {
+          &quot;open&quot;: true,
+          &quot;sample_num&quot;: 4,
+          &quot;radius&quot;: 16,
+          &quot;theta&quot;: 30,
+          &quot;depth&quot;: 0.05
+        },
+        &quot;diffuse_factor&quot;: 0.3
+      }
+    },
+    &quot;reblur&quot;: {
+      &quot;max_history&quot;: 63,
+      &quot;fast_history&quot;: 6,
+      &quot;history_fix_frames&quot;: 3,
+      &quot;history_fix_stride&quot;: 14,
+      &quot;diffuse_prepass&quot;: 0,
+      &quot;specular_prepass&quot;: 40,
+      &quot;min_radius&quot;: 1,
+      &quot;max_radius&quot;: 10,
+      &quot;lobe_fraction&quot;: 0.15,
+      &quot;roughness_fraction&quot;: 0.15,
+      &quot;plane_sensitivity&quot;: 0.02,
+      &quot;min_hit_weight&quot;: 0.1,
+      &quot;stabilization&quot;: 0.984375,
+      &quot;antilag_sigma&quot;: 4,
+      &quot;antilag_sensitivity&quot;: 3,
+      &quot;anti_firefly&quot;: true,
+      &quot;reconstruction&quot;: 2
+    },
+    &quot;environment&quot;: {
+      &quot;VISION_MATERIAL_SEPARATE&quot;: &quot;0&quot;,
+      &quot;CORONA_VISION_CAPTURE_PROFILE&quot;: &quot;1&quot;,
+      &quot;CORONA_OPTICS_MEASURE_RENDER_TIME&quot;: &quot;0&quot;,
+      &quot;REBLUR_GPU_PROFILE&quot;: &quot;{output}/gpu.csv&quot;,
+      &quot;REBLUR_GPU_PROFILE_MODE&quot;: &quot;dispatch&quot;,
+      &quot;REBLUR_GPU_PROFILE_DIAGNOSTICS&quot;: &quot;{output}/gpu-diagnostics.csv&quot;,
+      &quot;VISION_RESTIR_GI_BACKEND&quot;: &quot;legacy&quot;,
+      &quot;VISION_PT_PRIMARY_JITTER&quot;: &quot;0&quot;
+    },
+    &quot;reblur_contexts&quot;: [
+      &quot;PT&quot;
+    ],
+    &quot;PT_adaptive&quot;: {
+      &quot;available&quot;: false,
+      &quot;enabled&quot;: false,
+      &quot;start_index&quot;: 128,
+      &quot;threshold&quot;: 0.001
+    }
+  }
+}</pre></details></article><article class="algorithm-panel" data-algorithm="pt2048" id="panel-pt2048" role="tabpanel" aria-labelledby="tab-pt2048" hidden><h2>PT2048 <span class="status status-good" title="complete">采集完成</span></h2><p class="sampling">Budget: 2048 frames; 64 warmup; 1 spp/frame.</p><strong class="timing">2048-sample total 24026.931 ms; 11.732 ms/sample</strong><div class="views"><figure><figcaption>Golden · 正式图片</figcaption><a href="../golden/kitchen/pt.png"><img loading="lazy" src="../golden/kitchen/pt.png" alt="Golden · 正式图片"></a><a href="../golden/kitchen/pt.png" download>下载原图</a></figure></div><div class="roi-controls"><label>局部检查<select data-roi-select><option value="full">整图（不显示局部放大）</option><option value="center">center</option><option value="lower-left">lower-left</option><option value="upper-right">upper-right</option></select></label></div><div data-roi-panel="center" hidden><h3>ROI · center</h3><div class="roi-views"><figure><figcaption>Golden · 正式图片</figcaption><svg viewBox="576 324 768 432" style="display:block;width:100%;aspect-ratio:768/432" role="img" aria-label="Golden · 正式图片"><image href="../golden/kitchen/pt.png" width="1920" height="1080"/></svg><a href="../golden/kitchen/pt.png" download>下载原图</a></figure></div></div><div data-roi-panel="lower-left" hidden><h3>ROI · lower-left</h3><div class="roi-views"><figure><figcaption>Golden · 正式图片</figcaption><svg viewBox="96 648 576 324" style="display:block;width:100%;aspect-ratio:576/324" role="img" aria-label="Golden · 正式图片"><image href="../golden/kitchen/pt.png" width="1920" height="1080"/></svg><a href="../golden/kitchen/pt.png" download>下载原图</a></figure></div></div><div data-roi-panel="upper-right" hidden><h3>ROI · upper-right</h3><div class="roi-views"><figure><figcaption>Golden · 正式图片</figcaption><svg viewBox="1248 108 576 324" style="display:block;width:100%;aspect-ratio:576/324" role="img" aria-label="Golden · 正式图片"><image href="../golden/kitchen/pt.png" width="1920" height="1080"/></svg><a href="../golden/kitchen/pt.png" download>下载原图</a></figure></div></div><details><summary>详细配置与证据</summary><div class="evidence"></div><pre>{
+  &quot;status&quot;: &quot;complete&quot;,
+  &quot;configuration&quot;: {
+    &quot;id&quot;: &quot;pt2048&quot;,
+    &quot;label&quot;: &quot;PT 2048 samples&quot;,
+    &quot;frames&quot;: 2048,
+    &quot;warmup&quot;: 64,
+    &quot;setup_frames&quot;: 1,
+    &quot;screenshot_warmup_frames&quot;: 0,
+    &quot;resolution&quot;: [
+      1920,
+      1080
+    ],
+    &quot;render_backend&quot;: &quot;vision&quot;,
+    &quot;render_mode&quot;: &quot;path_tracing&quot;,
+    &quot;output_mode&quot;: &quot;final_color&quot;,
+    &quot;denoiser&quot;: &quot;reblur&quot;,
+    &quot;denoise&quot;: false,
+    &quot;accumulation&quot;: true,
+    &quot;stable_planes&quot;: false,
+    &quot;NEE&quot;: [
+      1,
+      1
+    ],
+    &quot;primary_jitter&quot;: 0,
+    &quot;spp_per_frame&quot;: 1,
+    &quot;PT_settings&quot;: {
+      &quot;min_depth&quot;: 5,
+      &quot;max_depth&quot;: 16,
+      &quot;rr_threshold&quot;: 1
+    },
+    &quot;GI_settings&quot;: {
+      &quot;max_depth&quot;: 16,
+      &quot;min_depth&quot;: 5,
+      &quot;rr_threshold&quot;: 1,
+      &quot;direct&quot;: {
+        &quot;open&quot;: true,
+        &quot;M_light&quot;: 10,
+        &quot;M_bsdf&quot;: 1,
+        &quot;max_age&quot;: 30,
+        &quot;pairwise&quot;: true,
+        &quot;max_recursion&quot;: 1,
+        &quot;temporal&quot;: {
+          &quot;open&quot;: true,
+          &quot;history_limit&quot;: 10,
+          &quot;radius&quot;: 0,
+          &quot;theta&quot;: 53.130102,
+          &quot;depth&quot;: 0.1
+        },
+        &quot;spatial&quot;: {
+          &quot;open&quot;: true,
+          &quot;sample_num&quot;: 2,
+          &quot;radius&quot;: 32,
+          &quot;theta&quot;: 60,
+          &quot;depth&quot;: 0.1
+        },
+        &quot;diffuse_factor&quot;: 0.3
+      },
+      &quot;indirect&quot;: {
+        &quot;open&quot;: true,
+        &quot;max_age&quot;: 30,
+        &quot;temporal&quot;: {
+          &quot;open&quot;: true,
+          &quot;history_limit&quot;: 10,
+          &quot;radius&quot;: 0,
+          &quot;theta&quot;: 53.130102,
+          &quot;depth&quot;: 0.1
+        },
+        &quot;spatial&quot;: {
+          &quot;open&quot;: true,
+          &quot;sample_num&quot;: 4,
+          &quot;radius&quot;: 16,
+          &quot;theta&quot;: 30,
+          &quot;depth&quot;: 0.05
+        },
+        &quot;diffuse_factor&quot;: 0.3
+      }
+    },
+    &quot;reblur&quot;: {
+      &quot;max_history&quot;: 63,
+      &quot;fast_history&quot;: 6,
+      &quot;history_fix_frames&quot;: 3,
+      &quot;history_fix_stride&quot;: 14,
+      &quot;diffuse_prepass&quot;: 15,
+      &quot;specular_prepass&quot;: 40,
+      &quot;min_radius&quot;: 1,
+      &quot;max_radius&quot;: 30,
+      &quot;lobe_fraction&quot;: 0.15,
+      &quot;roughness_fraction&quot;: 0.15,
+      &quot;plane_sensitivity&quot;: 0.02,
+      &quot;min_hit_weight&quot;: 0.1,
+      &quot;stabilization&quot;: 0.984375,
+      &quot;antilag_sigma&quot;: 4,
+      &quot;antilag_sensitivity&quot;: 3,
+      &quot;anti_firefly&quot;: true,
+      &quot;reconstruction&quot;: 2
+    },
+    &quot;environment&quot;: {
+      &quot;VISION_MATERIAL_SEPARATE&quot;: &quot;0&quot;,
+      &quot;CORONA_VISION_CAPTURE_PROFILE&quot;: &quot;1&quot;,
+      &quot;CORONA_OPTICS_MEASURE_RENDER_TIME&quot;: &quot;0&quot;,
+      &quot;REBLUR_GPU_PROFILE&quot;: &quot;{output}/gpu.csv&quot;,
+      &quot;REBLUR_GPU_PROFILE_MODE&quot;: &quot;dispatch&quot;,
+      &quot;REBLUR_GPU_PROFILE_DIAGNOSTICS&quot;: &quot;{output}/gpu-diagnostics.csv&quot;,
+      &quot;VISION_RESTIR_GI_BACKEND&quot;: &quot;legacy&quot;,
+      &quot;VISION_PT_PRIMARY_JITTER&quot;: &quot;0&quot;,
+      &quot;VISION_DISABLE_DENOISER&quot;: &quot;1&quot;
+    },
+    &quot;reblur_contexts&quot;: [],
+    &quot;PT_adaptive&quot;: {
+      &quot;available&quot;: false,
+      &quot;enabled&quot;: false,
+      &quot;start_index&quot;: 128,
+      &quot;threshold&quot;: 0.001
+    }
+  }
+}</pre></details></article><details><summary>运行信息与完整结果</summary><p class="downloads"><a href="../baselines/full-20261116-v2.manifest.json">Golden images, settings and timings</a><a href="../baselines/full-20261116-v2.thresholds.json">Comparison thresholds</a></p><pre>{
+  &quot;engine_fingerprint&quot;: &quot;abf138679bc03f9c101ef9931740f72cfe7e3803ce6fbbfbd87de09cff31c3fc&quot;,
+  &quot;hardware&quot;: [
+    {
+      &quot;name&quot;: &quot;NVIDIA GeForce RTX 3070 Ti&quot;,
+      &quot;uuid&quot;: &quot;GPU-88447a64-933d-3c39-94cb-bf80afcafa63&quot;,
+      &quot;driver_version&quot;: &quot;610.88&quot;,
+      &quot;slowdown&quot;: &quot;95 C&quot;,
+      &quot;shutdown&quot;: &quot;98 C&quot;,
+      &quot;current_temperature&quot;: &quot;47 C&quot;
+    }
+  ],
+  &quot;timing_policy&quot;: &quot;Renderer envelope and dispatch sum differ; PT2048 total covers all samples.&quot;,
+  &quot;scene_updates&quot;: {
+    &quot;bedroom&quot;: {
+      &quot;created_utc&quot;: &quot;2026-11-17T08:27:52.920518+00:00&quot;,
+      &quot;capture_id&quot;: &quot;bedroom-refresh-20261117T082749Z&quot;,
+      &quot;source_manifest_fingerprint&quot;: &quot;93582ba095985db40849ca11bd85ee1d84081700a09f028a1f4920d3dc187593&quot;,
+      &quot;engine_fingerprint&quot;: &quot;8f8377526453366832fe3daf3b000e7cb53ce62c5220f6a7dbd9a3f32c71f755&quot;,
+      &quot;sampling&quot;: {
+        &quot;gi&quot;: {
+          &quot;frames&quot;: 192,
+          &quot;warmup_frames&quot;: 64,
+          &quot;spp_per_frame&quot;: 1
+        },
+        &quot;pt-reblur&quot;: {
+          &quot;frames&quot;: 192,
+          &quot;warmup_frames&quot;: 64,
+          &quot;spp_per_frame&quot;: 1
+        },
+        &quot;pt2048&quot;: {
+          &quot;frames&quot;: 2048,
+          &quot;warmup_frames&quot;: 64,
+          &quot;spp_per_frame&quot;: 1
+        }
+      }
+    }
+  }
+}</pre></details><noscript>启用 JavaScript 可切换算法、差分及 ROI。</noscript></main></body></html>

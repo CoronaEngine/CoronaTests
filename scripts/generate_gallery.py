@@ -6,7 +6,7 @@ import sys
 if __package__ in (None, ''):
     sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-from scripts.report import render_report
+from scripts.report import write_pages
 from scripts.workflow import ROOT, golden_files, read_golden
 
 
@@ -22,12 +22,9 @@ def write_gallery(root=ROOT):
     for key in ('threshold_policy', 'thresholds_ready'):
         if key in manifest:
             report[key] = manifest[key]
-    html = render_report(root, report, downloads=[
+    return write_pages(root, report, downloads=[
         (manifest_path.relative_to(root).as_posix(), 'Golden images, settings and timings'),
         (thresholds_path.relative_to(root).as_posix(), 'Comparison thresholds')])
-    destination = root / 'index.html'
-    destination.write_text(html, encoding='utf-8', newline='\n')
-    return destination
 
 
 if __name__ == '__main__':

@@ -637,6 +637,7 @@ def execute(kind, options, *, root=ROOT, prepare=None, capture_job=None, thermal
                         metrics = compare.compare_images(reference, folder / raw["image"], comparison_folder,
                                                          regions=scene.get("regions", {}))
                         profile = thresholds.get("profiles", {}).get(job_id, {})
+                        metrics['raw_thresholds'] = profile.get('thresholds', {})
                         provenance = profile.get("provenance", {})
                         if provenance.get("input_fingerprint") != base_record["input_fingerprint"] or provenance.get("golden_id") != golden["id"]:
                             verdict = {"status": "uncalibrated", "failures": ["Threshold profile provenance differs"]}
@@ -646,11 +647,11 @@ def execute(kind, options, *, root=ROOT, prepare=None, capture_job=None, thermal
                             if any(metrics.get('linear_nonfinite_values', {}).values()):
                                 verdict.update(status='image-failed', failures=[*verdict['failures'], 'PFM contains nonfinite values'])
                             metrics['multiscale_evaluation'] = verdict
-                            save(comparison_folder / 'comparison.json', metrics)
                             row.update(comparison_policy={'id': policy['id'], 'allowances': policy['allowances']},
                                        profile_json='pt512-policy.json')
                         else:
                             verdict = compare.evaluate(metrics, profile)
+                        save(comparison_folder / 'comparison.json', metrics)
                         row.update(status=verdict["status"], comparison=metrics, failures=verdict["failures"],
                                    baseline_image=reference.relative_to(output).as_posix(),
                                    difference_image=(comparison_folder / "difference.png").relative_to(output).as_posix(),

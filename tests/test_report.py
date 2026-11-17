@@ -6,6 +6,7 @@ import json
 import numpy as np
 import pytest
 from PIL import Image
+from urllib.parse import unquote, urlsplit
 
 from scripts.report import write_report
 
@@ -34,7 +35,7 @@ def test_report_offline_assets_timing_csv_and_raw_originals(tmp_path):
     image = tmp_path / 'jobs/image.png'
     before = hashlib.sha256(image.read_bytes()).hexdigest()
     index = write_report(tmp_path, report)
-    html = index.read_text(encoding='utf-8')
+    html = (tmp_path / 'pages/one.html').read_text(encoding='utf-8')
     parser = Links()
     parser.feed(html)
     assert sum(tag == 'article' for tag, attrs in parser.tags) == 3
@@ -46,9 +47,10 @@ def test_report_offline_assets_timing_csv_and_raw_originals(tmp_path):
     for link in parser.links:
         if link.startswith('#'):
             continue
-        assert '://' not in link and not link.startswith(('/', '..'))
-        assert (tmp_path / link).is_file(), link
-    assert any(tag == 'a' and 'download' in attrs and attrs['href'] == 'jobs/image.png' for tag, attrs in parser.tags)
+        assert '://' not in link and not link.startswith('/')
+        target = (tmp_path / 'pages' / unquote(urlsplit(link).path)).resolve()
+        assert target.is_relative_to(tmp_path.resolve()) and target.is_file(), link
+    assert any(tag == 'a' and 'download' in attrs and attrs['href'] == '../jobs/image.png' for tag, attrs in parser.tags)
     assert '<svg viewBox="6 4 12 8"' in html
     assert not (tmp_path / 'zooms').exists()
     rows = list(csv.DictReader((tmp_path / 'timings.csv').open(newline='', encoding='utf-8')))
@@ -70,9 +72,9 @@ def test_html_renderer_references_existing_assets_without_writing_files(tmp_path
     parser = Links()
     parser.feed(html)
     assert 'baselines/golden.manifest.json' in parser.links
-    assert 'jobs/image.png' in parser.links
+    assert 'pages/one.html' in parser.links
     assert 'report.json' not in parser.links and 'timings.csv' not in parser.links
-    assert '<svg viewBox=' in html
+    assert '<svg viewBox=' not in html and '<img' not in html
     assert before == {path.relative_to(tmp_path): path.read_bytes() for path in tmp_path.rglob('*') if path.is_file()}
 
 
@@ -81,7 +83,8 @@ def test_regression_shows_baseline_candidate_diff_and_pt_total_sample(tmp_path):
     first = report['records'][0]
     first.update(status='image-failed', baseline_image='jobs/image.png', difference_image='jobs/image.png', comparison={'evaluation': {'failures': ['regions.center.mae']}})
     report['records'][2].update(status='pass', image='jobs/image.png', timing={'frames': 2048, 'warmup_frames': 0, 'mean_ms': 30, 'median_ms': 30, 'total_ms': 61440, 'sample_ms': 30})
-    html = write_report(tmp_path, report).read_text(encoding='utf-8')
+    write_report(tmp_path, report)
+    html = (tmp_path / 'pages/one.html').read_text(encoding='utf-8')
     assert 'Baseline' in html and 'Candidate' in html and 'Difference' in html
     assert 'regions.center.mae' in html
     assert '61440.000 ms' in html and '30.000 ms/sample' in html
@@ -94,8 +97,9 @@ def test_report_uses_actual_sampling_budget_instead_of_fixed_pt2048_title(tmp_pa
     report['records'][2].update(status='complete', image='jobs/image.png',
         configuration={'frames': 512, 'warmup': 16, 'spp_per_frame': 1, 'accumulation': True},
         timing={'frames': 512, 'warmup_frames': 16, 'total_ms': 1024, 'sample_ms': 2})
-    html = write_report(tmp_path, report).read_text(encoding='utf8')
-    assert '<h3>PT512</h3>' in html and '512-sample total 1024.000 ms' in html
+    write_report(tmp_path, report)
+    html = (tmp_path / 'pages/one.html').read_text(encoding='utf8')
+    assert '<h2>PT512 ' in html and '512-sample total 1024.000 ms' in html
     assert '96 frames' in html and '16 warmup' in html
     assert '2048-sample total' not in html
 
@@ -107,7 +111,8 @@ def test_report_discloses_different_golden_and_candidate_sampling_budgets(tmp_pa
         sampling_comparison={'golden':{'frames':2048,'warmup_frames':64},
                              'candidate':{'frames':512,'warmup_frames':16},
                              'threshold_policy':'golden-unchanged'})
-    html = write_report(tmp_path, report).read_text(encoding='utf8')
+    write_report(tmp_path, report)
+    html = (tmp_path / 'pages/one.html').read_text(encoding='utf8')
     visible = html.split('class="budget-comparison">',1)[1].split('</p>',1)[0]
     assert '2048 spp' in visible and '512 spp' in visible and 'unchanged' in visible
 
@@ -122,7 +127,8 @@ def test_report_rejects_links_outside_archive(tmp_path):
 def test_workflow_top_level_failures_are_visible_once(tmp_path):
     report = report_fixture(tmp_path, 'regression')
     report['records'][0].update(status='image-failed', failures=['full.mae: failed', 'corner.rmse: failed'], comparison={'evaluation': {'failures': ['corner.rmse: failed']}})
-    html = write_report(tmp_path, report).read_text(encoding='utf-8')
+    write_report(tmp_path, report)
+    html = (tmp_path / 'pages/one.html').read_text(encoding='utf-8')
     assert html.count('<li>full.mae: failed</li>') == 1
     assert html.count('<li>corner.rmse: failed</li>') == 1
 
@@ -134,7 +140,8 @@ def test_regression_performance_change_is_visible_and_warning_only(tmp_path, gol
     report['records'][0].update(status='pass', performance={
         'golden_mean_ms': golden, 'mean_change_percent': change,
         'policy': 'warning-only', 'machine_observation_equal': same_hardware})
-    html = write_report(tmp_path, report).read_text(encoding='utf8')
+    write_report(tmp_path, report)
+    html = (tmp_path / 'pages/one.html').read_text(encoding='utf8')
     cards = html.split('<article')
     visible = cards[1].split('<details', 1)[0]
     assert f'golden mean {golden:.3f} ms' in visible

@@ -6,7 +6,7 @@
 
 ## 浏览全部 Golden 图片
 
-clone 仓库并完成 Git LFS 图片拉取后，直接双击根目录的 [index.html](index.html)，即可离线浏览全部 **92 张正式图片**、各算法耗时和局部放大。网页直接引用 `golden/<场景名>/*.png`，不保存重复图片，也不需要启动服务器、安装 Python 或配置引擎。
+clone 仓库并完成 Git LFS 图片拉取后，直接双击根目录的 [index.html](index.html)，即可打开场景汇总首页，再进入场景详情浏览全部 **92 张正式图片**、各算法耗时和局部放大。首页支持搜索、状态/算法筛选，每页 10 个场景。网页直接引用 `golden/<场景名>/*.png`，不保存重复图片，也不需要启动服务器、安装 Python 或配置引擎。交互控件使用仓库内的 JavaScript，不访问网络。
 
 如果 clone 时没有自动拉取 LFS 图片，先在仓库目录执行 `git lfs pull --include="golden/**"`。正式图片或清单更新后，维护者可运行 `python scripts/generate_gallery.py` 重新生成并提交 HTML；浏览者只需打开现成的 HTML。
 
@@ -46,7 +46,15 @@ Copy-Item config.regression.example.json config.regression.local.json
 
 两个渲染入口在缺少场景时自动调用下载准备，无需手工解压或修改 XML。生成 golden 时每个场景、每种算法只执行一次正式采集，不进行重复噪声校准。按当前支持边界，全量执行 105 项检查，输出 92 张正式 PNG，另 13 项记录已知不支持状态。setup 验证图不保留，局部放大直接引用原图，不额外生成 PNG。
 
-生成的 `index.html` 可直接离线打开，按场景三列展示算法、原始 PNG、局部放大及耗时。回归报告展示 golden、候选图和差分。所有网页资源均为本地相对路径，golden ZIP 可整体迁移。
+生成的 `index.html` 是汇总首页，显示完整运行统计、实际采样参数及每个场景的算法状态和耗时；有异常时默认仅显示异常场景。点击状态或“查看详情”进入 `pages/<场景名>.html`，可切换算法、查看原图及指标/限值。回归默认并排展示 golden 与候选图，差分按需打开，ROI 每次选择一个；配置和原始证据链接折叠展示。所有资源均为本地相对路径，`assets/` 中的 CSS/JavaScript 随报告保存，整个报告目录可离线迁移。
+
+已有回归结果可以只重新生成页面，不重新渲染，也不改写 JSON、CSV 或图片：
+
+```powershell
+python scripts/regenerate_report.py ".workspace/experiments/regression/<run-id>" --golden golden
+```
+
+旧报告未记录原阈值时，`--golden` 用经校验的参考图和输入指纹补充展示；不匹配就拒绝，省略时标明“未记录”。已封存的 golden 包保留原样；仓库图库通过 `python scripts/generate_gallery.py` 更新。
 
 ## 自定义 SPP 和帧数
 

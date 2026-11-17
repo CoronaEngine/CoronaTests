@@ -56,6 +56,10 @@ CEF 调试接口仅绑定本机，端口默认 9980。`--port` 可修改；已�
 
 ## 证据与时序
 
+报告的 `index.html` 只保留汇总表、完整结果统计、搜索/算法/状态筛选和每页 10 场景的分页。有异常时默认筛选异常，已知不支持单独统计。`pages/<场景>.html` 按算法切换，默认打开异常算法，提供上一/下一场景导航；原图并排，差分和单个 ROI 按需打开。`assets/report.css`、`assets/report.js` 均为本地文件，不使用 fetch、CDN 或服务器。
+
+后续采集将实际使用的原阈值一并记录到 `comparison.json` 的 `raw_thresholds`，只用于展示，不改变判定规则。旧回归可运行 `python scripts/regenerate_report.py <结果目录> --golden golden` 重新生成展示；它验证参考图 SHA256 和阈值输入来源，只修改 HTML/CSS/JavaScript，原始结果、计时与图片不变。封存 golden 的工件哈希包含旧页面，不允许直接改写；仓库根图库单独生成新页面。
+
 采集中的每项 `runs/<scene>--<algorithm>/repeat-0/` 保存 `run.json`、`attempt.json`、原始 `image.png`、`frames.csv`、CPU/QPC stages、GPU timestamp/diagnostics、frame map、timing JSON 和 API/引擎日志。生成 golden 不创建 `repeat-1` 或 `repeat-2`；成功后整理成单份正式图片、网页及计时摘要，不保留 setup 图和独立裁剪 PNG。
 
 `sample_ms = total_ms / frames`，涵盖所有正式样本，包括统计预热窗口；`shown_frame_ms` 是最后所示样本。稳定 mean/median 排除配置的预热帧，默认 64。纯 PT 总成本包含全部配置的累计样本，golden 模板 2048、回归模板 512，不能只用最后样本或稳定帧均值代替总成本。GPU envelope 含 dispatch 间隙，dispatch sum 不等于整帧延迟。

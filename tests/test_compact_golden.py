@@ -47,14 +47,15 @@ def legacy_golden(tmp_path):
     return source
 
 
-def test_compact_keeps_one_original_image_and_six_summary_files(legacy_golden, tmp_path):
+def test_compact_keeps_one_original_image_summary_files_and_offline_pages(legacy_golden, tmp_path):
     from scripts.compact_golden import compact_golden
     before = workflow.sha(legacy_golden/'golden.json')
     output = tmp_path/'compact'
     manifest, result = compact_golden(legacy_golden,output,baseline_id='compact')
     files = {p.relative_to(output).as_posix() for p in output.rglob('*') if p.is_file()}
     assert files == {'images/box--pt2048.png','golden.json','thresholds.json','workflow-result.json',
-                     'run-config.json','timings.csv','index.html'}
+                     'run-config.json','timings.csv','index.html','pages/box.html',
+                     'assets/report.css','assets/report.js'}
     verified, thresholds = workflow.read_golden(output)
     assert verified['id']=='compact' and verified['manifest_fingerprint']==manifest['manifest_fingerprint']
     assert workflow.sha(output/result['records'][0]['image'])==result['records'][0]['image_sha256']
