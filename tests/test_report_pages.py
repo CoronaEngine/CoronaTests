@@ -50,19 +50,20 @@ def test_overview_has_scene_rows_and_global_counts_without_images_or_record_payl
     assert len(rows) == 12 and sum('hidden' not in row for row in rows) == 1
     assert 'data-default-status="abnormal"' in html
     assert 'DO_NOT_EMBED_ON_HOME' not in html and len(html.encode()) < 200000
-    for control in ('scene-search', 'status-filter', 'algorithm-filter', 'page-prev', 'page-next', 'page-info'):
+    for control in ('scene-search', 'status-filter', 'algorithm-filter', 'match-info'):
         assert any(attrs.get('id') == control for _, attrs in parser.tags)
+    assert not any(attrs.get('id') in ('page-prev', 'page-next', 'page-info') for _, attrs in parser.tags)
     assert 'engine-version' in html and '512' in html
     assert len(list((tmp_path / 'pages').glob('*.html'))) == 12
     assert json.loads((tmp_path / 'report.json').read_text()) == report
 
 
-def test_all_pass_defaults_to_all_and_ten_scenes_per_page(tmp_path):
+def test_all_pass_shows_every_matching_scene_without_pagination(tmp_path):
     html = pages.write_report(tmp_path, fixture(tmp_path)).read_text(encoding='utf-8')
     parser = Links(); parser.feed(html)
     assert 'data-default-status="all"' in html
     rows = [a for tag, a in parser.tags if tag == 'tr' and 'data-scene' in a]
-    assert sum('hidden' not in row for row in rows) == 10
+    assert sum('hidden' not in row for row in rows) == 12
 
 
 def test_scene_tabs_default_to_failure_and_roi_and_difference_start_hidden(tmp_path):

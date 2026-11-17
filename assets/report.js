@@ -8,48 +8,34 @@
     if (!values.length) return false;
     return status === 'all' || values.some(value => status === 'abnormal' ? abnormal(value) : value === status);
   }
-  function paginate(rows, query, status, algorithm, page, size = 10) {
-    const filtered = rows.filter(row => matches(row, query, status, algorithm));
-    const pages = Math.max(1, Math.ceil(filtered.length / size));
-    page = Math.max(1, Math.min(page, pages));
-    return {rows: filtered.slice((page - 1) * size, page * size), count: filtered.length, pages, page};
-  }
-  if (typeof module !== 'undefined' && module.exports) { module.exports = {abnormal, matches, paginate}; return; }
+  if (typeof module !== 'undefined' && module.exports) { module.exports = {abnormal, matches}; return; }
   function overview() {
     const root = document.querySelector('[data-overview]');
     if (!root) return;
     const query = document.getElementById('scene-search');
     const status = document.getElementById('status-filter');
     const algorithm = document.getElementById('algorithm-filter');
-    const previous = document.getElementById('page-prev');
-    const next = document.getElementById('page-next');
     const rows = Array.from(root.querySelectorAll('tr[data-scene]')).map(element => ({
       element, scene: element.dataset.scene, name: element.dataset.name, statuses: JSON.parse(element.dataset.statuses)
     }));
-    let page = 1;
     try {
       const saved = JSON.parse(sessionStorage.getItem(location.href.split('#')[0]) || 'null');
       if (saved && Array.from(status.options).some(option => option.value === saved.status)
           && Array.from(algorithm.options).some(option => option.value === saved.algorithm)) {
-        query.value = saved.query || ''; status.value = saved.status; algorithm.value = saved.algorithm; page = saved.page || 1;
+        query.value = saved.query || ''; status.value = saved.status; algorithm.value = saved.algorithm;
       }
     } catch (_) { /* file:// storage may be unavailable; controls still work. */ }
     function render() {
-      const result = paginate(rows, query.value, status.value, algorithm.value, page);
-      page = result.page;
-      const visible = new Set(result.rows);
+      const visible = new Set(rows.filter(row => matches(row, query.value, status.value, algorithm.value)));
       rows.forEach(row => { row.element.hidden = !visible.has(row); });
-      previous.disabled = page === 1; next.disabled = page === result.pages;
-      document.getElementById('page-info').textContent = `第 ${page} / ${result.pages} 页 · 匹配 ${result.count} / ${rows.length} 个场景`;
-      document.getElementById('empty-results').hidden = result.count !== 0;
-      try { sessionStorage.setItem(location.href.split('#')[0], JSON.stringify({query: query.value, status: status.value, algorithm: algorithm.value, page})); } catch (_) {}
+      document.getElementById('match-info').textContent = `匹配 ${visible.size} / ${rows.length} 个场景`;
+      document.getElementById('empty-results').hidden = visible.size !== 0;
+      try { sessionStorage.setItem(location.href.split('#')[0], JSON.stringify({query: query.value, status: status.value, algorithm: algorithm.value})); } catch (_) {}
     }
-    query.addEventListener('input', () => { page = 1; render(); });
-    [status, algorithm].forEach(control => control.addEventListener('change', () => { page = 1; render(); }));
-    previous.addEventListener('click', () => { page -= 1; render(); });
-    next.addEventListener('click', () => { page += 1; render(); });
+    query.addEventListener('input', render);
+    [status, algorithm].forEach(control => control.addEventListener('change', render));
     root.querySelectorAll('[data-status-filter]').forEach(link => link.addEventListener('click', event => {
-      event.preventDefault(); status.value = link.dataset.statusFilter; query.value = ''; algorithm.value = 'all'; page = 1; render();
+      event.preventDefault(); status.value = link.dataset.statusFilter; query.value = ''; algorithm.value = 'all'; render();
     }));
     render();
   }

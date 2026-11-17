@@ -1,6 +1,6 @@
 // Run with Node's built-in assertion library; no browser, server or packages.
 const assert = require('node:assert/strict');
-const {abnormal, matches, paginate} = require('../scripts/report_assets/report.js');
+const {abnormal, matches} = require('../scripts/report_assets/report.js');
 const rows = Array.from({length: 25}, (_, i) => ({scene: `room-${i}`, name: i === 0 ? 'Room <北>' : `Room ${i}`,
   statuses: {gi: i === 0 ? 'failed' : i === 1 ? 'image-failed' : 'pass', 'pt2048': i === 2 ? 'expected-unsupported' : 'pass'}}));
 assert.equal(abnormal('expected-unsupported'), false);
@@ -10,14 +10,11 @@ assert.equal(matches(rows[0], '北', 'failed', 'gi'), true);
 assert.equal(matches(rows[0], ' ROOM ', 'abnormal', 'pt2048'), false);
 assert.equal(matches(rows[0], '', 'all', 'pt-reblur'), false);
 assert.equal(matches(rows[2], '', 'abnormal', 'all'), false);
-assert.equal(paginate(rows, '', 'abnormal', 'all', 1).count, 2);
-assert.equal(paginate(rows, '', 'all', 'all', 1).rows.length, 10);
-assert.equal(paginate(rows, '', 'all', 'all', 2).rows[0].scene, 'room-10');
-assert.equal(paginate(rows, '', 'all', 'all', 99).rows.length, 5);
-assert.equal(paginate(rows, 'not-found', 'all', 'all', 9).page, 1);
-assert.equal(paginate(rows, 'not-found', 'all', 'all', 9).count, 0);
-assert.equal(paginate(rows, '', 'expected-unsupported', 'pt2048', 1).count, 1);
-console.log('14 report control assertions passed');
+assert.equal(rows.filter(row => matches(row, '', 'abnormal', 'all')).length, 2);
+assert.equal(rows.filter(row => matches(row, '', 'all', 'all')).length, 25);
+assert.equal(rows.filter(row => matches(row, 'not-found', 'all', 'all')).length, 0);
+assert.equal(rows.filter(row => matches(row, '', 'expected-unsupported', 'pt2048')).length, 1);
+console.log('Report filter assertions passed');
 
 // Exercise the production event handlers without a browser or network.
 const fs = require('node:fs');
@@ -30,7 +27,7 @@ class Element {
   getAttribute(name) { return this.attributes[name]; }
   focus() { this.focused = true; }
 }
-const controls = Object.fromEntries(['scene-search', 'status-filter', 'algorithm-filter', 'page-prev', 'page-next', 'page-info', 'empty-results'].map(id => [id, new Element()]));
+const controls = Object.fromEntries(['scene-search', 'status-filter', 'algorithm-filter', 'match-info', 'empty-results'].map(id => [id, new Element()]));
 controls['scene-search'].value = '';
 controls['status-filter'].value = 'abnormal';
 controls['status-filter'].options = ['all', 'abnormal', 'failed', 'pass'].map(value => ({value}));
@@ -62,10 +59,11 @@ vm.runInNewContext(fs.readFileSync(require.resolve('../scripts/report_assets/rep
 assert.equal(tableRows.filter(row => !row.hidden).length, 2);
 assert.equal(panels[1].hidden, false); assert.equal(panels[0].hidden, true);
 controls['status-filter'].value = 'all'; controls['status-filter'].emit('change');
-assert.equal(tableRows.filter(row => !row.hidden).length, 10);
-controls['page-next'].emit('click'); assert.equal(tableRows[10].hidden, false); assert.equal(tableRows[0].hidden, true);
+assert.equal(tableRows.filter(row => !row.hidden).length, 25);
+assert.equal(tableRows[24].hidden, false); assert.equal(tableRows[0].hidden, false);
+assert.equal(controls['match-info'].textContent, '匹配 25 / 25 个场景');
 controls['scene-search'].value = '北'; controls['scene-search'].emit('input');
-assert.equal(tableRows.filter(row => !row.hidden).length, 1); assert.equal(controls['page-prev'].disabled, true);
+assert.equal(tableRows.filter(row => !row.hidden).length, 1);
 controls['scene-search'].value = 'missing'; controls['scene-search'].emit('input'); assert.equal(controls['empty-results'].hidden, false);
 summaryLink.emit('click'); assert.equal(controls['scene-search'].value, ''); assert.equal(tableRows.filter(row => !row.hidden).length, 1);
 tabs[1].emit('keydown', {key: 'ArrowLeft'}); assert.equal(panels[0].hidden, false); assert.equal(tabs[0].focused, true);
@@ -74,4 +72,4 @@ panels[0].diff.emit('click'); assert.equal(panels[0].images[0].hidden, true);
 panels[0].roi.value = 'corner'; panels[0].roi.emit('change');
 assert.equal(panels[0].crops[0].hidden, true); assert.equal(panels[0].crops[1].hidden, false);
 assert.equal(panels[0].metrics[0].hidden, true); assert.equal(panels[0].metrics[2].hidden, false);
-console.log('19 offline UI event assertions passed');
+console.log('Offline UI event assertions passed');

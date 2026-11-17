@@ -114,10 +114,9 @@ def render_overview(root, report, downloads=()):
         name = next((r['scene_name'] for r in rows.values() if r.get('scene_name')), scene)
         statuses = {key: row['status'] for key, row in rows.items()}
         selected = default == 'all' or any(value not in ACCEPTED for value in statuses.values())
-        show = selected and matched < 10
         if selected: matched += 1
         target = f'pages/{scene}.html'
-        parts.append(f'<tr data-scene="{escape(scene, quote=True)}" data-name="{escape(name, quote=True)}" data-statuses="{escape(json.dumps(statuses), quote=True)}"{"" if show else " hidden"}><td><a class="scene-title" href="{target}">{escape(name)}</a><span class="scene-id">{escape(scene)}</span></td>')
+        parts.append(f'<tr data-scene="{escape(scene, quote=True)}" data-name="{escape(name, quote=True)}" data-statuses="{escape(json.dumps(statuses), quote=True)}"{"" if selected else " hidden"}><td><a class="scene-title" href="{target}">{escape(name)}</a><span class="scene-id">{escape(scene)}</span></td>')
         for algorithm, _ in ALGORITHMS:
             if algorithm not in present: continue
             row = rows.get(algorithm)
@@ -127,9 +126,8 @@ def render_overview(root, report, downloads=()):
             time = (_number(timing.get('total_ms')) + ' / 整图') if algorithm == 'pt2048' else (_number(timing.get('mean_ms')) + ' / 帧')
             parts.append(f'<td><a href="{target}#{algorithm}">{badge(row["status"])}</a><span class="cell-time">{time if timing else "—"}</span></td>')
         parts.append(f'<td><a href="{target}">查看详情 →</a></td></tr>')
-    pages = max(1, (matched + 9) // 10)
-    parts.append(f'</tbody></table><p id="empty-results" class="empty" hidden>没有匹配的场景，请调整筛选条件。</p></div><div class="pagination"><span id="page-info">第 1 / {pages} 页 · 匹配 {matched} / {len(scenes)} 个场景</span><div class="pagination-controls"><button id="page-prev" disabled>上一页</button><button id="page-next"{" disabled" if pages == 1 else ""}>下一页</button></div></div>')
-    parts.append('<p class="limits-note">统计覆盖整次运行，不随筛选改变。已知不支持单独统计；点击任意算法状态可直接查看对应详情。</p><noscript><style>tr[hidden]{display:table-row!important}</style>启用 JavaScript 可搜索、筛选和分页。当前列出全部场景。</noscript></div>')
+    parts.append(f'</tbody></table><p id="empty-results" class="empty" hidden>没有匹配的场景，请调整筛选条件。</p></div><p id="match-info" class="match-info">匹配 {matched} / {len(scenes)} 个场景</p>')
+    parts.append('<p class="limits-note">统计覆盖整次运行，不随筛选改变。已知不支持单独统计；点击任意算法状态可直接查看对应详情。</p><noscript><style>tr[hidden]{display:table-row!important}</style>启用 JavaScript 可搜索和筛选。当前列出全部场景。</noscript></div>')
     return document(title, ''.join(parts))
 
 

@@ -6,7 +6,7 @@
 
 ## 浏览全部 Golden 图片
 
-clone 仓库并完成 Git LFS 图片拉取后，直接双击根目录的 [index.html](index.html)，即可打开场景汇总首页，再进入场景详情浏览全部 **92 张正式图片**、各算法耗时和局部放大。首页支持搜索、状态/算法筛选，每页 10 个场景。网页直接引用 `golden/<场景名>/*.png`，不保存重复图片，也不需要启动服务器、安装 Python 或配置引擎。交互控件使用仓库内的 JavaScript，不访问网络。
+clone 仓库并完成 Git LFS 图片拉取后，直接双击根目录的 [index.html](index.html)，即可打开场景汇总首页，再进入场景详情浏览全部 **92 张正式图片**、各算法耗时和局部放大。首页支持搜索、状态/算法筛选，全部匹配场景一次显示，不分页。网页直接引用 `golden/<场景名>/*.png`，不保存重复图片，也不需要启动服务器、安装 Python 或配置引擎。交互控件使用仓库内的 JavaScript，不访问网络。
 
 如果 clone 时没有自动拉取 LFS 图片，先在仓库目录执行 `git lfs pull --include="golden/**"`。正式图片或清单更新后，维护者可运行 `python scripts/generate_gallery.py` 重新生成并提交 HTML；浏览者只需打开现成的 HTML。
 
