@@ -12879,12 +12879,12 @@
       "algorithm_id": "pt2048",
       "job_id": "volumetric-caustic--pt2048",
       "status": "complete",
-      "label": "PT 2048 samples",
+      "label": "PT 20000 spp · participating media",
       "scene_name": "Volumetric Caustic",
       "configuration": {
         "id": "pt2048",
-        "label": "PT 2048 samples",
-        "frames": 2048,
+        "label": "PT 20000 spp · participating media",
+        "frames": 20000,
         "warmup": 64,
         "setup_frames": 1,
         "screenshot_warmup_frames": 0,
@@ -12908,7 +12908,9 @@
         "PT_settings": {
           "min_depth": 5,
           "max_depth": 16,
-          "rr_threshold": 1
+          "rr_threshold": 1,
+          "participating_media": true,
+          "medium_diagnostics": false
         },
         "GI_settings": {
           "max_depth": 16,
@@ -12993,6 +12995,12 @@
           "enabled": false,
           "start_index": 128,
           "threshold": 0.001
+        },
+        "media_contract": {
+          "enabled": true,
+          "diagnostics": false,
+          "imported_media_count": 1,
+          "medium_boundary_count": 1
         }
       },
       "regions": {
@@ -13015,19 +13023,19 @@
           0.4
         ]
       },
-      "input_fingerprint": "b5fe5482f31d009cd3cce26b82cd4c8483c9acf1b26a3311b79b00b4b4c32b14",
-      "image_sha256": "595ba07b2c755e6aba6ba005277360f27cf73d069f7d67f110add54977690c40",
-      "elapsed_seconds": 23.98399999999674,
+      "input_fingerprint": "6fff0cfd79f6e0d0497a3a7c23861a9a96a9e664793e5433bb81bcd1316b4ddc",
+      "image_sha256": "824fcab8a863bf3c49686cb92111a8593f37a5ba52de134bae1a089978e6347a",
+      "elapsed_seconds": 447.57609049999155,
       "image": "volumetric-caustic/pt.png",
       "timing": {
-        "frames": 2048,
+        "frames": 20000,
         "warmup_frames": 64,
-        "retained_frames": 1984,
-        "mean_ms": 3.7710209173387095,
-        "median_ms": 3.69135,
-        "sample_ms": 3.77401015625,
-        "shown_frame_ms": 3.6843,
-        "total_ms": 7729.1728,
+        "retained_frames": 19936,
+        "mean_ms": 8.252074568619584,
+        "median_ms": 8.1361,
+        "sample_ms": 8.254170664999998,
+        "shown_frame_ms": 8.1421,
+        "total_ms": 165083.4133,
         "labels": {
           "mean_ms": "API renderer interval after warmup, includes submission/wait",
           "sample_ms": "All-sample API renderer cost: total_ms / frames, including warmup",
@@ -13036,6 +13044,16 @@
           "GPU_timestamp_envelope": "First-to-last GPU timestamp span including gaps",
           "GPU_dispatch_duration_sum": "Dispatch scope sum; not frame latency"
         }
+      },
+      "engine_fingerprint": "e81e29660b6b6aa2e25971de0d1cb63f247eefbb0ce0bfb8443e797419eeb9b3",
+      "capture_provenance": {
+        "capture_id": "volumetric-caustic-pt20000-media-20261118",
+        "started_utc": "2026-11-18T08:21:00.062858+00:00",
+        "source_scene_sha256": "2ba6af5e2cedd49b559dd7115a024760dbb1bd6eb3d8ad323058ba7deb7db10d",
+        "prepared_scene_sha256": "1863c2cd65caa8dfa8bf89bdefd43bb7f38cb0ae05c9a02644152b8dfa3c1d8f",
+        "source_record_sha256": "f694370168a1f0d76d5a15a25f58fcbe6fb626de350cd132fbb4438b7396e2f9",
+        "mediums": 1,
+        "medium_boundaries": 1
       }
     },
     {
@@ -17550,7 +17568,7 @@
     "cornell-box/pt.png": "93f2cd9554cd48aff124b3023aab131e555f67b6b8ebd8971db0900a4d594d2b",
     "volumetric-caustic/gi.png": "5923659662c7b1aac9b4a6e8b4bb5b8c3c8644a64af86031ca4e4855ae32c664",
     "volumetric-caustic/pt-reblur.png": "6878c3f13fa069601570747db51ad81c3cba8046e397e56c475ac5a7df51f280",
-    "volumetric-caustic/pt.png": "595ba07b2c755e6aba6ba005277360f27cf73d069f7d67f110add54977690c40",
+    "volumetric-caustic/pt.png": "824fcab8a863bf3c49686cb92111a8593f37a5ba52de134bae1a089978e6347a",
     "water-caustic/gi.png": "112cbd769ac46f6b6c9dee28735acb34bf0e7059edc68e4b501a5595a35fe8cc",
     "water-caustic/pt-reblur.png": "ff6c70ceddf4c69933cf690696223e4e9e0c01118313bdc2720e348a2377ac50",
     "water-caustic/pt.png": "4af92d502775b087263c2f7fc4eb08f28de8d1a450f31d0a0a5976667372f668",
@@ -17577,8 +17595,8 @@
     "matpreview/pt.png": "6ec80def953f933b42f87c6dde7e5cf446f4864db0deb8aafe93e80c38486eac",
     "dragon/gi.png": "1b69d3ca6f8a071e1f93f4d58a5bfce348fd59ee13eb5ab3f7e32876bbc99ef4"
   },
-  "thresholds_fingerprint": "5f50240ce0789395f9af24e03a69ee955e891bfddb71b61bb949a3ef966085f1",
+  "thresholds_fingerprint": "f1efd66f97f4da01a6ff5c3ae8e6820cf0270cc219fd5f9f39d85bcd3e447cf8",
   "thresholds_ready": true,
   "threshold_policy": "fixed",
-  "manifest_fingerprint": "2025a28b0d3a012d653d9b7c7cf48e29eceab851ed6e8d22bd620d18d3cbd077"
+  "manifest_fingerprint": "9df52d52e4df8a71082b05eb3cfdfd38ddb051a60b74e9aefc4fab9fe859fffb"
 }

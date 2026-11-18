@@ -40,7 +40,10 @@ def badge(status):
 def label(algorithm, row):
     if algorithm != 'pt2048':
         return dict(ALGORITHMS)[algorithm]
-    frames = (row.get('configuration') or {}).get('frames', (row.get('timing') or {}).get('frames'))
+    config = row.get('configuration') or {}
+    frames = config.get('frames', (row.get('timing') or {}).get('frames'))
+    if type(frames) is int and (config.get('PT_settings') or {}).get('participating_media') is True:
+        return f'PT {frames:,} spp · 参与介质开启'
     return f'PT{escape(str(frames))}' if frames is not None else 'PT'
 
 

@@ -79,7 +79,7 @@ def test_brightness_guard_rejects_changes_that_reduce_reference_error(tmp_path):
     assert any('mean' in failure or 'luminance' in failure for failure in verdict['failures'])
 
 
-def test_published_policy_covers_all_supported_pt_references_and_default_budget():
+def test_published_policy_covers_all_matching_pt_references_and_default_budget():
     import json
     from pathlib import Path
     module = api()
@@ -89,8 +89,9 @@ def test_published_policy_covers_all_supported_pt_references_and_default_budget(
     manifest = read(root / 'baselines' / (baseline_id + '.manifest.json'))
     references = [r for r in manifest['records'] if r['algorithm_id'] == 'pt2048' and r['status'] == 'complete']
     policy = read(root / 'recipes/pt512-regression.json')
-    assert len(references) == 31 and set(policy['cases']) == {r['job_id'] for r in references}
-    module.validate_references(policy, references)
+    matching = [r for r in references if r['configuration']['frames'] == policy['reference_spp']]
+    assert len(references) == 31 and set(policy['cases']) == {r['job_id'] for r in matching}
+    module.validate_references(policy, matching)
     assert policy['allowances'] == module.ALLOWANCES
     assert read(root / 'config.regression.example.json')['sampling']['pt_spp'] == 512
     assert read(root / 'config.golden.example.json')['sampling']['pt_spp'] == 2048

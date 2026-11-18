@@ -35,7 +35,7 @@ GI/去噪列显示预热后的平均帧耗时；PT 列显示全部样本的累�
 | [Utah Teapot (full)](docs/golden/teapot-full.md) | 平均 51.53 ms/帧 | 平均 15.18 ms/帧 | 累计 17.13 s |
 | [Utah Teapot](docs/golden/teapot.md) | 平均 44.08 ms/帧 | 平均 9.52 ms/帧 | 累计 8.23 s |
 | [Cornell Box](docs/golden/cornell-box.md) | 平均 27.37 ms/帧 | 平均 7.64 ms/帧 | 累计 6.68 s |
-| [Volumetric Caustic](docs/golden/volumetric-caustic.md) | 平均 26.57 ms/帧 | 平均 8.02 ms/帧 | 累计 7.73 s |
+| [Volumetric Caustic](docs/golden/volumetric-caustic.md) | 平均 26.57 ms/帧 | 平均 8.02 ms/帧 | 累计 165.08 s |
 | [Water Caustic](docs/golden/water-caustic.md) | 平均 34.28 ms/帧 | 平均 10.84 ms/帧 | 累计 12.28 s |
 | [Veach, Ajar](docs/golden/veach-ajar.md) | 平均 45.18 ms/帧 | 平均 16.41 ms/帧 | 累计 20.30 s |
 | [Veach, Bidir Room](docs/golden/veach-bidir.md) | 平均 29.12 ms/帧 | 平均 8.50 ms/帧 | 累计 8.73 s |

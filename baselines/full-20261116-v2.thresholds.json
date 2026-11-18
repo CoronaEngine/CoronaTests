@@ -4794,7 +4794,14 @@
       "reasons": []
     },
     "volumetric-caustic--pt2048": {
-      "status": "calibrated",
+      "schema": 1,
+      "status": "fixed",
+      "provenance": {
+        "golden_id": "full-20261116-v2",
+        "job_id": "volumetric-caustic--pt2048",
+        "input_fingerprint": "6fff0cfd79f6e0d0497a3a7c23861a9a96a9e664793e5433bb81bcd1316b4ddc",
+        "engine_fingerprint": "e81e29660b6b6aa2e25971de0d1cb63f247eefbb0ce0bfb8443e797419eeb9b3"
+      },
       "thresholds": {
         "full": {
           "mae": 0.003,
@@ -4843,26 +4850,9 @@
           0.4
         ]
       },
-      "provenance": {
-        "golden_id": "full-20261116-v2",
-        "job_id": "volumetric-caustic--pt2048",
-        "input_fingerprint": "b5fe5482f31d009cd3cce26b82cd4c8483c9acf1b26a3311b79b00b4b4c32b14",
-        "engine_fingerprint": "abf138679bc03f9c101ef9931740f72cfe7e3803ce6fbbfbd87de09cff31c3fc"
-      },
       "policy": {
-        "noise_multiplier": 1.75,
-        "ceilings": {
-          "mae": 0.035,
-          "rmse": 0.07,
-          "ssim_loss": 0.12,
-          "luminance_deviation": 0.12
-        },
-        "floors": {
-          "mae": 0.003,
-          "rmse": 0.006,
-          "ssim_loss": 0.015,
-          "luminance_deviation": 0.015
-        }
+        "method": "fixed-thresholds",
+        "captures_per_job": 1
       },
       "reasons": []
     },

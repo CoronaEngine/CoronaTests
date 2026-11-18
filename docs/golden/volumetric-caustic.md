@@ -18,10 +18,10 @@
 
 <a href="../../golden/volumetric-caustic/pt-reblur.png"><img src="../../golden/volumetric-caustic/pt-reblur.png" alt="Volumetric Caustic · PT+REBLUR" width="960"></a>
 
-## PT2048
+## PT 20,000 spp · 参与介质开启
 
-2048 spp，计时预热 64 帧。累计 7.73 s。
+20000 spp，计时预热 64 帧。累计 165.08 s。
 
-平均每样本 3.77 ms。
+平均每样本 8.25 ms。
 
-<a href="../../golden/volumetric-caustic/pt.png"><img src="../../golden/volumetric-caustic/pt.png" alt="Volumetric Caustic · PT2048" width="960"></a>
+<a href="../../golden/volumetric-caustic/pt.png"><img src="../../golden/volumetric-caustic/pt.png" alt="Volumetric Caustic · PT 20,000 spp · 参与介质开启" width="960"></a>

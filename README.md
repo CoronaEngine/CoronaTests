@@ -108,6 +108,8 @@ python scripts/regenerate_report.py ".workspace/experiments/regression/<run-id>"
 
 不同 SPP、历史帧数或预热的结果允许比较。回归模板默认纯 PT **512 spp**，golden 模板仍为 **2048 spp**；这一配对采用下述 DS8/DS4 专用阈值，其他配对及 GI、PT+REBLUR 沿用 golden 原阈值，不自动放宽。场景资源、相机、检查区域及采样预算以外的算法配方仍需匹配，否则为 `incomparable`。完整采集指纹保留实际预算，因此恢复同一次运行时仍要求参数完全一致。
 
+[Volumetric Caustic](docs/golden/volumetric-caustic.md) 的正式纯 PT 参考图使用 **20,000 spp，参与介质开启**。现有 PT512 默认配方关闭介质，该项会在回归报告中显示为「不可比」。512 spp 对 2048 spp 的 DS8/DS4 策略仍用于其余符合配对的场景。
+
 网页、JSON 和逐帧证据记录实际预算，报告同时展示 golden 与候选图的 SPP。不同预算的性能数据标明每帧/每样本成本，不将不同工作量的整图耗时混为一谈。纯 PT 标题随样本数显示为 PT512、PT2048 等；内部算法 ID `pt2048` 保留，以兼容现有基线。未配置时仍采用原配方 2048/192/192、预热 64；无需修改 `recipes/algorithms.json`。
 
 ## 范围和计时
