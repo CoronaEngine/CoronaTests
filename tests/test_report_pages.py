@@ -151,3 +151,18 @@ def test_overview_keeps_saved_overall_failure_even_if_listed_rows_pass(tmp_path)
     report['passed'] = False
     html = pages.render_report(tmp_path, report)
     assert '整体结果：未通过' in html
+
+
+def test_partial_golden_refresh_displays_each_capture_build(tmp_path):
+    report = fixture(tmp_path, 1, kind='golden')
+    report['records'][0]['engine_fingerprint'] = 'refreshed-engine'
+    overview = pages.write_report(tmp_path, report).read_text(encoding='utf-8')
+    assert '多构建基线' in overview and 'refreshed-engine' in overview and 'engine-version' in overview
+    html = (tmp_path / 'pages/room-0.html').read_text(encoding='utf-8')
+    gi = html.split('data-algorithm="gi"', 1)[1].split('</article>', 1)[0]
+    pt = html.split('data-algorithm="pt2048"', 1)[1].split('</article>', 1)[0]
+    assert 'data-engine-fingerprint="refreshed-engine"' in gi
+    assert 'data-engine-fingerprint="engine-version"' in pt
+    report['records'] = report['records'][:1]
+    overview = pages.render_report(tmp_path, report)
+    assert '引擎版本：<code>refreshed-engine</code>' in overview

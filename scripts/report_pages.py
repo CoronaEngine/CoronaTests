@@ -81,10 +81,14 @@ def render_overview(root, report, downloads=()):
     okay = report.get('passed' if report['kind'] == 'regression' else 'valid', all(status in ACCEPTED for status in counts))
     engine = metadata.get('engine_fingerprint') or metadata.get('engine', '')
     if isinstance(engine, dict): engine = engine.get('sha256', '')
+    builds = sorted({str(row.get('engine_fingerprint') or engine) for row in report['records']
+                     if row['status'] in ('complete', 'pass', 'image-failed')})
+    engine_text = '多构建基线（按条目记录）：' if len(builds) > 1 else '引擎版本：'
+    engine_html = ' · '.join(f'<code>{escape(build)}</code>' for build in (builds or [str(engine)]))
     parts = [f'<div data-overview data-default-status="{default}"><div class="eyebrow">CORONA TESTS / OVERVIEW</div>',
              f'<h1>{escape(title)}</h1><p class="subtitle">{escape(str(report["created_utc"]))} · Suite: {escape(report["suite"])}</p>',
              f'<p><span class="status status-{"good" if okay else "bad"}">整体结果：{"通过" if okay else "未通过"}</span></p>',
-             f'<p class="run-info">引擎版本：<code>{escape(str(engine))}</code></p>',
+             f'<p class="run-info">{engine_text}{engine_html}</p>',
              f'<p class="run-info">{escape(sampling_line(report))}</p><div class="summary">',
              f'<a href="#scene-list" data-status-filter="all"><strong>{len(report["records"])}</strong><span>全部检查 · {len(scenes)} 个场景</span></a>']
     for status, count in counts.items():
@@ -201,6 +205,9 @@ def evidence(root, row):
 
 def algorithm_panel(root, report, algorithm, row, selected):
     parts = [f'<article class="algorithm-panel" data-algorithm="{algorithm}" id="panel-{algorithm}" role="tabpanel" aria-labelledby="tab-{algorithm}"{"" if selected else " hidden"}><h2>{label(algorithm, row)} {badge(row["status"])}</h2>']
+    build = row.get('engine_fingerprint') or report.get('metadata', {}).get('engine_fingerprint')
+    if build:
+        parts.append(f'<p class="run-info" data-engine-fingerprint="{escape(str(build), quote=True)}">采集构建：<code>{escape(str(build))}</code></p>')
     comparison = row.get('comparison') or {}
     failures = [row[k] for k in ('reason', 'error') if row.get(k)]
     failures += row.get('failures', []) + comparison.get('evaluation', {}).get('failures', [])

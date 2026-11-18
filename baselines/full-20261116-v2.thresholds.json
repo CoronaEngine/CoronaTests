@@ -3,7 +3,14 @@
   "golden_id": "full-20261116-v2",
   "profiles": {
     "bathroom--gi": {
-      "status": "calibrated",
+      "schema": 1,
+      "status": "fixed",
+      "provenance": {
+        "golden_id": "full-20261116-v2",
+        "job_id": "bathroom--gi",
+        "input_fingerprint": "eed7d8f3f43c31283a3ad5e768baf05765e2b94f90f55e70aa764c2eb351fb06",
+        "engine_fingerprint": "8f8377526453366832fe3daf3b000e7cb53ce62c5220f6a7dbd9a3f32c71f755"
+      },
       "thresholds": {
         "full": {
           "mae": 0.003,
@@ -52,26 +59,9 @@
           0.4
         ]
       },
-      "provenance": {
-        "golden_id": "full-20261116-v2",
-        "job_id": "bathroom--gi",
-        "input_fingerprint": "eed7d8f3f43c31283a3ad5e768baf05765e2b94f90f55e70aa764c2eb351fb06",
-        "engine_fingerprint": "abf138679bc03f9c101ef9931740f72cfe7e3803ce6fbbfbd87de09cff31c3fc"
-      },
       "policy": {
-        "noise_multiplier": 1.75,
-        "ceilings": {
-          "mae": 0.035,
-          "rmse": 0.07,
-          "ssim_loss": 0.12,
-          "luminance_deviation": 0.12
-        },
-        "floors": {
-          "mae": 0.003,
-          "rmse": 0.006,
-          "ssim_loss": 0.015,
-          "luminance_deviation": 0.015
-        }
+        "method": "fixed-thresholds",
+        "captures_per_job": 1
       },
       "reasons": []
     },
@@ -222,7 +212,14 @@
       "reasons": []
     },
     "living-room--gi": {
-      "status": "calibrated",
+      "schema": 1,
+      "status": "fixed",
+      "provenance": {
+        "golden_id": "full-20261116-v2",
+        "job_id": "living-room--gi",
+        "input_fingerprint": "4cae5c41ffcc50d44159667e9dc3d341239c0eea593901420ad2566d31c45ae4",
+        "engine_fingerprint": "8f8377526453366832fe3daf3b000e7cb53ce62c5220f6a7dbd9a3f32c71f755"
+      },
       "thresholds": {
         "full": {
           "mae": 0.003,
@@ -271,26 +268,9 @@
           0.4
         ]
       },
-      "provenance": {
-        "golden_id": "full-20261116-v2",
-        "job_id": "living-room--gi",
-        "input_fingerprint": "4cae5c41ffcc50d44159667e9dc3d341239c0eea593901420ad2566d31c45ae4",
-        "engine_fingerprint": "abf138679bc03f9c101ef9931740f72cfe7e3803ce6fbbfbd87de09cff31c3fc"
-      },
       "policy": {
-        "noise_multiplier": 1.75,
-        "ceilings": {
-          "mae": 0.035,
-          "rmse": 0.07,
-          "ssim_loss": 0.12,
-          "luminance_deviation": 0.12
-        },
-        "floors": {
-          "mae": 0.003,
-          "rmse": 0.006,
-          "ssim_loss": 0.015,
-          "luminance_deviation": 0.015
-        }
+        "method": "fixed-thresholds",
+        "captures_per_job": 1
       },
       "reasons": []
     },
@@ -1287,7 +1267,14 @@
       "reasons": []
     },
     "bathroom2--gi": {
-      "status": "calibrated",
+      "schema": 1,
+      "status": "fixed",
+      "provenance": {
+        "golden_id": "full-20261116-v2",
+        "job_id": "bathroom2--gi",
+        "input_fingerprint": "52cf0a8c4e91e6202ed11d1973c22b59cc2e51ee11782d94df377c8197e5020f",
+        "engine_fingerprint": "8f8377526453366832fe3daf3b000e7cb53ce62c5220f6a7dbd9a3f32c71f755"
+      },
       "thresholds": {
         "full": {
           "mae": 0.003,
@@ -1336,26 +1323,9 @@
           0.4
         ]
       },
-      "provenance": {
-        "golden_id": "full-20261116-v2",
-        "job_id": "bathroom2--gi",
-        "input_fingerprint": "52cf0a8c4e91e6202ed11d1973c22b59cc2e51ee11782d94df377c8197e5020f",
-        "engine_fingerprint": "abf138679bc03f9c101ef9931740f72cfe7e3803ce6fbbfbd87de09cff31c3fc"
-      },
       "policy": {
-        "noise_multiplier": 1.75,
-        "ceilings": {
-          "mae": 0.035,
-          "rmse": 0.07,
-          "ssim_loss": 0.12,
-          "luminance_deviation": 0.12
-        },
-        "floors": {
-          "mae": 0.003,
-          "rmse": 0.006,
-          "ssim_loss": 0.015,
-          "luminance_deviation": 0.015
-        }
+        "method": "fixed-thresholds",
+        "captures_per_job": 1
       },
       "reasons": []
     },
@@ -2382,7 +2352,14 @@
       "reasons": []
     },
     "car2--gi": {
-      "status": "calibrated",
+      "schema": 1,
+      "status": "fixed",
+      "provenance": {
+        "golden_id": "full-20261116-v2",
+        "job_id": "car2--gi",
+        "input_fingerprint": "d6bfe835ff7bffc2081a18aa8ca32876cba9dfc621ac2fc9053766db2c05315a",
+        "engine_fingerprint": "8f8377526453366832fe3daf3b000e7cb53ce62c5220f6a7dbd9a3f32c71f755"
+      },
       "thresholds": {
         "full": {
           "mae": 0.003,
@@ -2431,26 +2408,9 @@
           0.4
         ]
       },
-      "provenance": {
-        "golden_id": "full-20261116-v2",
-        "job_id": "car2--gi",
-        "input_fingerprint": "d6bfe835ff7bffc2081a18aa8ca32876cba9dfc621ac2fc9053766db2c05315a",
-        "engine_fingerprint": "abf138679bc03f9c101ef9931740f72cfe7e3803ce6fbbfbd87de09cff31c3fc"
-      },
       "policy": {
-        "noise_multiplier": 1.75,
-        "ceilings": {
-          "mae": 0.035,
-          "rmse": 0.07,
-          "ssim_loss": 0.12,
-          "luminance_deviation": 0.12
-        },
-        "floors": {
-          "mae": 0.003,
-          "rmse": 0.006,
-          "ssim_loss": 0.015,
-          "luminance_deviation": 0.015
-        }
+        "method": "fixed-thresholds",
+        "captures_per_job": 1
       },
       "reasons": []
     },
@@ -2601,7 +2561,14 @@
       "reasons": []
     },
     "car--gi": {
-      "status": "calibrated",
+      "schema": 1,
+      "status": "fixed",
+      "provenance": {
+        "golden_id": "full-20261116-v2",
+        "job_id": "car--gi",
+        "input_fingerprint": "d8a1724ca89ed6c45c359cc12a2d5484e9539382fc4fda2a4e30fb3124ea04fa",
+        "engine_fingerprint": "8f8377526453366832fe3daf3b000e7cb53ce62c5220f6a7dbd9a3f32c71f755"
+      },
       "thresholds": {
         "full": {
           "mae": 0.003,
@@ -2650,26 +2617,9 @@
           0.4
         ]
       },
-      "provenance": {
-        "golden_id": "full-20261116-v2",
-        "job_id": "car--gi",
-        "input_fingerprint": "d8a1724ca89ed6c45c359cc12a2d5484e9539382fc4fda2a4e30fb3124ea04fa",
-        "engine_fingerprint": "abf138679bc03f9c101ef9931740f72cfe7e3803ce6fbbfbd87de09cff31c3fc"
-      },
       "policy": {
-        "noise_multiplier": 1.75,
-        "ceilings": {
-          "mae": 0.035,
-          "rmse": 0.07,
-          "ssim_loss": 0.12,
-          "luminance_deviation": 0.12
-        },
-        "floors": {
-          "mae": 0.003,
-          "rmse": 0.006,
-          "ssim_loss": 0.015,
-          "luminance_deviation": 0.015
-        }
+        "method": "fixed-thresholds",
+        "captures_per_job": 1
       },
       "reasons": []
     },
@@ -2820,7 +2770,14 @@
       "reasons": []
     },
     "coffee--gi": {
-      "status": "calibrated",
+      "schema": 1,
+      "status": "fixed",
+      "provenance": {
+        "golden_id": "full-20261116-v2",
+        "job_id": "coffee--gi",
+        "input_fingerprint": "93fd4263e8e522cb7948648a82f52ca7366ca1e55480d3cbcfbbf556568ce5ed",
+        "engine_fingerprint": "8f8377526453366832fe3daf3b000e7cb53ce62c5220f6a7dbd9a3f32c71f755"
+      },
       "thresholds": {
         "full": {
           "mae": 0.003,
@@ -2869,26 +2826,9 @@
           0.4
         ]
       },
-      "provenance": {
-        "golden_id": "full-20261116-v2",
-        "job_id": "coffee--gi",
-        "input_fingerprint": "93fd4263e8e522cb7948648a82f52ca7366ca1e55480d3cbcfbbf556568ce5ed",
-        "engine_fingerprint": "abf138679bc03f9c101ef9931740f72cfe7e3803ce6fbbfbd87de09cff31c3fc"
-      },
       "policy": {
-        "noise_multiplier": 1.75,
-        "ceilings": {
-          "mae": 0.035,
-          "rmse": 0.07,
-          "ssim_loss": 0.12,
-          "luminance_deviation": 0.12
-        },
-        "floors": {
-          "mae": 0.003,
-          "rmse": 0.006,
-          "ssim_loss": 0.015,
-          "luminance_deviation": 0.015
-        }
+        "method": "fixed-thresholds",
+        "captures_per_job": 1
       },
       "reasons": []
     },
@@ -3696,7 +3636,14 @@
       "reasons": []
     },
     "classroom--gi": {
-      "status": "calibrated",
+      "schema": 1,
+      "status": "fixed",
+      "provenance": {
+        "golden_id": "full-20261116-v2",
+        "job_id": "classroom--gi",
+        "input_fingerprint": "09cd82597fdcdc24345cd38652ea43909a6da36b2a123712982d0c43f8f937b6",
+        "engine_fingerprint": "8f8377526453366832fe3daf3b000e7cb53ce62c5220f6a7dbd9a3f32c71f755"
+      },
       "thresholds": {
         "full": {
           "mae": 0.003,
@@ -3745,26 +3692,9 @@
           0.4
         ]
       },
-      "provenance": {
-        "golden_id": "full-20261116-v2",
-        "job_id": "classroom--gi",
-        "input_fingerprint": "09cd82597fdcdc24345cd38652ea43909a6da36b2a123712982d0c43f8f937b6",
-        "engine_fingerprint": "abf138679bc03f9c101ef9931740f72cfe7e3803ce6fbbfbd87de09cff31c3fc"
-      },
       "policy": {
-        "noise_multiplier": 1.75,
-        "ceilings": {
-          "mae": 0.035,
-          "rmse": 0.07,
-          "ssim_loss": 0.12,
-          "luminance_deviation": 0.12
-        },
-        "floors": {
-          "mae": 0.003,
-          "rmse": 0.006,
-          "ssim_loss": 0.015,
-          "luminance_deviation": 0.015
-        }
+        "method": "fixed-thresholds",
+        "captures_per_job": 1
       },
       "reasons": []
     },

@@ -42,6 +42,97 @@
             "spp_per_frame": 1
           }
         }
+      },
+      "bathroom": {
+        "created_utc": "2026-11-18T03:29:41.778942+00:00",
+        "capture_id": "gi-selected-20261118T112935909",
+        "source_manifest_fingerprint": "8c91ead81ee95ad89d1fbe887367594da0920595480dfcc3424ffe65306eca11",
+        "engine_fingerprint": "8f8377526453366832fe3daf3b000e7cb53ce62c5220f6a7dbd9a3f32c71f755",
+        "sampling": {
+          "gi": {
+            "frames": 192,
+            "warmup_frames": 64,
+            "spp_per_frame": 1
+          }
+        }
+      },
+      "living-room": {
+        "created_utc": "2026-11-18T03:29:41.778942+00:00",
+        "capture_id": "gi-selected-20261118T112935909",
+        "source_manifest_fingerprint": "8c91ead81ee95ad89d1fbe887367594da0920595480dfcc3424ffe65306eca11",
+        "engine_fingerprint": "8f8377526453366832fe3daf3b000e7cb53ce62c5220f6a7dbd9a3f32c71f755",
+        "sampling": {
+          "gi": {
+            "frames": 192,
+            "warmup_frames": 64,
+            "spp_per_frame": 1
+          }
+        }
+      },
+      "bathroom2": {
+        "created_utc": "2026-11-18T03:29:41.778942+00:00",
+        "capture_id": "gi-selected-20261118T112935909",
+        "source_manifest_fingerprint": "8c91ead81ee95ad89d1fbe887367594da0920595480dfcc3424ffe65306eca11",
+        "engine_fingerprint": "8f8377526453366832fe3daf3b000e7cb53ce62c5220f6a7dbd9a3f32c71f755",
+        "sampling": {
+          "gi": {
+            "frames": 192,
+            "warmup_frames": 64,
+            "spp_per_frame": 1
+          }
+        }
+      },
+      "car2": {
+        "created_utc": "2026-11-18T03:29:41.778942+00:00",
+        "capture_id": "gi-selected-20261118T112935909",
+        "source_manifest_fingerprint": "8c91ead81ee95ad89d1fbe887367594da0920595480dfcc3424ffe65306eca11",
+        "engine_fingerprint": "8f8377526453366832fe3daf3b000e7cb53ce62c5220f6a7dbd9a3f32c71f755",
+        "sampling": {
+          "gi": {
+            "frames": 192,
+            "warmup_frames": 64,
+            "spp_per_frame": 1
+          }
+        }
+      },
+      "car": {
+        "created_utc": "2026-11-18T03:29:41.778942+00:00",
+        "capture_id": "gi-selected-20261118T112935909",
+        "source_manifest_fingerprint": "8c91ead81ee95ad89d1fbe887367594da0920595480dfcc3424ffe65306eca11",
+        "engine_fingerprint": "8f8377526453366832fe3daf3b000e7cb53ce62c5220f6a7dbd9a3f32c71f755",
+        "sampling": {
+          "gi": {
+            "frames": 192,
+            "warmup_frames": 64,
+            "spp_per_frame": 1
+          }
+        }
+      },
+      "coffee": {
+        "created_utc": "2026-11-18T03:29:41.778942+00:00",
+        "capture_id": "gi-selected-20261118T112935909",
+        "source_manifest_fingerprint": "8c91ead81ee95ad89d1fbe887367594da0920595480dfcc3424ffe65306eca11",
+        "engine_fingerprint": "8f8377526453366832fe3daf3b000e7cb53ce62c5220f6a7dbd9a3f32c71f755",
+        "sampling": {
+          "gi": {
+            "frames": 192,
+            "warmup_frames": 64,
+            "spp_per_frame": 1
+          }
+        }
+      },
+      "classroom": {
+        "created_utc": "2026-11-18T03:29:41.778942+00:00",
+        "capture_id": "gi-selected-20261118T112935909",
+        "source_manifest_fingerprint": "8c91ead81ee95ad89d1fbe887367594da0920595480dfcc3424ffe65306eca11",
+        "engine_fingerprint": "8f8377526453366832fe3daf3b000e7cb53ce62c5220f6a7dbd9a3f32c71f755",
+        "sampling": {
+          "gi": {
+            "frames": 192,
+            "warmup_frames": 64,
+            "spp_per_frame": 1
+          }
+        }
       }
     }
   },
@@ -240,18 +331,19 @@
         ]
       },
       "input_fingerprint": "eed7d8f3f43c31283a3ad5e768baf05765e2b94f90f55e70aa764c2eb351fb06",
-      "image_sha256": "fa696c71bfb7620a2600a2087119b112e6ed3c91c4ffde281fb18ea00eb6f2ee",
-      "elapsed_seconds": 39.59300000000076,
+      "image_sha256": "97b318acc51b0718c1d6f3913b933f5f166dfde3737d5c7161cdec7276e8e67c",
+      "elapsed_seconds": 40.79700000002049,
       "image": "bathroom/gi.png",
+      "engine_fingerprint": "8f8377526453366832fe3daf3b000e7cb53ce62c5220f6a7dbd9a3f32c71f755",
       "timing": {
         "frames": 192,
         "warmup_frames": 64,
         "retained_frames": 128,
-        "mean_ms": 51.5899078125,
-        "median_ms": 51.20435,
-        "sample_ms": 52.51813645833334,
-        "shown_frame_ms": 50.9737,
-        "total_ms": 10083.4822,
+        "mean_ms": 52.25496640625,
+        "median_ms": 51.7389,
+        "sample_ms": 54.004042187500005,
+        "shown_frame_ms": 53.085,
+        "total_ms": 10368.776100000001,
         "labels": {
           "mean_ms": "API renderer interval after warmup, includes submission/wait",
           "sample_ms": "All-sample API renderer cost: total_ms / frames, including warmup",
@@ -740,18 +832,19 @@
         ]
       },
       "input_fingerprint": "4cae5c41ffcc50d44159667e9dc3d341239c0eea593901420ad2566d31c45ae4",
-      "image_sha256": "adab131ad22cc60999ccff4333f475430b7fe5a111fc754aaabdda1857c78ce4",
-      "elapsed_seconds": 29.64100000000326,
+      "image_sha256": "79072a7dcf25a9d08000c7fa22a433473611bdf745d0643d2fbaa3aa07748c5f",
+      "elapsed_seconds": 29.734000000025844,
       "image": "living-room/gi.png",
+      "engine_fingerprint": "8f8377526453366832fe3daf3b000e7cb53ce62c5220f6a7dbd9a3f32c71f755",
       "timing": {
         "frames": 192,
         "warmup_frames": 64,
         "retained_frames": 128,
-        "mean_ms": 60.26994296875,
-        "median_ms": 60.011250000000004,
-        "sample_ms": 61.16562552083334,
-        "shown_frame_ms": 60.0646,
-        "total_ms": 11743.8001,
+        "mean_ms": 60.26319921875,
+        "median_ms": 59.657,
+        "sample_ms": 61.97259895833333,
+        "shown_frame_ms": 59.4433,
+        "total_ms": 11898.739,
         "labels": {
           "mean_ms": "API renderer interval after warmup, includes submission/wait",
           "sample_ms": "All-sample API renderer cost: total_ms / frames, including warmup",
@@ -3246,18 +3339,19 @@
         ]
       },
       "input_fingerprint": "52cf0a8c4e91e6202ed11d1973c22b59cc2e51ee11782d94df377c8197e5020f",
-      "image_sha256": "9de9ab0fb8a608dedd48034d777851395c032ec346a4bcd82861cb2f24c84707",
-      "elapsed_seconds": 25.046000000002095,
+      "image_sha256": "7b1d5dff4c5648be4edf454cafd3aa5fd64b0e8b7518eaab60a6bbf43c4a35d8",
+      "elapsed_seconds": 25.82799999997951,
       "image": "bathroom2/gi.png",
+      "engine_fingerprint": "8f8377526453366832fe3daf3b000e7cb53ce62c5220f6a7dbd9a3f32c71f755",
       "timing": {
         "frames": 192,
         "warmup_frames": 64,
         "retained_frames": 128,
-        "mean_ms": 47.97382890625,
-        "median_ms": 47.61285,
-        "sample_ms": 49.27442395833333,
-        "shown_frame_ms": 47.036,
-        "total_ms": 9460.6894,
+        "mean_ms": 48.16809765625,
+        "median_ms": 47.688,
+        "sample_ms": 50.23499270833333,
+        "shown_frame_ms": 49.4434,
+        "total_ms": 9645.1186,
         "labels": {
           "mean_ms": "API renderer interval after warmup, includes submission/wait",
           "sample_ms": "All-sample API renderer cost: total_ms / frames, including warmup",
@@ -5746,18 +5840,19 @@
         ]
       },
       "input_fingerprint": "d6bfe835ff7bffc2081a18aa8ca32876cba9dfc621ac2fc9053766db2c05315a",
-      "image_sha256": "773048c267a8733f1096f8acc5dcdacc43a9d9ce7e73668a9d1461eaa7dcaccf",
-      "elapsed_seconds": 28.765999999995984,
+      "image_sha256": "4c0b86ca6b29ccd4e0711c7a7cc5dfb4a1d46a5cd8f5c1fdc9e1957b73d5dfad",
+      "elapsed_seconds": 28.219000000011874,
       "image": "car2/gi.png",
+      "engine_fingerprint": "8f8377526453366832fe3daf3b000e7cb53ce62c5220f6a7dbd9a3f32c71f755",
       "timing": {
         "frames": 192,
         "warmup_frames": 64,
         "retained_frames": 128,
-        "mean_ms": 56.75954921875,
-        "median_ms": 56.58295,
-        "sample_ms": 58.10935052083334,
-        "shown_frame_ms": 57.525,
-        "total_ms": 11156.9953,
+        "mean_ms": 55.93989453125,
+        "median_ms": 55.347899999999996,
+        "sample_ms": 57.663344270833335,
+        "shown_frame_ms": 55.1139,
+        "total_ms": 11071.3621,
         "labels": {
           "mean_ms": "API renderer interval after warmup, includes submission/wait",
           "sample_ms": "All-sample API renderer cost: total_ms / frames, including warmup",
@@ -6246,18 +6341,19 @@
         ]
       },
       "input_fingerprint": "d8a1724ca89ed6c45c359cc12a2d5484e9539382fc4fda2a4e30fb3124ea04fa",
-      "image_sha256": "c4a26666d630b7af2ff971322b161f7e9e95f7789c591d1d7bd48031de7acf31",
-      "elapsed_seconds": 24.156999999999243,
+      "image_sha256": "11cc201a76dc5e7e0a63d42ff37d5654a542d392f91b8fd25a3bca7ae292c2e5",
+      "elapsed_seconds": 24.54700000002049,
       "image": "car/gi.png",
+      "engine_fingerprint": "8f8377526453366832fe3daf3b000e7cb53ce62c5220f6a7dbd9a3f32c71f755",
       "timing": {
         "frames": 192,
         "warmup_frames": 64,
         "retained_frames": 128,
-        "mean_ms": 45.86566328125,
-        "median_ms": 45.7044,
-        "sample_ms": 47.31655833333334,
-        "shown_frame_ms": 45.7844,
-        "total_ms": 9084.7792,
+        "mean_ms": 45.454409375,
+        "median_ms": 44.86695,
+        "sample_ms": 47.336616666666664,
+        "shown_frame_ms": 44.5959,
+        "total_ms": 9088.6304,
         "labels": {
           "mean_ms": "API renderer interval after warmup, includes submission/wait",
           "sample_ms": "All-sample API renderer cost: total_ms / frames, including warmup",
@@ -6746,18 +6842,19 @@
         ]
       },
       "input_fingerprint": "93fd4263e8e522cb7948648a82f52ca7366ca1e55480d3cbcfbbf556568ce5ed",
-      "image_sha256": "9e15d76e85b1b97a4966ea1749d2cd91c82a8723f9acd58bc199c66897c75893",
-      "elapsed_seconds": 21.937000000005355,
+      "image_sha256": "3d02f879653485c147096ef5f2ecc28f41dde395502161e229c15826de44c490",
+      "elapsed_seconds": 22.25,
       "image": "coffee/gi.png",
+      "engine_fingerprint": "8f8377526453366832fe3daf3b000e7cb53ce62c5220f6a7dbd9a3f32c71f755",
       "timing": {
         "frames": 192,
         "warmup_frames": 64,
         "retained_frames": 128,
-        "mean_ms": 39.3199,
-        "median_ms": 38.9403,
-        "sample_ms": 40.66306927083333,
-        "shown_frame_ms": 38.7086,
-        "total_ms": 7807.3093,
+        "mean_ms": 38.489696875,
+        "median_ms": 37.97245,
+        "sample_ms": 40.628422916666665,
+        "shown_frame_ms": 38.4172,
+        "total_ms": 7800.6572,
         "labels": {
           "mean_ms": "API renderer interval after warmup, includes submission/wait",
           "sample_ms": "All-sample API renderer cost: total_ms / frames, including warmup",
@@ -10075,18 +10172,19 @@
         ]
       },
       "input_fingerprint": "09cd82597fdcdc24345cd38652ea43909a6da36b2a123712982d0c43f8f937b6",
-      "image_sha256": "2912f7163355dcbaeabed0990ebb8b73273964552299119ce19db356f61f2679",
-      "elapsed_seconds": 27.98399999999674,
+      "image_sha256": "05f09b4c62555e4e481356d6c3880f0c27a538d70ef0281bd584cc98e27aae14",
+      "elapsed_seconds": 27.844000000011874,
       "image": "classroom/gi.png",
+      "engine_fingerprint": "8f8377526453366832fe3daf3b000e7cb53ce62c5220f6a7dbd9a3f32c71f755",
       "timing": {
         "frames": 192,
         "warmup_frames": 64,
         "retained_frames": 128,
-        "mean_ms": 51.4129375,
-        "median_ms": 51.184799999999996,
-        "sample_ms": 52.6557046875,
-        "shown_frame_ms": 51.0287,
-        "total_ms": 10109.8953,
+        "mean_ms": 50.50719453125,
+        "median_ms": 49.974199999999996,
+        "sample_ms": 52.231938541666665,
+        "shown_frame_ms": 49.6255,
+        "total_ms": 10028.5322,
         "labels": {
           "mean_ms": "API renderer interval after warmup, includes submission/wait",
           "sample_ms": "All-sample API renderer cost: total_ms / frames, including warmup",
@@ -17352,10 +17450,10 @@
     }
   ],
   "artifacts": {
-    "bathroom/gi.png": "fa696c71bfb7620a2600a2087119b112e6ed3c91c4ffde281fb18ea00eb6f2ee",
+    "bathroom/gi.png": "97b318acc51b0718c1d6f3913b933f5f166dfde3737d5c7161cdec7276e8e67c",
     "bathroom/pt-reblur.png": "30695a9006bbf193b93680afb1468491c2bb148f4dc2a2ef60c8ed4418c60ce6",
     "bathroom/pt.png": "ab35ebb7f242f0e017654ab14705417e0a37efd743bff45b60c90ae0bdd0bf0f",
-    "living-room/gi.png": "adab131ad22cc60999ccff4333f475430b7fe5a111fc754aaabdda1857c78ce4",
+    "living-room/gi.png": "79072a7dcf25a9d08000c7fa22a433473611bdf745d0643d2fbaa3aa07748c5f",
     "living-room/pt-reblur.png": "9b32ecf518c21a5788241b32286f57440f09df44fedb1ecca78f7a65c4e7dc33",
     "living-room/pt.png": "747fc4d748ee3eaaa242c80fdff2545219cb7e466f0e2a2d6aafb5850588b92a",
     "bedroom/gi.png": "cc9823e1eaa65e7c4ff2f89728c84dbdf168f8dda7c57b6fc27da6acaa40d734",
@@ -17370,7 +17468,7 @@
     "staircase/gi.png": "9a2a435cd3fc727049b5656a0a5be4d4923122f33fafe392a58cef452072a41d",
     "staircase/pt-reblur.png": "db3a396a469db2f44ef9c890fcee0a42b1229cf71ea3532d831e26318cec6333",
     "staircase/pt.png": "ef69e7d402099b9a12b7822d88165d52b68dbb780b71222dff85b8d1bddfd1f7",
-    "bathroom2/gi.png": "9de9ab0fb8a608dedd48034d777851395c032ec346a4bcd82861cb2f24c84707",
+    "bathroom2/gi.png": "7b1d5dff4c5648be4edf454cafd3aa5fd64b0e8b7518eaab60a6bbf43c4a35d8",
     "bathroom2/pt-reblur.png": "e6d1157fd11cbd9721234b2d240e00b107e1f217f62dceb9cc5d53bbe62e4d81",
     "bathroom2/pt.png": "317c5b210f3628e3f9c175c7d6298d3b7187c1568525f615216f441c06a8cc04",
     "living-room-2/gi.png": "dd46710c78bb6eae55658e5ad8f5bf880e2a8e2db55adfef2254f679d2ed9708",
@@ -17385,13 +17483,13 @@
     "glass-of-water/gi.png": "aa0de62d57446477016be5d7db51a40828696134142e5e369d87c2a87602f494",
     "glass-of-water/pt-reblur.png": "8007dab3fb0b6d8a81ae09ab2a00833530a79f74d1d0326faa5423be1308903c",
     "glass-of-water/pt.png": "a6884870cd01451bfbb404955d1ea14e13e968f52b31d445b9d260cc6268b919",
-    "car2/gi.png": "773048c267a8733f1096f8acc5dcdacc43a9d9ce7e73668a9d1461eaa7dcaccf",
+    "car2/gi.png": "4c0b86ca6b29ccd4e0711c7a7cc5dfb4a1d46a5cd8f5c1fdc9e1957b73d5dfad",
     "car2/pt-reblur.png": "ef08ef7ea6e30ad154a29f54718021c7065ac7b36c0ea5c7477f98ed35f3efbd",
     "car2/pt.png": "6d1c28b7f9c3284b34868f1a905f0994dc6ecf7aad7e471717bc9b5abe31ce8c",
-    "car/gi.png": "c4a26666d630b7af2ff971322b161f7e9e95f7789c591d1d7bd48031de7acf31",
+    "car/gi.png": "11cc201a76dc5e7e0a63d42ff37d5654a542d392f91b8fd25a3bca7ae292c2e5",
     "car/pt-reblur.png": "a194a9a4f3f59a116a27218f582449ac02ee0395215678c5e6ef56dea584f56d",
     "car/pt.png": "717e82f2cc5367628a758f03227828e7fe597d7e56087e5ec72add0b22f51a1d",
-    "coffee/gi.png": "9e15d76e85b1b97a4966ea1749d2cd91c82a8723f9acd58bc199c66897c75893",
+    "coffee/gi.png": "3d02f879653485c147096ef5f2ecc28f41dde395502161e229c15826de44c490",
     "coffee/pt-reblur.png": "fbd6d23f546ea5191da16eda978ee2290e2225a66f8d36e39714f6b87add79de",
     "coffee/pt.png": "8f142a8feed301f1364f3aee8ed5df1a40e4b026dd3c3c6833192e28a15003a0",
     "lamp/gi.png": "3131a4e260b8d2337a4959fd365d088312eac427e6c3c829029759c1ff06d908",
@@ -17403,7 +17501,7 @@
     "spaceship/gi.png": "a6524802879f980a06595b82f9dabe6f7af042e8f07ba61d0d2e3fa10831ff53",
     "spaceship/pt-reblur.png": "2aa35ee74fc4aa8d0bf7b36fa9a4eabe7967f4131ed2bdd0c390f970aa27b077",
     "spaceship/pt.png": "ffae34198be0cf0f275bdecfbf2cd755eb3bb7be3bd87e842f1c260ea2902089",
-    "classroom/gi.png": "2912f7163355dcbaeabed0990ebb8b73273964552299119ce19db356f61f2679",
+    "classroom/gi.png": "05f09b4c62555e4e481356d6c3880f0c27a538d70ef0281bd584cc98e27aae14",
     "classroom/pt-reblur.png": "ff4088966b876d226d2d3295dd6778f52d7c8d1c6ee1441e2e5bf378b8b58c15",
     "classroom/pt.png": "8e2e628821f211dd5bd0ae3834ff264b70a3cb67d023d14cc855b864f1ebcb19",
     "dragon/pt-reblur.png": "7616d674a22214e869b71bc00ae45d438f5b59137ff2e79e16cc9e735f5fe0f6",
@@ -17445,8 +17543,8 @@
     "matpreview/pt-reblur.png": "5b2baba4dced941c4e53f7936c73c86df5a90ca3f42edc6458ee4b376a0233dd",
     "matpreview/pt.png": "6ec80def953f933b42f87c6dde7e5cf446f4864db0deb8aafe93e80c38486eac"
   },
-  "thresholds_fingerprint": "d98f06afabb1255f63990ba1a31623bce1b7ec7f6aa65c3153b5ea587acfd751",
+  "thresholds_fingerprint": "5a56950c6fd390650b5f80629a4c428a66db9fa19959026b46684170ef06acaa",
   "thresholds_ready": true,
   "threshold_policy": "fixed",
-  "manifest_fingerprint": "98577beb34fae74e0a4ba220545fc53c896f8c4e5fd9158c496f8c4a524ecbc1"
+  "manifest_fingerprint": "1525a61adf3838b3ad1b90d0d5d2e600578c1a05ccc38ce5d6b832f884d68d38"
 }
