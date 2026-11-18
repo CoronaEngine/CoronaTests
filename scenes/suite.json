@@ -639,9 +639,7 @@
     },
     "dragon": {
       "name": "Dragon",
-      "expected_unsupported": {
-        "gi": "FALCOR_DI_NO_FINITE_LIGHT_POWER"
-      },
+      "expected_unsupported": {},
       "expected_diagnostics": [
         "MATERIAL_FEATURE_DEFERRED"
       ],

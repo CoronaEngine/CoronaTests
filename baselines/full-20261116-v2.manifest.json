@@ -133,6 +133,19 @@
             "spp_per_frame": 1
           }
         }
+      },
+      "dragon": {
+        "created_utc": "2026-11-18T04:45:12.604004+00:00",
+        "capture_id": "dragon-gi-20261118T044510581667Z",
+        "source_run_sha256": "a4c1df2fbe9e5493e5dfd67d5ca997613bbb04279e08b2b4952adf7381bf6f5c",
+        "engine_fingerprint": "0c9a60a9b74b3231158879fa48b2af490fa4cf35bb88ad8be91801f36cff0f9e",
+        "sampling": {
+          "gi": {
+            "frames": 192,
+            "warmup_frames": 64,
+            "spp_per_frame": 1
+          }
+        }
       }
     }
   },
@@ -10528,7 +10541,7 @@
       "scene_id": "dragon",
       "algorithm_id": "gi",
       "job_id": "dragon--gi",
-      "status": "expected-unsupported",
+      "status": "complete",
       "label": "ReSTIR GI + Falcor DI + Stable Planes + REBLUR",
       "scene_name": "Dragon",
       "configuration": {
@@ -10672,9 +10685,29 @@
           0.4
         ]
       },
-      "input_fingerprint": "546604b5185dcd6f8ed217aed8931d90897f84592870f38615cc1160b48f5133",
-      "elapsed_seconds": 17.110000000000582,
-      "reason": "FALCOR_DI_NO_FINITE_LIGHT_POWER"
+      "input_fingerprint": "cc52e45118d33c1b37aabe3f547db8c1e54c890e71b7be7e7038c97291da9c44",
+      "elapsed_seconds": 22.9776550999959,
+      "image": "dragon/gi.png",
+      "image_sha256": "1b69d3ca6f8a071e1f93f4d58a5bfce348fd59ee13eb5ab3f7e32876bbc99ef4",
+      "engine_fingerprint": "0c9a60a9b74b3231158879fa48b2af490fa4cf35bb88ad8be91801f36cff0f9e",
+      "timing": {
+        "frames": 192,
+        "warmup_frames": 64,
+        "retained_frames": 128,
+        "mean_ms": 20.90006171875,
+        "median_ms": 20.522,
+        "sample_ms": 22.907613020833335,
+        "shown_frame_ms": 20.2895,
+        "total_ms": 4398.2617,
+        "labels": {
+          "mean_ms": "API renderer interval after warmup, includes submission/wait",
+          "sample_ms": "All-sample API renderer cost: total_ms / frames, including warmup",
+          "shown_frame_ms": "Last displayed frame/sample API renderer interval",
+          "total_ms": "All samples API intervals summed; excludes import, compile, PNG and disk",
+          "GPU_timestamp_envelope": "First-to-last GPU timestamp span including gaps",
+          "GPU_dispatch_duration_sum": "Dispatch scope sum; not frame latency"
+        }
+      }
     },
     {
       "scene_id": "dragon",
@@ -10818,7 +10851,7 @@
           0.4
         ]
       },
-      "input_fingerprint": "c4d3215f540c09ecc419634382626c5fa4ac1fee338df56e9f4e2aebd104ac7e",
+      "input_fingerprint": "f297d7d344de246f6b867486f8ba9ff5309dcda3685111d2d748ee81a417631d",
       "image_sha256": "7616d674a22214e869b71bc00ae45d438f5b59137ff2e79e16cc9e735f5fe0f6",
       "elapsed_seconds": 12.187000000005355,
       "image": "dragon/pt-reblur.png",
@@ -10982,7 +11015,7 @@
           0.4
         ]
       },
-      "input_fingerprint": "d38b0c9cd8bac03167c3a4ed73c33a5c100201d128fb3e0be644597d1697d5f9",
+      "input_fingerprint": "8144764e811c4fba1f4b15cb4efc24592ebaca82c7546a676101f0fc32672845",
       "image_sha256": "841ab0f7366f7baab89610f9a1b8de98d7daeac0d5b86deea88be004cca487ab",
       "elapsed_seconds": 21.984000000004016,
       "image": "dragon/pt.png",
@@ -17541,10 +17574,11 @@
     "rover/pt.png": "4a733173ef2309bb3e41a406eca4f8c7aa25a6c0cc3cb203169b355250cb0c83",
     "matpreview/gi.png": "08ce168820d669a01814c97266fe445768e16cf05c94100ba7fbddd5e993d4bf",
     "matpreview/pt-reblur.png": "5b2baba4dced941c4e53f7936c73c86df5a90ca3f42edc6458ee4b376a0233dd",
-    "matpreview/pt.png": "6ec80def953f933b42f87c6dde7e5cf446f4864db0deb8aafe93e80c38486eac"
+    "matpreview/pt.png": "6ec80def953f933b42f87c6dde7e5cf446f4864db0deb8aafe93e80c38486eac",
+    "dragon/gi.png": "1b69d3ca6f8a071e1f93f4d58a5bfce348fd59ee13eb5ab3f7e32876bbc99ef4"
   },
-  "thresholds_fingerprint": "5a56950c6fd390650b5f80629a4c428a66db9fa19959026b46684170ef06acaa",
+  "thresholds_fingerprint": "5f50240ce0789395f9af24e03a69ee955e891bfddb71b61bb949a3ef966085f1",
   "thresholds_ready": true,
   "threshold_policy": "fixed",
-  "manifest_fingerprint": "1525a61adf3838b3ad1b90d0d5d2e600578c1a05ccc38ce5d6b832f884d68d38"
+  "manifest_fingerprint": "2025a28b0d3a012d653d9b7c7cf48e29eceab851ed6e8d22bd620d18d3cbd077"
 }

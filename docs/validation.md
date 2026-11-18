@@ -1,5 +1,17 @@
 # 本机验收记录
 
+## 2026-11-18：将 Dragon GI 纳入正式 golden
+
+直接使用已完成的 `dragon-gi-20261118T044510581667Z` 单次采集图片，新增 `golden/dragon/gi.png`，本次发布没有启动引擎或重新渲染。来源已核验为 192 帧、预热 64 帧、正常退出，图像 SHA256 为 `1b69d3ca6f8a071e1f93f4d58a5bfce348fd59ee13eb5ab3f7e32876bbc99ef4`；其余 92 张图片逐字节不变。
+
+正式目录现在为 93 张图，三种算法各 31 张；105 项逻辑检查中，已知不支持仅剩四个 hair 场景的 12 项。套件和正式清单移除 Dragon GI 的不支持标记，并记录新图的采样、耗时、构建指纹和固定阈值来源。Dragon GI 使用现有 MAE 0.003、RMSE 0.006、SSIM loss 0.015、相对亮度偏差 0.015，整图与固定 ROI 均检查；原有数值阈值未改变。
+
+支持边界参与输入合同，因此同步重算 Dragon 三种算法的输入指纹、对应阈值来源，以及 PT512 策略中 Dragon PT 的参考输入指纹；PT/REBLUR 图片、原采集构建、PT512 误差底线及所有额外余量保持原值。默认基线 ID 不变；清单新指纹为 `2025a28b0d3a012d653d9b7c7cf48e29eceab851ed6e8d22bd620d18d3cbd077`。
+
+重新生成首页和 35 个场景页，直接引用 `golden/` 图片，全部 1,262 个本地链接有效。完整 CPU 测试为 267 passed、4 subtests passed，耗时 23.46 秒；套件测试及单次采集测试的支持边界更新为 93 张图片和 12 项已知不支持。未把原始采集的历史 `support-changed` 记录改写为成功，也未重算或覆盖旧回归报告。
+
+本机证据位于 `.workspace/tmp/promote-dragon-gi-20261118/`，旧清单、套件、策略与首页备份位于 `.workspace/archive/golden-before-dragon-gi-20261118/`。本机配置、采集原始数据及临时子集索引不提交；采用普通新增 commit，保留既有历史。
+
 ## 2026-11-18：更新七张正式 GI golden
 
 将 Bathroom、Living Room、Bathroom2、Car2、Car、Coffee 和 Classroom 的七张新 GI 图片替换到正式 `golden/<scene>/gi.png`。来源为单次采集 `gi-selected-20261118T112935909`，每项 192 帧、计时预热 64 帧；本次替换与验证没有重新渲染。其余 85 张图片逐字节保留，正式目录仍只有 92 张图片，清单仍覆盖 105 项，其中 13 项为已知不支持。

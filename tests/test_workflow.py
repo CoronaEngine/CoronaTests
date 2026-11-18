@@ -177,7 +177,7 @@ def test_golden_fresh_directory_is_sealed_and_can_regress(project):
     assert (golden / "golden.json").read_text(encoding="utf-8") == json.dumps(manifest, ensure_ascii=False, indent=2, allow_nan=False) + "\n"
 
 
-def test_full_golden_captures_each_job_once_and_retains_exactly_92_pngs(project, monkeypatch):
+def test_full_golden_captures_each_job_once_and_retains_exactly_93_pngs(project, monkeypatch):
     from collections import Counter
     import shutil
     from scripts import compare
@@ -207,13 +207,13 @@ def test_full_golden_captures_each_job_once_and_retains_exactly_92_pngs(project,
         prepare=lambda *a, **k: {'schema': 1, 'scenes': prepared})
     assert code == 0
     assert len(calls) == 105 and set(calls.values()) == {1}
-    assert result['summary'] == {'complete': 92, 'expected-unsupported': 13}
+    assert result['summary'] == {'complete': 93, 'expected-unsupported': 12}
     output = Path(result['output'])
     images = list(output.rglob('*.png'))
-    assert len(images) == 92
+    assert len(images) == 93
     assert not list(output.rglob('repeat-1')) and not list(output.rglob('repeat-2'))
     with zipfile.ZipFile(output.with_suffix('.zip')) as archive:
-        assert len([name for name in archive.namelist() if name.endswith('.png')]) == 92
+        assert len([name for name in archive.namelist() if name.endswith('.png')]) == 93
     # Completed resume must reuse the sealed bundle without any capture calls.
     resumed, code = execute(project, 'golden', extra=['--baseline-id', 'full-once', '--resume'],
         capture=lambda *a, **k: pytest.fail('Completed golden resume must not recapture'),

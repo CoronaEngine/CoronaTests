@@ -3897,7 +3897,7 @@
       "provenance": {
         "golden_id": "full-20261116-v2",
         "job_id": "dragon--pt-reblur",
-        "input_fingerprint": "c4d3215f540c09ecc419634382626c5fa4ac1fee338df56e9f4e2aebd104ac7e",
+        "input_fingerprint": "f297d7d344de246f6b867486f8ba9ff5309dcda3685111d2d748ee81a417631d",
         "engine_fingerprint": "abf138679bc03f9c101ef9931740f72cfe7e3803ce6fbbfbd87de09cff31c3fc"
       },
       "policy": {
@@ -3970,7 +3970,7 @@
       "provenance": {
         "golden_id": "full-20261116-v2",
         "job_id": "dragon--pt2048",
-        "input_fingerprint": "d38b0c9cd8bac03167c3a4ed73c33a5c100201d128fb3e0be644597d1697d5f9",
+        "input_fingerprint": "8144764e811c4fba1f4b15cb4efc24592ebaca82c7546a676101f0fc32672845",
         "engine_fingerprint": "abf138679bc03f9c101ef9931740f72cfe7e3803ce6fbbfbd87de09cff31c3fc"
       },
       "policy": {
@@ -6615,6 +6615,69 @@
           "ssim_loss": 0.015,
           "luminance_deviation": 0.015
         }
+      },
+      "reasons": []
+    },
+    "dragon--gi": {
+      "schema": 1,
+      "status": "fixed",
+      "provenance": {
+        "golden_id": "full-20261116-v2",
+        "job_id": "dragon--gi",
+        "input_fingerprint": "cc52e45118d33c1b37aabe3f547db8c1e54c890e71b7be7e7038c97291da9c44",
+        "engine_fingerprint": "0c9a60a9b74b3231158879fa48b2af490fa4cf35bb88ad8be91801f36cff0f9e"
+      },
+      "thresholds": {
+        "full": {
+          "mae": 0.003,
+          "rmse": 0.006,
+          "ssim_loss": 0.015,
+          "luminance_deviation": 0.015
+        },
+        "regions": {
+          "center": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "lower-left": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          },
+          "upper-right": {
+            "mae": 0.003,
+            "rmse": 0.006,
+            "ssim_loss": 0.015,
+            "luminance_deviation": 0.015
+          }
+        }
+      },
+      "region_bounds": {
+        "center": [
+          0.3,
+          0.3,
+          0.7,
+          0.7
+        ],
+        "lower-left": [
+          0.05,
+          0.6,
+          0.35,
+          0.9
+        ],
+        "upper-right": [
+          0.65,
+          0.1,
+          0.95,
+          0.4
+        ]
+      },
+      "policy": {
+        "method": "fixed-thresholds",
+        "captures_per_job": 1
       },
       "reasons": []
     }

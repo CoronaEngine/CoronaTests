@@ -2554,7 +2554,7 @@
     },
     "dragon--pt2048": {
       "reference_sha256": "841ab0f7366f7baab89610f9a1b8de98d7daeac0d5b86deea88be004cca487ab",
-      "reference_input_fingerprint": "d38b0c9cd8bac03167c3a4ed73c33a5c100201d128fb3e0be644597d1697d5f9",
+      "reference_input_fingerprint": "8144764e811c4fba1f4b15cb4efc24592ebaca82c7546a676101f0fc32672845",
       "scales": {
         "DS8": {
           "factor": 8,
