@@ -1,5 +1,13 @@
 # 本机验收记录
 
+## 2026-11-18：GitHub 原生 Golden 图库
+
+新增根目录 `GALLERY.md` 场景目录和 `docs/golden/` 下 35 个 Markdown 场景页，在 GitHub 页面内直接查看全部 93 张正式图。README 展示 Dragon 的三算法预览，并链接完整图库。场景页记录实际 SPP/帧数、计时预热、稳定帧平均/中位数、所示帧或 PT 全样本累计耗时。图片链接全部指向现有 `golden/` 原图，没有新增图片副本或裁剪图；四个 hair 场景保留不支持说明。
+
+`python scripts/generate_gallery.py` 同步生成离线 HTML、GitHub Markdown 和 README 标记区预览，README 其余内容保留。仓库继续保持私有，访问者需要仓库读取权限，未开通 GitHub Pages 或公开站点。
+
+新增四项测试覆盖全部原图逐项引用、相对路径、动态 PT512 标题、采样与耗时、不支持项、README 局部更新及预览场景选择。完整 CPU 测试为 271 passed、4 subtests passed，耗时 22.96 秒。全部 337 个 Markdown 本地引用有效；108 份正式图片、基线元数据、配方和配置文件哈希不变。证据位于 `.workspace/tmp/github-golden-gallery-20261118/`；本次没有重新渲染。
+
 ## 2026-11-18：将 Dragon GI 纳入正式 golden
 
 直接使用已完成的 `dragon-gi-20261118T044510581667Z` 单次采集图片，新增 `golden/dragon/gi.png`，本次发布没有启动引擎或重新渲染。来源已核验为 192 帧、预热 64 帧、正常退出，图像 SHA256 为 `1b69d3ca6f8a071e1f93f4d58a5bfce348fd59ee13eb5ab3f7e32876bbc99ef4`；其余 92 张图片逐字节不变。

@@ -56,6 +56,8 @@ CEF 调试接口仅绑定本机，端口默认 9980。`--port` 可修改；已�
 
 ## 证据与时序
 
+GitHub 在线浏览从根目录 `GALLERY.md` 进入，按场景打开 `docs/golden/<scene>.md` 查看效果图和耗时。README 提供三算法预览；这些页面均直接引用 `golden/` 原图，遵循仓库读取权限，不需要部署站点。维护者更新正式基线后运行 `python scripts/generate_gallery.py`，会同步刷新本地 HTML、GitHub Markdown 和 README 预览，再一起提交。
+
 报告的 `index.html` 只保留汇总表、完整结果统计、搜索/算法/状态筛选，全部匹配场景一次显示，不分页。有异常时默认筛选异常，已知不支持单独统计。`pages/<场景>.html` 按算法切换，默认打开异常算法，提供上一/下一场景导航；原图并排，差分和单个 ROI 按需打开。`assets/report.css`、`assets/report.js` 均为本地文件，不使用 fetch、CDN 或服务器。
 
 后续采集将实际使用的原阈值一并记录到 `comparison.json` 的 `raw_thresholds`，只用于展示，不改变判定规则。旧回归可运行 `python scripts/regenerate_report.py <结果目录> --golden golden` 重新生成展示；它验证参考图 SHA256 和阈值输入来源，只修改 HTML/CSS/JavaScript，原始结果、计时与图片不变。封存 golden 的工件哈希包含旧页面，不允许直接改写；仓库根图库单独生成新页面。

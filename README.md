@@ -6,9 +6,23 @@
 
 ## 浏览全部 Golden 图片
 
+在 GitHub 网页上直接打开 **[Golden 在线图库](GALLERY.md)**，可按场景浏览全部 93 张正式图片、采样参数和耗时，无需 clone。查看者需要本仓库读取权限；下方预览与场景页均引用 `golden/` 原图，不保存重复图片。
+
+<!-- BEGIN GOLDEN PREVIEW -->
+**Dragon · 三算法预览**
+
+| GI | PT+REBLUR | PT2048 |
+| --- | --- | --- |
+| <a href="golden/dragon/gi.png"><img src="golden/dragon/gi.png" alt="Dragon · GI" width="280"></a> | <a href="golden/dragon/pt-reblur.png"><img src="golden/dragon/pt-reblur.png" alt="Dragon · PT+REBLUR" width="280"></a> | <a href="golden/dragon/pt.png"><img src="golden/dragon/pt.png" alt="Dragon · PT2048" width="280"></a> |
+
+[查看该场景的采样参数与耗时](docs/golden/dragon.md) · [浏览全部场景](GALLERY.md)
+<!-- END GOLDEN PREVIEW -->
+
+### 本地离线浏览
+
 clone 仓库并完成 Git LFS 图片拉取后，直接双击根目录的 [index.html](index.html)，即可打开场景汇总首页，再进入场景详情浏览全部 **93 张正式图片**、各算法耗时和局部放大。首页支持搜索、状态/算法筛选，全部匹配场景一次显示，不分页。网页直接引用 `golden/<场景名>/*.png`，不保存重复图片，也不需要启动服务器、安装 Python 或配置引擎。交互控件使用仓库内的 JavaScript，不访问网络。
 
-如果 clone 时没有自动拉取 LFS 图片，先在仓库目录执行 `git lfs pull --include="golden/**"`。正式图片或清单更新后，维护者可运行 `python scripts/generate_gallery.py` 重新生成并提交 HTML；浏览者只需打开现成的 HTML。
+如果 clone 时没有自动拉取 LFS 图片，先在仓库目录执行 `git lfs pull --include="golden/**"`。正式图片或清单更新后，维护者可运行 `python scripts/generate_gallery.py`，同步生成并提交本地 HTML、GitHub 图库和 README 预览；浏览者直接打开对应页面即可。
 
 ## 首次准备
 
