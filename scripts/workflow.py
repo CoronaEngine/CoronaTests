@@ -480,7 +480,7 @@ def hardware_identity(observation):
 
 
 def execute(kind, options, *, root=ROOT, prepare=None, capture_job=None, thermal=None):
-    from scripts import compare, report, pt_policy
+    from scripts import compare, performance_golden, report, pt_policy
     if prepare is None:
         from scripts.download_scenes import ensure_scenes
         prepare = ensure_scenes
@@ -504,6 +504,7 @@ def execute(kind, options, *, root=ROOT, prepare=None, capture_job=None, thermal
             if not options.resume:
                 raise FileExistsError("Baseline ID already published; use a new ID: " + run_id)
     golden = thresholds = policy = None
+    performance_baseline = None
     policy_jobs = set()
     if kind == "regression":
         if not options.golden:
@@ -512,6 +513,8 @@ def execute(kind, options, *, root=ROOT, prepare=None, capture_job=None, thermal
         if output.is_relative_to(options.golden) or options.golden.is_relative_to(output):
             raise ValueError("Regression output must be separate from golden")
         golden, thresholds = read_golden(options.golden)
+        if 'gi' in algorithm_ids:
+            performance_baseline = performance_golden.load_default(root)
         if 'pt2048' in algorithm_ids and recipes['pt2048']['frames'] == 512:
             references = [row for row in golden['records'] if row['scene_id'] in selected
                           and row['algorithm_id'] == 'pt2048' and row['status'] == 'complete'
@@ -558,6 +561,8 @@ def execute(kind, options, *, root=ROOT, prepare=None, capture_job=None, thermal
                           "launch_environment": {key: os.environ.get(key) for key in ("PATH", "PYTHONHOME", "PYTHONPATH", "CONDA_PREFIX")},
                           "jobs": {s["id"] + "--" + a["id"]: f for s, a, f in jobs},
                           "golden_fingerprint": golden["manifest_fingerprint"] if golden else None}
+        if performance_baseline is not None:
+            batch_contract["performance_golden_fingerprint"] = performance_baseline["manifest_fingerprint"]
         if existing:
             run_config = load(output / "run-config.json")
             if run_config.get("contract") != batch_contract:
@@ -712,6 +717,8 @@ def execute(kind, options, *, root=ROOT, prepare=None, capture_job=None, thermal
                 return result, 0
             return result, 1
         result["passed"] = valid
+        if performance_baseline is not None:
+            performance_golden.annotate_report(result, performance_baseline)
         report.write_report(output, result)
         save(output / "workflow-result.json", result)
         return result, int(not valid)

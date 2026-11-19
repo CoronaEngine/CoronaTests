@@ -10,6 +10,7 @@ from PIL import Image
 
 from scripts.compare import DEFAULT_REGIONS, region_box
 from scripts.report import _asset, _json, _number, _timing
+from scripts.restir_timing import breakdown as restir_breakdown
 
 ALGORITHMS = [('gi', 'GI'), ('pt-reblur', 'PT+REBLUR'), ('pt2048', 'PT')]
 PT_GOLDEN_ROOT = Path(__file__).resolve().parents[1] / 'golden'
@@ -17,6 +18,20 @@ ACCEPTED = {'pass', 'complete', 'expected-unsupported'}
 STATUS = {'pass': '通过', 'complete': '采集完成', 'image-failed': '图像异常', 'failed': '执行失败',
           'expected-unsupported': '已知不支持', 'incomparable': '不可比', 'uncalibrated': '阈值无效',
           'support-changed': '支持范围变化', 'missing': '缺项'}
+RESTIR_TIMING_STYLE = """<style>
+.restir-performance tbody[data-restir-pipeline]:has(details:not([open])) ~ tbody[data-restir-stage],
+.restir-performance tbody[data-restir-stage]:has(details:not([open])) > tr[data-restir-pass]{display:none}
+.restir-performance th{white-space:normal}
+.restir-performance td{white-space:nowrap;text-align:right}
+.restir-performance thead th:not(:first-child){text-align:right}
+.restir-performance [data-restir-frame] th,.restir-performance [data-restir-frame] td{font-weight:650;background:#1c293b}
+.restir-performance [data-restir-stage] th{padding-left:26px}
+.restir-performance [data-restir-pass] th{padding-left:43px}
+.restir-performance details{margin:0;padding:0;border:0}
+.restir-performance .restir-note{display:block;color:var(--muted);font-weight:400}
+.restir-performance [data-restir-change="faster"] td:nth-last-child(-n+2){color:var(--good)}
+.restir-performance [data-restir-change="slower"] td:nth-last-child(-n+2){color:var(--bad)}
+</style>"""
 
 
 def grouped(report):
@@ -48,11 +63,11 @@ def label(algorithm, row):
     return f'PT{escape(str(frames))}' if frames is not None else 'PT'
 
 
-def document(title, body, *, nested=False):
+def document(title, body, *, nested=False, styles=''):
     prefix = '../' if nested else ''
     return (f'<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
             f'<title>{escape(title)}</title><link rel="stylesheet" href="{prefix}assets/report.css">'
-            f'<script defer src="{prefix}assets/report.js"></script></head><body><main>{body}</main></body></html>')
+            f'{styles}<script defer src="{prefix}assets/report.js"></script></head><body><main>{body}</main></body></html>')
 
 
 def asset(root, relative, *, nested=False):
@@ -112,6 +127,29 @@ def render_overview(root, report, downloads=(), *, pt_goldens=None):
     for status, count in counts.items():
         parts.append(f'<a href="#scene-list" data-status-filter="{escape(status, quote=True)}"><strong>{count}</strong><span>{escape(STATUS.get(status, status))}</span></a>')
     parts.append('</div>')
+    timed_gi = [(scene, rows['gi']) for scene, rows in scenes.items()
+                if 'gi' in rows and rows['gi'].get('restir_golden_comparison')]
+    if timed_gi:
+        sections = (
+            ('性能 Golden', '项已测', [item for item in timed_gi
+                if item[1]['restir_golden_comparison']['status'] == 'baseline']),
+            ('有逐阶段对比', '项可比', [item for item in timed_gi
+                if item[1]['restir_golden_comparison']['status'] == 'compared']),
+            ('缺数据或不可比', '项缺数据或不可比', [item for item in timed_gi
+                if item[1]['restir_golden_comparison']['status'] not in ('baseline', 'compared')]),
+        )
+        count_text = ' · '.join(['GI 阶段耗时', *(f'{len(entries)} {count}' for _, count, entries in sections if entries)])
+        parts.append(f'<details id="restir-golden-availability"><summary>{count_text}</summary>')
+        for section_title, _, entries in sections:
+            if entries:
+                parts.append(f'<h3>{section_title}</h3><ul>')
+                for scene, row in entries:
+                    name = escape(row.get('scene_name', scene))
+                    reason = row['restir_golden_comparison'].get('reason')
+                    detail = f' · {escape(reason)}' if reason else ''
+                    parts.append(f'<li><a href="pages/{scene}.html#gi">{name}</a>{detail}</li>')
+                parts.append('</ul>')
+        parts.append('</details>')
     if report['kind'] == 'golden' and report.get('threshold_policy') == 'fixed':
         parts.append('<p class="muted">Thresholds: fixed · 每个场景、每种算法只采集一次。</p>')
     parts.append('<p class="downloads">' + ''.join(f'<a href="{asset(root, path)}" download>{escape(text)}</a>' for path, text in downloads) + '</p>')
@@ -224,6 +262,135 @@ def evidence(root, row):
     return ''.join(f'<a href="{asset(root, path, nested=True)}">{escape(text)}</a>' for path, text in paths.items())
 
 
+def reblur_context_means(passes):
+    contexts = {}
+    for name, mean in passes.items():
+        context, separator, _ = name.partition(' / ')
+        label = context.removeprefix('NRD ') if separator else name
+        contexts[label] = contexts.get(label, 0.0) + mean
+    return contexts
+
+
+def restir_timing(timing, reference=None):
+    groups = restir_breakdown(timing) or {}
+    golden_timing = (reference or {}).get('golden_timing') or {}
+    golden_groups = restir_breakdown(golden_timing) or {}
+    if not (groups or golden_groups or reference):
+        return ''
+
+    def dispatch_mean(data, key):
+        return data.get('retained', {}).get(key, {}).get('mean_ms')
+
+    status = (reference or {}).get('status')
+    total = dispatch_mean(timing, 'GPU_dispatch_duration_sum') if groups else None
+    golden_total = dispatch_mean(golden_timing, 'GPU_dispatch_duration_sum') if golden_groups else None
+    labels = {
+        'pt': '初始候选', 'di': 'ReSTIR DI', 'gi': 'ReSTIR GI', 'reblur': 'REBLUR',
+        'shared': '公共开销', 'unknown': '未分类',
+    }
+    parts = [
+        '<section class="metrics" id="gi-performance"><h3>GI 性能对比</h3>',
+        '<p class="limits-note">预热后平均 ms/帧。</p>',
+    ]
+    if reference and reference.get('baseline_id'):
+        parts.append(f'<p class="run-info">性能 Golden <code>{escape(reference["baseline_id"])}</code></p>')
+    if reference and reference.get('reason'):
+        parts.append(f'<p class="limits-note">{escape(reference["reason"])}</p>')
+    if not (groups or golden_groups):
+        return ''.join(parts) + '</section>'
+    parts.append('<div class="table-scroll"><table class="restir-performance"><thead><tr><th scope="col">阶段</th>')
+    if reference is None:
+        parts.append('<th scope="col">耗时</th><th scope="col">占 GPU dispatch 合计</th>')
+    else:
+        parts.append('<th scope="col">性能 Golden</th>')
+        if status != 'baseline':
+            parts.append('<th scope="col">本次</th><th scope="col">差值</th><th scope="col">变化</th>')
+    parts.append('</tr></thead>')
+
+    def group_mean(values, key):
+        return sum(values[key].values()) if values.get(key) else None
+
+    def timing_row(title, measured, baseline=None, *, compare=True, shareable=True, attrs=''):
+        measured_text = _number(measured) if measured is not None else '—'
+        baseline_text = _number(baseline) if baseline is not None else '—'
+        heading = f'<th scope="row">{title}</th>'
+        if reference is None:
+            share = f'{measured / total:.1%}' if shareable and measured is not None and total else '—'
+            parts.append(f'<tr{attrs}>{heading}<td>{measured_text}</td><td>{share}</td></tr>')
+            return
+        if status == 'baseline':
+            parts.append(f'<tr{attrs}>{heading}<td>{baseline_text}</td></tr>')
+            return
+        change = percent = '—'
+        if compare and status == 'compared' and measured is not None and baseline is not None:
+            delta = measured - baseline
+            change = f'{delta:+.3f} ms'
+            if baseline > 0:
+                percent = f'{delta / baseline:+.1%}'
+            if delta:
+                attrs += ' data-restir-change="' + ('slower' if delta > 0 else 'faster') + '"'
+        parts.append(f'<tr{attrs}>{heading}<td>{baseline_text}</td><td>{measured_text}</td>'
+                     f'<td>{change}</td><td>{percent}</td></tr>')
+
+    def toggle(title, target, *, opened=False):
+        return f'<details{" open" if opened else ""}><summary aria-controls="{target}">{title}</summary></details>'
+
+    stages = [key for key in labels if key != 'unknown' or groups.get(key) or golden_groups.get(key)]
+    targets = ' '.join(f'restir-stage-{key}' for key in stages)
+    parts.append('<tbody data-restir-frame>')
+    timing_row('整帧总耗时 <span class="restir-note">渲染 API</span>',
+               timing.get('mean_ms'), golden_timing.get('mean_ms'), shareable=False)
+    parts.append('</tbody><tbody data-restir-pipeline>')
+    timing_row(toggle('ReSTIR + REBLUR', targets, opened=True)
+               + '<span class="restir-note">GPU dispatch 合计</span>', total, golden_total)
+    parts.append('</tbody>')
+
+    contexts = {'physical-DI': 'DI 去噪', 'GI0': 'GI 0 去噪', 'GI1': 'GI 1 去噪', 'GI2': 'GI 2 去噪'}
+    pass_notes = {
+        'Falcor DI surface preparation': 'DI / GI 共用',
+        'RTXPT GI stable plane build': '也为 GI 的 REBLUR 提供引导数据',
+        'REBLUR-ComposePhysicalDI-PrivateGI': '去噪结果合成',
+    }
+    for key in stages:
+        title = labels[key]
+        measured = groups.get(key, {})
+        baseline = golden_groups.get(key, {})
+        if key == 'reblur':
+            measured = reblur_context_means(measured)
+            baseline = reblur_context_means(baseline)
+        names = sorted(measured.keys() | baseline.keys())
+        if key == 'reblur':
+            names.sort(key=lambda name: list(contexts).index(name) if name in contexts else len(contexts))
+        nested = key != 'pt' and bool(names)
+        stage_id = f'restir-stage-{key}'
+        pass_ids = [f'{stage_id}-pass-{idx}' for idx in range(len(names))] if nested else []
+        parts.append(f'<tbody id="{stage_id}" data-restir-stage>')
+        timing_row(toggle(title, ' '.join(pass_ids)) if nested else title,
+                   group_mean(groups, key), group_mean(golden_groups, key), compare=key != 'unknown')
+        for name, pass_id in zip(names, pass_ids):
+            heading = f'<code>{escape(name)}</code>'
+            if key == 'reblur':
+                heading = contexts.get(name, heading)
+            if name in pass_notes:
+                heading += f'<span class="restir-note">{pass_notes[name]}</span>'
+            timing_row(heading, measured.get(name), baseline.get(name), compare=key != 'unknown',
+                       attrs=f' id="{pass_id}" data-restir-pass')
+        parts.append('</tbody>')
+    parts.append('<tbody>')
+    timing_row('GPU 时间跨度', dispatch_mean(timing, 'GPU_timestamp_envelope'),
+               dispatch_mean(golden_timing, 'GPU_timestamp_envelope'), shareable=False)
+    parts += [
+        '</tbody></table></div>',
+        '<p class="limits-note">初始候选同时包含路径采样和去噪信号导出，无法单独测得纯 PT。'
+        '共享的 Falcor 表面准备计入 ReSTIR DI，去噪结果合成计入 REBLUR。'
+        'GPU dispatch 合计不包含 pass 之间的空隙。</p>',
+    ]
+    if status == 'compared':
+        parts.append('<p class="limits-note">差值按本次减 Golden 计算。负数表示更快，正数表示更慢。</p>')
+    parts.append('</section>')
+    return ''.join(parts)
+
+
 def algorithm_panel(root, report, algorithm, row, selected):
     parts = [f'<article class="algorithm-panel" data-algorithm="{algorithm}" id="panel-{algorithm}" role="tabpanel" aria-labelledby="tab-{algorithm}"{"" if selected else " hidden"}><h2>{label(algorithm, row)} {badge(row["status"])}</h2>']
     build = row.get('engine_fingerprint') or report.get('metadata', {}).get('engine_fingerprint')
@@ -245,9 +412,11 @@ def algorithm_panel(root, report, algorithm, row, selected):
         policy = 'PT512 uses the fixed DS8/DS4 noise-envelope policy.' if row.get('comparison_policy') else 'Golden thresholds unchanged; sampling noise counts toward image error.'
         text = f'Golden: {before["frames"]} {unit} ({before["warmup_frames"]} warmup); candidate: {after["frames"]} {unit} ({after["warmup_frames"]} warmup). {policy}'
         parts.append(f'<p class="budget-comparison">{escape(text)}</p>')
-    parts.append(_timing(row))
+    performance_ref = row.get('restir_golden_comparison') if algorithm == 'gi' else None
+    stage_timing = restir_timing(timing, performance_ref) if algorithm == 'gi' else ''
+    parts.append(stage_timing or _timing(row))
     performance = row.get('performance')
-    if performance:
+    if performance and not performance_ref:
         text = f'Performance (warning-only): golden mean {_number(performance["golden_mean_ms"])} → candidate mean {_number(timing.get("mean_ms"))} ({performance["mean_change_percent"]:+.2f}%).'
         if performance.get('machine_observation_equal') is False: text += ' Hardware differs; not comparable.'
         if performance.get('sampling_budget_equal') is False: text += ' Per-frame cost; total image timings use different sampling budgets.'
@@ -297,7 +466,8 @@ def render_scene(root, report, scene, scenes, downloads=()):
     parts.append('</div>')
     parts.extend(algorithm_panel(root, report, key, rows[key], key == selected) for key, _ in ALGORITHMS if key in rows)
     parts.append('<details><summary>运行信息与完整结果</summary><p class="downloads">' + ''.join(f'<a href="{asset(root, path, nested=True)}">{escape(text)}</a>' for path, text in downloads) + f'</p><pre>{_json(report.get("metadata", {}))}</pre></details><noscript>启用 JavaScript 可切换算法、差分及 ROI。</noscript>')
-    return document(name + ' · ' + report['id'], ''.join(parts), nested=True)
+    return document(name + ' · ' + report['id'], ''.join(parts), nested=True,
+                    styles=RESTIR_TIMING_STYLE if 'gi' in rows else '')
 
 
 def prepare_pt_golden_previews(root, scenes):

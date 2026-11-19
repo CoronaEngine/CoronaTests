@@ -128,6 +128,10 @@ python scripts/regenerate_report.py ".workspace/experiments/regression/<run-id>"
 
 计时来源为原始逐帧 CSV 与逐 pass GPU timestamp：renderer API 区间、GPU envelope、dispatch sum 分别列出，不混称。整体墙钟时间包括启动/准备等额外成本，另行记录。性能先报告变化和告警，图像判定使用基线保存的比较阈值。
 
+ReSTIR + REBLUR 的性能 Golden 由 `baselines/restir-reblur-performance.default.json` 指向，单独记录各场景和各 pass 的采集依据。GI 详情第一行显示整帧渲染 API 总耗时。展开 ReSTIR + REBLUR 可以查看 GPU dispatch 合计及分项，再展开 DI、GI、REBLUR 或公共开销查看明细。GPU、驱动、场景输入或采样配置不同的结果仍可查看耗时，差值留空。
+
+已有回归结果可用 `python scripts/regenerate_report.py "<回归输出目录>" --performance-golden` 与当前性能 Golden 比较，复用当时保存的帧和逐 pass 记录。
+
 ## 数据和恢复
 
 - 原始 ZIP、解压原件、适配资源：`.workspace/downloads/mitsuba/`。
