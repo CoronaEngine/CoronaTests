@@ -12,6 +12,7 @@ from scripts.compare import DEFAULT_REGIONS, region_box
 from scripts.report import _asset, _json, _number, _timing
 
 ALGORITHMS = [('gi', 'GI'), ('pt-reblur', 'PT+REBLUR'), ('pt2048', 'PT')]
+PT_GOLDEN_ROOT = Path(__file__).resolve().parents[1] / 'golden'
 ACCEPTED = {'pass', 'complete', 'expected-unsupported'}
 STATUS = {'pass': '通过', 'complete': '采集完成', 'image-failed': '图像异常', 'failed': '执行失败',
           'expected-unsupported': '已知不支持', 'incomparable': '不可比', 'uncalibrated': '阈值无效',
@@ -75,8 +76,22 @@ def sampling_line(report):
     return ' · '.join(f'{dict(ALGORITHMS)[key]}: {value}' for key, value in budgets.items())
 
 
-def render_overview(root, report, downloads=()):
+def scene_preview(root, scene, name, rows, pt_goldens):
+    pt = rows.get('pt2048', {})
+    path = pt.get('image') or pt.get('baseline_image') or pt_goldens.get(scene)
+    if not path:
+        return ''
+    caption = f'{label("pt2048", pt)} · 本次' if pt.get('image') else 'PT Golden'
+    target = f'pages/{scene}.html' + ('#pt2048' if pt else '')
+    return (f'<a class="scene-preview" href="{target}">'
+            f'<img src="{asset(root, path)}" alt="{escape(name, quote=True)} · {caption}" '
+            f'width="160" height="90" loading="lazy" decoding="async">'
+            f'<span>{caption}</span></a>')
+
+
+def render_overview(root, report, downloads=(), *, pt_goldens=None):
     scenes = grouped(report)
+    pt_goldens = pt_goldens or {}
     counts = Counter(row['status'] for row in report['records'])
     default = 'abnormal' if any(status not in ACCEPTED for status in counts) else 'all'
     title = f'{"回归报告" if report["kind"] == "regression" else "Golden 图库"} · {report["id"]}'
@@ -123,7 +138,10 @@ def render_overview(root, report, downloads=()):
         selected = default == 'all' or any(value not in ACCEPTED for value in statuses.values())
         if selected: matched += 1
         target = f'pages/{scene}.html'
-        parts.append(f'<tr data-scene="{escape(scene, quote=True)}" data-name="{escape(name, quote=True)}" data-statuses="{escape(json.dumps(statuses), quote=True)}"{"" if selected else " hidden"}><td><a class="scene-title" href="{target}">{escape(name)}</a><span class="scene-id">{escape(scene)}</span></td>')
+        preview = scene_preview(root, scene, name, rows, pt_goldens) if report['kind'] == 'regression' else ''
+        parts.append(f'<tr data-scene="{escape(scene, quote=True)}" data-name="{escape(name, quote=True)}" data-statuses="{escape(json.dumps(statuses), quote=True)}"{"" if selected else " hidden"}>'
+                     f'<td><div class="scene-entry">{preview}<div><a class="scene-title" href="{target}">{escape(name)}</a>'
+                     f'<span class="scene-id">{escape(scene)}</span></div></div></td>')
         for algorithm, _ in ALGORITHMS:
             if algorithm not in present: continue
             row = rows.get(algorithm)
@@ -282,6 +300,33 @@ def render_scene(root, report, scene, scenes, downloads=()):
     return document(name + ' · ' + report['id'], ''.join(parts), nested=True)
 
 
+def prepare_pt_golden_previews(root, scenes):
+    """Keep fallback previews inside the archive without importing full Golden images."""
+    previews = {}
+    for scene, rows in scenes.items():
+        pt = rows.get('pt2048', {})
+        if pt.get('image') or pt.get('baseline_image'):
+            continue
+        source = PT_GOLDEN_ROOT / scene / 'pt.png'
+        if not source.is_file():
+            continue
+        try:
+            with Image.open(source) as image:
+                preview = image.convert('RGB')
+                preview.thumbnail((384, 216), Image.Resampling.LANCZOS)
+        except OSError:
+            # An unhydrated LFS pointer provides no preview pixels.
+            continue
+        relative = f'assets/pt-previews/{scene}.jpg'
+        destination = root / relative
+        if not destination.resolve().is_relative_to(root.resolve()):
+            raise ValueError('PT preview resolves outside output')
+        destination.parent.mkdir(exist_ok=True)
+        preview.save(destination, quality=88)
+        previews[scene] = relative
+    return previews
+
+
 def write_pages(output, report, *, downloads=()):
     root = Path(output)
     scenes = grouped(report)
@@ -304,5 +349,6 @@ def write_pages(output, report, *, downloads=()):
         destination.write_text(render_scene(root, report, scene, scenes, downloads), encoding='utf-8', newline='\n')
     destination = root / 'index.html'
     if not destination.resolve().is_relative_to(root.resolve()): raise ValueError('Report index resolves outside output')
-    destination.write_text(render_overview(root, report, downloads), encoding='utf-8', newline='\n')
+    pt_goldens = prepare_pt_golden_previews(root, scenes) if report['kind'] == 'regression' else None
+    destination.write_text(render_overview(root, report, downloads, pt_goldens=pt_goldens), encoding='utf-8', newline='\n')
     return destination

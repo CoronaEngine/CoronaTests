@@ -5,3 +5,8 @@
 .notice{border-left:3px solid var(--warn);background:#302b21;padding:10px 20px;margin:14px 0;color:var(--warn)}.notice ul{margin:0;padding-left:18px}
 
 .match-info{margin:18px 0;color:var(--muted)}
+
+.scene-entry{display:flex;align-items:center;gap:14px;overflow-wrap:anywhere}
+.scene-preview{flex:0 0 160px;display:grid;gap:4px;color:var(--muted);font-size:12px}
+.scene-preview img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:contain;background:#090d14;border:1px solid var(--line);border-radius:5px}
+@media(max-width:750px){.scene-entry{gap:9px}.scene-preview{flex-basis:104px}}

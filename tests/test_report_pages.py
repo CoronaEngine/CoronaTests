@@ -39,13 +39,21 @@ def fixture(root, count=12, kind='regression'):
             'metadata': {'engine_fingerprint': 'engine-version'}, 'records': records, 'summary': {}}
 
 
-def test_overview_has_scene_rows_and_global_counts_without_images_or_record_payload(tmp_path):
+def test_overview_has_one_progressive_pt_result_per_scene_without_record_payload(tmp_path):
     report = fixture(tmp_path)
+    Image.new('RGB', (24, 16)).save(tmp_path / 'images/pt.png')
+    for row in report['records']:
+        if row['algorithm_id'] == 'pt2048':
+            row['image'] = 'images/pt.png'
     report['records'][1].update(status='failed', error='connection reset')
     report['records'][3].update(status='expected-unsupported', reason='hair')
     index = pages.write_report(tmp_path, report)
     html = index.read_text(encoding='utf-8'); parser = Links(); parser.feed(html)
-    assert not any(tag in ('img', 'svg', 'article') for tag, _ in parser.tags)
+    images = [attrs for tag, attrs in parser.tags if tag == 'img']
+    assert len(images) == 12
+    assert all(image['src'] == 'images/pt.png' and image['loading'] == 'lazy' for image in images)
+    assert 'PT512 · 本次' in html
+    assert not any(tag in ('svg', 'article') for tag, _ in parser.tags)
     rows = [attrs for tag, attrs in parser.tags if tag == 'tr' and 'data-scene' in attrs]
     assert len(rows) == 12 and sum('hidden' not in row for row in rows) == 1
     assert 'data-default-status="abnormal"' in html
@@ -56,6 +64,29 @@ def test_overview_has_scene_rows_and_global_counts_without_images_or_record_payl
     assert 'engine-version' in html and '512' in html
     assert len(list((tmp_path / 'pages').glob('*.html'))) == 12
     assert json.loads((tmp_path / 'report.json').read_text()) == report
+
+
+def test_gi_only_overview_uses_a_labeled_offline_pt_golden_preview(tmp_path, monkeypatch):
+    from scripts import report_pages
+
+    root = tmp_path / 'archive'
+    root.mkdir()
+    golden = tmp_path / 'golden'
+    (golden / 'room-0').mkdir(parents=True)
+    Image.new('RGB', (1920, 1080)).save(golden / 'room-0/pt.png')
+    monkeypatch.setattr(report_pages, 'PT_GOLDEN_ROOT', golden, raising=False)
+    report = fixture(root, 2)
+    report['records'] = [row for row in report['records'] if row['algorithm_id'] == 'gi']
+
+    html = pages.write_report(root, report).read_text(encoding='utf-8')
+    parser = Links(); parser.feed(html)
+    images = [attrs for tag, attrs in parser.tags if tag == 'img']
+    assert len(images) == 1 and 'PT Golden' in images[0]['alt']
+    preview = root / unquote(images[0]['src'])
+    assert preview.resolve().is_relative_to(root.resolve())
+    with Image.open(preview) as image:
+        assert image.width <= 384 and image.height < 1080
+    assert json.loads((root / 'report.json').read_text(encoding='utf-8')) == report
 
 
 def test_all_pass_shows_every_matching_scene_without_pagination(tmp_path):
