@@ -41,6 +41,18 @@ def test_different_budget_can_match_the_existing_golden_input_contract():
     assert workflow.comparison_fingerprint(candidate, baseline) == baseline['input_fingerprint']
 
 
+@pytest.mark.parametrize(('key', 'changed'), [
+    ('VISION_RESTIR_DI_MODE', 'basic'), ('VISION_RESTIR_GI_LIGHT_FEEDBACK', '0'),
+])
+def test_renamed_restir_settings_match_frozen_gi_recipe_without_masking_a_change(key, changed):
+    candidate = workflow.load(workflow.ROOT / 'recipes/algorithms.json')['algorithms']['gi']
+    baseline = workflow.load(workflow.ROOT / 'baselines/restir-reblur-performance-v1.json')
+    historical = next(row['configuration'] for row in baseline['records'].values() if row['status'] == 'measured')
+    assert workflow.recipe_for_golden(candidate, historical) == historical
+    candidate['environment'][key] = changed
+    assert workflow.recipe_for_golden(candidate, historical) != historical
+
+
 @pytest.mark.parametrize('field,value', [
     ('asset_fingerprint','asset-B'), ('camera',{'fov':40}),
     ('regions',{'corner':[0,0,.2,.2]}), ('expected_diagnostics',['NEW_DEGRADATION']),

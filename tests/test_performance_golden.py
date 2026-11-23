@@ -10,9 +10,9 @@ DEVICE = [{'name': 'RTX fixture', 'uuid': 'GPU-fixture', 'driver_version': '123'
 GI_RECIPE = {'id': 'gi', 'frames': 192, 'warmup': 64, 'denoise': True,
              'reblur_contexts': ['physical-DI', 'GI0', 'GI1', 'GI2']}
 PASS_NAMES = [
-    'RTXPT GI shared PT initial candidates',
-    'Falcor DI final shading',
-    'RTXPT GI final shading',
+    'ReSTIR GI shared PT initial candidates',
+    'ReSTIR DI final shading',
+    'ReSTIR GI final shading',
     'rt_geom',
     *(f'NRD {role} / NRD-EDSL-REBLUR-Pack' for role in GI_RECIPE['reblur_contexts']),
 ]

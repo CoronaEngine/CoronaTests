@@ -4,7 +4,7 @@
   "algorithms": {
     "gi": {
       "id": "gi",
-      "label": "ReSTIR GI + Falcor DI + Stable Planes + REBLUR",
+      "label": "ReSTIR GI + ReSTIR DI + Stable Planes + REBLUR",
       "frames": 192,
       "warmup": 64,
       "setup_frames": 1,
@@ -105,9 +105,9 @@
         "REBLUR_GPU_PROFILE_MODE": "dispatch",
         "REBLUR_GPU_PROFILE_DIAGNOSTICS": "{output}/gpu-diagnostics.csv",
         "VISION_RESTIR_PRIMARY_JITTER": "0",
-        "VISION_FALCOR_DI_MODE": "pairwise",
+        "VISION_RESTIR_DI_MODE": "pairwise",
         "VISION_GI_NEE_DIAGNOSTIC": "1x1",
-        "VISION_RTXPT_GI_LIGHT_FEEDBACK": "1"
+        "VISION_RESTIR_GI_LIGHT_FEEDBACK": "1"
       },
       "reblur_contexts": [
         "physical-DI",

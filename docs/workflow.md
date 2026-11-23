@@ -82,7 +82,7 @@ GitHub 在线浏览从根目录 `GALLERY.md` 进入，按场景打开 `docs/gold
 
 报告同时显示两边预算。缺项或不可比项不会用其他模式图片替代。候选运行单独保存，报告中的 golden 图复制到报告自身目录，差分和链接不会依赖旧磁盘位置。
 
-报告按完整所选范围列出结果。Dragon GI 只有原 directional-only 光源与实际 Falcor 无功率/要求 active Falcor DI 的日志同时吻合，才算已知不支持；hair 必须有实际 unsupported hair 诊断且场景 actor 为空。新错误诊断、无关崩溃或空场景均不能自动套用旧豁免。
+报告按完整所选范围列出结果。Dragon GI 只有原 directional-only 光源与实际 ReSTIR DI 无功率/要求 active ReSTIR DI 的日志同时吻合，才算已知不支持；hair 必须有实际 unsupported hair 诊断且场景 actor 为空。新错误诊断、无关崩溃或空场景均不能自动套用旧豁免。
 
 ## 常见失败
 

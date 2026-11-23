@@ -7,14 +7,14 @@ from scripts.report_pages import algorithm_panel, render_overview
 
 def test_gi_panel_reconciles_dispatches_without_assuming_unknown_ownership(tmp_path):
     timings = {
-        'RTXPT GI shared PT initial candidates': 2.0,
-        'Falcor DI final shading': 1.0,
-        'RTXPT GI temporal resampling': 3.0,
+        'ReSTIR GI shared PT initial candidates': 2.0,
+        'ReSTIR DI final shading': 1.0,
+        'ReSTIR GI temporal resampling': 3.0,
         'NRD GI0 / NRD-EDSL-REBLUR-Pack': 4.0,
         'TOTAL NRD GI0 dispatch sum': 4.0,
-        'RTXPT GI native guide conditioning': 0.5,
-        'Falcor DI surface preparation': 1.5,
-        'RTXPT GI stable plane build': 0.5,
+        'ReSTIR GI native guide conditioning': 0.5,
+        'ReSTIR DI surface preparation': 1.5,
+        'ReSTIR GI stable plane build': 0.5,
         'REBLUR-ComposePhysicalDI-PrivateGI': 0.25,
         'combine': 0.125,
         'later <unclassified> kernel': 0.25,
@@ -39,18 +39,18 @@ def test_gi_panel_reconciles_dispatches_without_assuming_unknown_ownership(tmp_p
     assert '公共开销</summary></details></th><td>0.125 ms' in html
     assert '未分类</summary></details></th><td>0.250 ms' in html
     assert 'GPU dispatch 合计</span></th><td>13.125 ms' in html
-    assert 'Falcor DI final shading</code></th><td>1.000 ms' in html
-    assert 'RTXPT GI temporal resampling</code></th><td>3.000 ms' in html
+    assert 'ReSTIR DI final shading</code></th><td>1.000 ms' in html
+    assert 'ReSTIR GI temporal resampling</code></th><td>3.000 ms' in html
     assert 'GI 0 去噪</th><td>4.000 ms' in html
-    assert 'RTXPT GI native guide conditioning</code></th><td>0.500 ms' in html
+    assert 'ReSTIR GI native guide conditioning</code></th><td>0.500 ms' in html
     di = html.split('<tbody id="restir-stage-di"', 1)[1].split('</tbody>', 1)[0]
     gi = html.split('<tbody id="restir-stage-gi"', 1)[1].split('</tbody>', 1)[0]
     reblur = html.split('<tbody id="restir-stage-reblur"', 1)[1].split('</tbody>', 1)[0]
     shared = html.split('<tbody id="restir-stage-shared"', 1)[1].split('</tbody>', 1)[0]
-    assert 'Falcor DI surface preparation</code><span class="restir-note">DI / GI 共用</span></th><td>1.500 ms' in di
-    assert html.count('Falcor DI surface preparation') == 1
-    assert 'RTXPT GI stable plane build</code><span class="restir-note">也为 GI 的 REBLUR 提供引导数据</span></th><td>0.500 ms' in gi
-    assert html.count('RTXPT GI stable plane build') == 1
+    assert 'ReSTIR DI surface preparation</code><span class="restir-note">DI / GI 共用</span></th><td>1.500 ms' in di
+    assert html.count('ReSTIR DI surface preparation') == 1
+    assert 'ReSTIR GI stable plane build</code><span class="restir-note">也为 GI 的 REBLUR 提供引导数据</span></th><td>0.500 ms' in gi
+    assert html.count('ReSTIR GI stable plane build') == 1
     assert 'REBLUR-ComposePhysicalDI-PrivateGI</code><span class="restir-note">去噪结果合成</span></th><td>0.250 ms' in reblur
     assert html.count('REBLUR-ComposePhysicalDI-PrivateGI') == 1
     assert '<code>combine</code></th><td>0.125 ms' in shared
@@ -65,20 +65,21 @@ def test_gi_panel_reconciles_dispatches_without_assuming_unknown_ownership(tmp_p
 
 
 def test_golden_comparison_shows_signed_deltas_and_missing_evidence(tmp_path):
-    def timing(pt, surface_preparation):
+    def timing(pt, surface_preparation, di='ReSTIR DI', gi='ReSTIR GI'):
         return {'mean_ms': pt + surface_preparation, 'retained': {
             'GPU_dispatch_duration_sum': {'mean_ms': pt + surface_preparation},
             'per_pass_and_group': {
-                'RTXPT GI shared PT initial candidates': {'mean_ms': pt},
-                'Falcor DI surface preparation': {'mean_ms': surface_preparation},
+                f'{gi} shared PT initial candidates': {'mean_ms': pt},
+                f'{di} surface preparation': {'mean_ms': surface_preparation},
             },
         }}
 
     row = {'scene_id': 'room', 'algorithm_id': 'gi', 'status': 'pass', 'timing': timing(3, 1)}
-    row['restir_golden_comparison'] = {'status': 'compared', 'golden_timing': timing(2, 2)}
+    row['restir_golden_comparison'] = {'status': 'compared', 'golden_timing': timing(2, 2, 'Falcor DI', 'RTXPT GI')}
     html = algorithm_panel(tmp_path, {'kind': 'regression'}, 'gi', row, True)
     assert '初始候选</th><td>2.000 ms</td><td>3.000 ms</td><td>+1.000 ms</td><td>+50.0%' in html
     assert 'ReSTIR DI</summary></details></th><td>2.000 ms</td><td>1.000 ms</td><td>-1.000 ms</td><td>-50.0%' in html
+    assert 'DI / GI 共用</span></th><td>2.000 ms</td><td>1.000 ms</td><td>-1.000 ms' in html
 
     row['restir_golden_comparison'] = {'status': 'missing-golden', 'reason': '未找到正式采集的逐 pass 记录'}
     html = algorithm_panel(tmp_path, {'kind': 'regression'}, 'gi', row, True)

@@ -24,23 +24,24 @@ import time
 from urllib.request import urlopen
 import xml.etree.ElementTree as ET
 
+from scripts.restir_timing import PASS_GROUPS
+
 ROOT = Path(__file__).resolve().parents[1]
 POSE_FIELDS = ('position', 'forward', 'world_up', 'projection_x_sign', 'near_plane', 'far_plane', 'fov')
 CLEAN_PREFIXES = ('VISION_', 'REBLUR_', 'RELAX_', 'CORONA_VISION_', 'CORONA_GPU_',
-                  'CORONA_FALCOR_', 'HORIZON_BENCH_', 'SSAT_', 'RTXPT_', 'RESTIR_')
+                  'CORONA_RESTIR_', 'CORONA_FALCOR_', 'HORIZON_BENCH_', 'SSAT_', 'RTXPT_', 'RESTIR_')
 TAILS = {'NRD-EDSL-REBLUR-Unpack', 'NRD-EDSL-REBLUR-Unpack-BatchCompose', 'NRD-EDSL-REBLUR-Unpack-Compose'}
 HAIR_SCENES = {'hair-curl', 'curly-hair', 'straight-hair', 'furball'}
-FALCOR = ['Falcor DI light geometry preparation', 'Falcor DI surface preparation',
-          'Falcor DI light presampling', 'Falcor DI initial candidates',
-          'Falcor DI visibility and spatiotemporal reuse', 'Falcor DI final shading']
-GI = ['RTXPT GI stable plane build', 'RTXPT GI shared PT initial candidates',
-      'RTXPT GI temporal resampling', 'RTXPT GI spatial resampling', 'RTXPT GI final shading']
+GI = ['ReSTIR GI stable plane build', 'ReSTIR GI shared PT initial candidates',
+      'ReSTIR GI temporal resampling', 'ReSTIR GI spatial resampling', 'ReSTIR GI final shading']
 GI_LOG_MARKERS = (
     'GI endpoint normal diagnostic: mode=shading-facing, material_normal=true, native_grazing_adjust=true',
     'GI signal cost mode=optimized-buffer,', 'GI signal diagnostic mode=full, native_miss=true',
     'private stable planes: count=3',
-    'RTXPT GI + Falcor DI + REBLUR active: private_planes=3, physical_DI_contexts=1, GI_contexts=3, shared_transport=false',
+    'ReSTIR GI + ReSTIR DI + REBLUR active: private_planes=3, physical_DI_contexts=1, GI_contexts=3, shared_transport=false',
 )
+NO_LIGHT_POWER = 'ReSTIR DI found no finite light power'
+REQUIRES_DI = 'ReSTIR GI + REBLUR requires active ReSTIR DI:'
 
 
 def require(condition, message):
@@ -298,16 +299,17 @@ def grouped_passes(passes, roles):
 def validate_route(mapping, recipe):
     mode = recipe['id']
     for frame in mapping['frames']:
-        passes = frame['passes']; names = [p['name'] for p in passes]
+        passes = frame['passes']
+        names = [current_log_names(p['name']) for p in passes]
         transport = GI[1] if mode == 'gi' else 'path_tracing'
         if mode == 'gi':
-            require(all(names.count(n) == 1 for n in FALCOR + GI) and not any(n in names for n in ('path_tracing', 'Stable planes build', 'Stable planes residual fill')), 'GI/Falcor route differs')
+            require(all(names.count(n) == 1 for n in (*PASS_GROUPS['di'], *GI)) and not any(n in names for n in ('path_tracing', 'Stable planes build', 'Stable planes residual fill')), 'GI/ReSTIR DI route differs')
         else:
-            require(names.count('path_tracing') == 1 and not any('Falcor DI' in n or 'RTXPT GI' in n or 'Stable planes' in n for n in names), 'PT route differs')
+            require(names.count('path_tracing') == 1 and not any('ReSTIR DI' in n or 'ReSTIR GI' in n or 'Stable planes' in n for n in names), 'PT route differs')
         require(names.count('RGBFilm-accumulation') == int(recipe['accumulation']), 'Accumulation pass count differs')
         if mode == 'pt-reblur':
             require(names.count('SVGF-CoverageResolve') == names.count('SVGF-PublishResolve') == 1, 'PT REBLUR coverage route differs')
-        require(all([p['width'], p['height']] == recipe['resolution'] for p in passes if p['name'] == transport), 'Actual transport extent differs')
+        require(all([p['width'], p['height']] == recipe['resolution'] for name, p in zip(names, passes) if name == transport), 'Actual transport extent differs')
         grouped_passes(passes, recipe['reblur_contexts'])
 
 
@@ -395,11 +397,16 @@ def hair_support_changed(loaded, snapshot):
             and not any(d.get('code') == 'UNSUPPORTED_SHAPE' and d.get('shape_type') == 'hair' for d in loaded.get('diagnostics', [])))
 
 
+def current_log_names(text):
+    return text.replace('Falcor DI', 'ReSTIR DI').replace('RTXPT GI', 'ReSTIR GI')
+
+
 def dragon_unsupported(scene_id, mode, emitters, logs):
+    logs = current_log_names(logs)
     lines = logs.splitlines()
     source_continuations = set()
     for index, line in enumerate(lines[:-2]):
-        entry = re.match(r'(\[[^\]]+\]\[\d+\]\[ERROR\]\[logging\.cpp:\d+\] )RTXPT GI \+ REBLUR requires active Falcor DI:', line)
+        entry = re.match(r'(\[[^\]]+\]\[\d+\]\[ERROR\]\[logging\.cpp:\d+\] )' + re.escape(REQUIRES_DI), line)
         if entry:
             prefix = entry[1]
             # The native logger splits one error into three same-event lines.
@@ -411,11 +418,10 @@ def dragon_unsupported(scene_id, mode, emitters, logs):
     unexpected_errors = [line for index, line in enumerate(lines)
         if index not in source_continuations
         and re.search(r'\[(?:ERROR|FATAL|CRITICAL)\]|(?:^|\s)(?:ERROR|FATAL|CRITICAL):', line)
-        and 'RTXPT GI + REBLUR requires active Falcor DI:' not in line
+        and REQUIRES_DI not in line
         and not ('[SignalHandler:' in line and 'EXCEPTION_ACCESS_VIOLATION (Code: 3221225477)' in line)]
     return (scene_id == 'dragon' and mode == 'gi' and set(emitters) == {'directional'}
-            and 'Falcor DI found no finite light power' in logs
-            and 'RTXPT GI + REBLUR requires active Falcor DI:' in logs and not unexpected_errors)
+            and NO_LIGHT_POWER in logs and REQUIRES_DI in logs and not unexpected_errors)
 
 
 def confirm_thermal_protection():
@@ -650,8 +656,8 @@ def runtime_hashes(engine, runtime_dirs):
 
 
 def scene_environment(recipes):
-    gi_only = {'VISION_RESTIR_PRIMARY_JITTER', 'VISION_FALCOR_DI_MODE',
-               'VISION_GI_NEE_DIAGNOSTIC', 'VISION_RTXPT_GI_LIGHT_FEEDBACK'}
+    gi_only = {'VISION_RESTIR_PRIMARY_JITTER', 'VISION_RESTIR_DI_MODE',
+               'VISION_GI_NEE_DIAGNOSTIC', 'VISION_RESTIR_GI_LIGHT_FEEDBACK'}
     keys = set().union(*(r['environment'] for r in recipes))
     merged = {}
     for name in sorted(keys):
@@ -880,7 +886,7 @@ def finalize_capture(scene, recipe, output, record, *, captured, unsupported_hai
             raise integrity_error
         logs = '\n'.join(p.read_text(encoding='utf8', errors='replace') for p in (output / 'engine.log', output / 'engine-native.log') if p.is_file())
         expected = scene.get('expected_unsupported', {}).get(recipe['id'])
-        # Native Falcor termination can disconnect or time out the setup RPC.
+        # Native ReSTIR DI termination can disconnect or time out the setup RPC.
         # Unrelated validation failures must not be excused by native log text.
         from websocket import WebSocketConnectionClosedException, WebSocketTimeoutException
         setup_transport_failure = (record.get('phase') == 'setup-screenshot'
@@ -893,14 +899,16 @@ def finalize_capture(scene, recipe, output, record, *, captured, unsupported_hai
             if unsupported_hair:
                 require(record.get('exit_code') == 0 and not record.get('forced_shutdown'), 'Hair import attempt did not close cleanly')
             else:
-                record['support_evidence'] = {'kind': 'unsupported-directional-light', 'source_emitter_types': record['source_emitter_types'], 'log_witnesses': [line for line in logs.splitlines() if 'Falcor DI found no finite light power' in line or 'RTXPT GI + REBLUR requires active Falcor DI:' in line], 'engine_exit_code': record['exit_code'], 'failure_phase': record['failure_phase'], 'route': record['route'], 'error_type': record['error_type']}
+                witnesses = [line for line in logs.splitlines()
+                             if any(marker in current_log_names(line) for marker in (NO_LIGHT_POWER, REQUIRES_DI))]
+                record['support_evidence'] = {'kind': 'unsupported-directional-light', 'source_emitter_types': record['source_emitter_types'], 'log_witnesses': witnesses, 'engine_exit_code': record['exit_code'], 'failure_phase': record['failure_phase'], 'route': record['route'], 'error_type': record['error_type']}
             record.update(status='expected-unsupported' if expected else 'support-changed', reason=expected or record['support_evidence']['kind'])
         elif captured:
             require(record['owned_engine_closed'] and record.get('exit_code') == 0 and not record.get('forced_shutdown'), 'Capture engine did not close cleanly')
             mapping = map_gpu_frames(output, recipe['frames'])
             timing = summarize_timing(output, mapping, recipe)
             if recipe['id'] == 'gi':
-                require(all(marker in logs for marker in GI_LOG_MARKERS) and 'Falcor DI unavailable' not in logs, 'GI default route log evidence differs')
+                require(all(marker in logs for marker in GI_LOG_MARKERS) and 'ReSTIR DI unavailable' not in logs, 'GI default route log evidence differs')
             save_json(output / 'gpu-frame-map.json', mapping)
             save_json(output / 'timing.json', timing)
             record.update(status='support-changed' if expected or record.get('support_observation_changed') else 'complete', image='image.png', image_sha256=sha256(output / 'image.png'), timing=timing)

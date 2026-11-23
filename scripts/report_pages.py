@@ -347,8 +347,8 @@ def restir_timing(timing, reference=None):
 
     contexts = {'physical-DI': 'DI 去噪', 'GI0': 'GI 0 去噪', 'GI1': 'GI 1 去噪', 'GI2': 'GI 2 去噪'}
     pass_notes = {
-        'Falcor DI surface preparation': 'DI / GI 共用',
-        'RTXPT GI stable plane build': '也为 GI 的 REBLUR 提供引导数据',
+        'ReSTIR DI surface preparation': 'DI / GI 共用',
+        'ReSTIR GI stable plane build': '也为 GI 的 REBLUR 提供引导数据',
         'REBLUR-ComposePhysicalDI-PrivateGI': '去噪结果合成',
     }
     for key in stages:
@@ -382,7 +382,7 @@ def restir_timing(timing, reference=None):
     parts += [
         '</tbody></table></div>',
         '<p class="limits-note">初始候选同时包含路径采样和去噪信号导出，无法单独测得纯 PT。'
-        '共享的 Falcor 表面准备计入 ReSTIR DI，去噪结果合成计入 REBLUR。'
+        'DI 与 GI 共用的表面准备计入 ReSTIR DI，去噪结果合成计入 REBLUR。'
         'GPU dispatch 合计不包含 pass 之间的空隙。</p>',
     ]
     if status == 'compared':

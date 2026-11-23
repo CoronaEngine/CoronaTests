@@ -120,11 +120,11 @@ python scripts/regenerate_report.py ".workspace/experiments/regression/<run-id>"
 
 | 算法 | 图像配方 | 耗时 |
 | --- | --- | --- |
-| GI | RTXPT GI + Falcor DI pairwise + Stable Planes + REBLUR；192 帧、无 RGB 累积 | 所示帧及预热 64 帧后的 mean/median |
+| GI | ReSTIR GI + ReSTIR DI pairwise + Stable Planes + REBLUR；192 帧、无 RGB 累积 | 所示帧及预热 64 帧后的 mean/median |
 | PT+REBLUR | 普通 PT + detail REBLUR；192 帧、无 RGB 累积 | 所示帧及预热 64 帧后的 mean/median |
 | 纯 PT | 普通 PT、不去噪；golden 累积 2048 spp，回归累积 512 spp，每帧 1 spp | 全部样本总耗时、平均每样本成本、最后样本耗时 |
 
-共同条件为原数值相机及 FOV、1920×1080、NEE 1/1、深度 5–16。Falcor DI 的 10 光源 + 1 BSDF 提议独立记录。完整配方在 `recipes/algorithms.json`，固定相机在 `scenes/cameras.json`。
+共同条件为原数值相机及 FOV、1920×1080、NEE 1/1、深度 5–16。ReSTIR DI 的 10 光源 + 1 BSDF 提议独立记录。完整配方在 `recipes/algorithms.json`，固定相机在 `scenes/cameras.json`。
 
 六场景快速档为 kitchen、classroom、glass-of-water、water-caustic、cornell-box、material-testball，共 18 项，沿用当前入口的采样配置。原有介质/材质导入限制在 `scenes/suite.json` 中显式记录，不代表完整支持原场景全部物理特性。
 

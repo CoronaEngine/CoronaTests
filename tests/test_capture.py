@@ -58,16 +58,20 @@ def test_corrupt_gpu_duration_is_rejected(tmp_path):
         capture.map_gpu_frames(path.parent, 2)
 
 
-def test_missing_pass_or_wrong_transport_extent_is_rejected():
+@pytest.mark.parametrize(('di', 'gi'), [('ReSTIR DI', 'ReSTIR GI'), ('Falcor DI', 'RTXPT GI')])
+def test_missing_pass_or_wrong_transport_extent_is_rejected(di, gi):
     capture = implementation()
     mapping = capture.map_gpu_frames(FIXTURE, 2)
+    for frame in mapping['frames']:
+        for item in frame['passes']:
+            item['name'] = item['name'].replace('Falcor DI', di).replace('RTXPT GI', gi)
     capture.validate_route(mapping, recipe())
     bad = copy.deepcopy(mapping)
-    bad['frames'][0]['passes'] = [x for x in bad['frames'][0]['passes'] if x['name'] != 'Falcor DI final shading']
+    bad['frames'][0]['passes'] = [x for x in bad['frames'][0]['passes'] if x['name'] != f'{di} final shading']
     with pytest.raises(ValueError, match='route'):
         capture.validate_route(bad, recipe())
     bad = copy.deepcopy(mapping)
-    next(x for x in bad['frames'][0]['passes'] if x['name'] == 'RTXPT GI shared PT initial candidates')['width'] = 1
+    next(x for x in bad['frames'][0]['passes'] if x['name'] == f'{gi} shared PT initial candidates')['width'] = 1
     with pytest.raises(ValueError, match='extent'):
         capture.validate_route(bad, recipe())
 
@@ -95,7 +99,7 @@ def test_hair_support_needs_exact_actual_diagnostic_and_zero_actors():
 
 def test_dragon_support_does_not_hide_arbitrary_crash_or_other_mode():
     capture = implementation()
-    logs = 'Falcor DI found no finite light power\nRTXPT GI + REBLUR requires active Falcor DI:'
+    logs = 'ReSTIR DI found no finite light power\nReSTIR GI + REBLUR requires active ReSTIR DI:'
     assert capture.dragon_unsupported('dragon', 'gi', ['directional'], logs)
     assert not capture.dragon_unsupported('dragon', 'gi', ['directional'], 'engine crashed')
     assert not capture.dragon_unsupported('dragon', 'pt-reblur', ['directional'], logs)
@@ -127,6 +131,8 @@ def test_environment_strips_inherited_diagnostics_and_pacing(tmp_path):
     env = capture.build_environment(recipe(), tmp_path, tmp_path / 'engine.exe', [tmp_path / 'runtime'], 9980, base)
     assert not any(key in env for key in ('VISION_PT_COST_NEE', 'RTXPT_TEST', 'RESTIR_TEST', 'CORONA_OPTICS_MAX_FPS'))
     assert env['NORMAL'] == 'okay' and env['VISION_RESTIR_PRIMARY_JITTER'] == '0'
+    assert env['VISION_RESTIR_DI_MODE'] == 'pairwise'
+    assert env['VISION_RESTIR_GI_LIGHT_FEEDBACK'] == '1'
     assert env['PATH'].split(os.pathsep)[:2] == [str(tmp_path), str(tmp_path / 'runtime')]
 
 
@@ -311,7 +317,7 @@ def test_configure_failure_closes_only_owned_process_and_restores_ini(tmp_path, 
     monkeypatch.setattr(capture, 'Frontend', lambda port: FrontendBoundary())
     monkeypatch.setattr(capture, 'Session', SessionBoundary)
     monkeypatch.setattr(capture, 'configure', fail)
-    result = capture.capture({'id': 'dragon', 'source': str(source), 'expected_unsupported': {'gi': 'FALCOR_DI_NO_FINITE_LIGHT_POWER'}}, recipe(), engine, tmp_path / 'out')
+    result = capture.capture({'id': 'dragon', 'source': str(source), 'expected_unsupported': {'gi': 'RESTIR_DI_NO_FINITE_LIGHT_POWER'}}, recipe(), engine, tmp_path / 'out')
     assert result['status'] == 'failed' and result['owned_engine_closed']
     assert closed == [987654] and ini.read_text() == 'original'
     assert 'image' not in result and 'timing' not in result
@@ -473,7 +479,7 @@ def test_dragon_known_logs_only_exempt_expected_setup_termination(tmp_path, monk
             return {}
 
     def launch(*args, **kwargs):
-        logs = 'Falcor DI found no finite light power\nRTXPT GI + REBLUR requires active Falcor DI:\n'
+        logs = 'ReSTIR DI found no finite light power\nReSTIR GI + REBLUR requires active ReSTIR DI:\n'
         if expected == 'expected-unsupported':
             logs = (FIXTURE / 'dragon-setup-failure.log').read_text(encoding='utf8')
         kwargs['stdout'].write(logs)
@@ -499,7 +505,7 @@ def test_dragon_known_logs_only_exempt_expected_setup_termination(tmp_path, monk
     monkeypatch.setattr(capture, 'Session', Session)
     monkeypatch.setattr(capture, 'screenshot', failed_screenshot)
     result = capture.capture({'id': 'dragon', 'source': str(source),
-        'expected_unsupported': {'gi': 'FALCOR_DI_NO_FINITE_LIGHT_POWER'}}, recipe_data, engine,
+        'expected_unsupported': {'gi': 'RESTIR_DI_NO_FINITE_LIGHT_POWER'}}, recipe_data, engine,
         tmp_path / 'out', port=unused_capture_port)
     assert result['status'] == expected, result
     assert result['owned_engine_closed']
@@ -522,5 +528,6 @@ def test_dragon_known_logs_only_exempt_expected_setup_termination(tmp_path, monk
     if expected == 'expected-unsupported':
         assert result['support_evidence']['failure_phase'] == 'setup-screenshot'
         assert result['support_evidence']['route'] == route
+        assert len(result['support_evidence']['log_witnesses']) == 2
     if failure == 'shutdown-disconnect':
         assert result['shutdown_rpc_disconnect'] == 'Shutdown disconnected'

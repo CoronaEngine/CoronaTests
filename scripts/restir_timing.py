@@ -3,24 +3,24 @@ import math
 
 
 PASS_GROUPS = {
-    'pt': {'RTXPT GI shared PT initial candidates'},
+    'pt': {'ReSTIR GI shared PT initial candidates'},
     'di': {
-        'Falcor DI light geometry preparation',
-        'Falcor DI surface preparation',
-        'Falcor DI light presampling',
-        'Falcor DI initial candidates',
-        'Falcor DI visibility and spatiotemporal reuse',
-        'Falcor DI final shading',
+        'ReSTIR DI light geometry preparation',
+        'ReSTIR DI surface preparation',
+        'ReSTIR DI light presampling',
+        'ReSTIR DI initial candidates',
+        'ReSTIR DI visibility and spatiotemporal reuse',
+        'ReSTIR DI final shading',
     },
     'gi': {
-        'RTXPT GI stable plane build',
-        'RTXPT GI temporal resampling',
-        'RTXPT GI spatial resampling',
-        'RTXPT GI final shading',
+        'ReSTIR GI stable plane build',
+        'ReSTIR GI temporal resampling',
+        'ReSTIR GI spatial resampling',
+        'ReSTIR GI final shading',
     },
     'reblur': {
         # Newer builds include guide conditioning inside REBLUR Pack.
-        'RTXPT GI native guide conditioning',
+        'ReSTIR GI native guide conditioning',
         'REBLUR-ComposePhysicalDI-PrivateGI',
     },
     'shared': {
@@ -33,6 +33,10 @@ PASS_GROUPS = {
     },
 }
 OWNERS = {name: group for group, names in PASS_GROUPS.items() for name in names}
+HISTORICAL_PASSES = {
+    **{name.replace('ReSTIR DI', 'Falcor DI'): name for name in PASS_GROUPS['di']},
+    **{name.replace('ReSTIR GI', 'RTXPT GI'): name for name in OWNERS if name.startswith('ReSTIR GI ')},
+}
 
 
 def breakdown(timing):
@@ -51,6 +55,7 @@ def breakdown(timing):
         duration = stats.get('mean_ms')
         if type(duration) not in (int, float) or not math.isfinite(duration) or duration < 0:
             return None
+        name = HISTORICAL_PASSES.get(name, name)
         owner = OWNERS.get(name, 'unknown')
         if name.startswith('NRD ') and ' / ' in name:
             # This prefix is added only to dispatches validated inside an NRD

@@ -48,14 +48,27 @@ def fingerprint(value):
 
 
 def recipe_for_golden(recipe, reference):
-    """Reconstruct only the retired default backend setting of a frozen recipe."""
+    """Restore the backend and setting names recorded in a frozen recipe."""
     key = "VISION_RESTIR_GI_BACKEND"
     historical_backends = {"gi": "rtxpt", "pt-reblur": "legacy", "pt2048": "legacy"}
     backend = historical_backends.get(recipe.get("id"))
     environment = recipe.get("environment")
-    if (backend is not None and isinstance(environment, dict) and key not in environment
-            and reference.get("environment", {}).get(key) == backend):
-        return {**recipe, "environment": {**environment, key: backend}}
+    if not isinstance(environment, dict):
+        return recipe
+    reference_env = reference.get("environment", {})
+    if backend is not None and key not in environment and reference_env.get(key) == backend:
+        environment = {**environment, key: backend}
+        recipe = {**recipe, "environment": environment}
+    if recipe.get("id") == "gi":
+        for current, historical in (("VISION_RESTIR_DI_MODE", "VISION_FALCOR_DI_MODE"),
+                                    ("VISION_RESTIR_GI_LIGHT_FEEDBACK", "VISION_RTXPT_GI_LIGHT_FEEDBACK")):
+            if (current in environment and historical not in environment
+                    and historical in reference_env and current not in reference_env):
+                environment = dict(environment)
+                environment[historical] = environment.pop(current)
+                recipe = {**recipe, "environment": environment}
+        if "Falcor DI" in reference.get("label", "") and "label" in recipe:
+            recipe = {**recipe, "label": recipe["label"].replace("ReSTIR DI", "Falcor DI")}
     return recipe
 
 
