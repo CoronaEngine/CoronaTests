@@ -1,7 +1,7 @@
 """Independent public-API engine capture and raw GPU timestamp audit.
 
 Importing this module does not query hardware or launch a process. The only
-rendering entry point is capture(); all configuration is frozen in recipes.
+rendering entry points are capture() and capture_scene(); recipes freeze configuration.
 """
 from __future__ import annotations
 
@@ -19,6 +19,7 @@ import socket
 import statistics
 import struct
 import subprocess
+import tempfile
 import time
 from urllib.request import urlopen
 import xml.etree.ElementTree as ET
@@ -139,6 +140,27 @@ def read_windows(path, frames):
             require(window['begin'] >= result[-1]['end'] and window['frequency'] == result[-1]['frequency'], 'Overlapping/incompatible frame QPC windows')
         result.append(window)
     return result
+
+
+def partition_gpu_profiles(journal, captures):
+    """Keep paired raw profile rows in each job's setup-to-capture QPC span."""
+    names = ('gpu.csv', 'gpu-diagnostics.csv')
+    gpu, diagnostics = (csv_rows(journal / name) for name in names)
+    require(gpu and len(gpu) == len(diagnostics), 'Missing/unequal shared GPU diagnostic rows')
+    last_end = 0
+    for output, frames in captures:
+        setup = read_windows(output / 'setup/stages.csv', 1)[0]
+        windows = read_windows(output / 'stages.csv', frames)
+        require(last_end <= setup['begin'] and setup['end'] <= windows[0]['begin']
+                and setup['frequency'] == windows[-1]['frequency'], 'Overlapping or incompatible job QPC windows')
+        last_end = windows[-1]['end']
+        indices = [i for i, row in enumerate(diagnostics)
+                   if setup['begin'] <= int(row['submit_begin_qpc']) <= int(row['fence_ready_qpc']) <= last_end]
+        for name, rows in zip(names, (gpu, diagnostics)):
+            with (output / name).open('w', encoding='utf8', newline='') as stream:
+                writer = csv.DictWriter(stream, fieldnames=rows[0])
+                writer.writeheader()
+                writer.writerows(rows[i] for i in indices)
 
 
 def map_gpu_frames(output, frames):
@@ -420,7 +442,7 @@ def screenshot(session, route, identity, output, frames, timeout):
     return session.api('SceneTools.save_screenshot', [route, str(output / 'image.png'), identity, {'render_frames': frames, 'warmup_frames': 0, 'timings_path': str(output / 'frames.csv'), 'timeout_seconds': timeout}], timeout + 20)
 
 
-def configure(session, scene, recipe, output, record, timeout):
+def open_scene(session, scene, record, timeout):
     session.evaluate(VIEWPORT_GATE)
     session.until('ProjectLauncher.get_project_load_status', [], lambda v: v.get('archive_service_ready'), timeout)
     loaded = session.until('ProjectLauncher.open_project', [str(scene['source']), {'load_policy': 'degraded'}], lambda v: v.get('status') not in ('initializing', 'service_initializing'), timeout)
@@ -434,7 +456,7 @@ def configure(session, scene, recipe, output, record, timeout):
         record['scene_snapshot'] = snapshot
         if hair_unsupported(loaded, snapshot):
             record['support_evidence'] = {'kind': 'unsupported-hair', 'diagnostics': loaded['diagnostics'], 'actor_count': snapshot['actor_count'], 'actors': snapshot['actors']}
-            return None
+            return False
         # A changed import result needs human review, not a static skip.
         record['support_observation_changed'] = hair_support_changed(loaded, snapshot)
         require(record['support_observation_changed'], 'Hair import returned neither matching unsupported evidence nor supported actors')
@@ -445,7 +467,12 @@ def configure(session, scene, recipe, output, record, timeout):
     frozen = load_json(ROOT / 'scenes/cameras.json')['scenes'][scene['id']]['camera']
     require(pose == frozen, 'Original camera differs from frozen numeric pose')
     record.update(camera_id=identity, camera_source=original, source_camera_numeric=pose)
-    expected = dict(pose)
+    return True
+
+
+def configure_mode(session, scene, recipe, output, record, timeout, *, initialize_view):
+    route, identity = record['route'], record['camera_id']
+    expected = dict(record['source_camera_numeric'])
     def camera():
         return session.until('SceneTools.list_camera_views', [route], lambda v: len(v.get('cameras', [])) == 1 and (v['cameras'][0].get('camera_id') or v['cameras'][0].get('id')) == identity and subset_equal(v['cameras'][0], expected), timeout)['cameras'][0]
     operations = [
@@ -470,9 +497,10 @@ def configure(session, scene, recipe, output, record, timeout):
         reject_load_errors(value, expected_codes=scene.get('expected_diagnostics', []))
         return value.get('active') and not value.get('loading') and not value.get('pending') and value.get('total', 0) > 0
     record['load_status'] = session.until('ProjectLauncher.get_project_load_status', [], assets, timeout)
-    session.api('MainView.on_init', [str(scene['source'])])
-    session.evaluate("(()=>{const p=" + json.dumps(str(scene['source'])) + ";localStorage.setItem('corona.activeProjectPath',p);window.dispatchEvent(new CustomEvent('corona-active-project-changed',{detail:{projectPath:p}}));location.hash='#/';return true})()")
-    record['load_status'] = session.until('ProjectLauncher.get_project_load_status', [], assets, timeout)
+    if initialize_view:
+        session.api('MainView.on_init', [str(scene['source'])])
+        session.evaluate("(()=>{const p=" + json.dumps(str(scene['source'])) + ";localStorage.setItem('corona.activeProjectPath',p);window.dispatchEvent(new CustomEvent('corona-active-project-changed',{detail:{projectPath:p}}));location.hash='#/';return true})()")
+        record['load_status'] = session.until('ProjectLauncher.get_project_load_status', [], assets, timeout)
     session.api('SceneTools.close_camera_view', [route, identity]); camera()
     setup = output / 'setup'; setup.mkdir()
     record['phase'] = 'setup-screenshot'
@@ -492,6 +520,12 @@ def configure(session, scene, recipe, output, record, timeout):
     return route, identity, camera, method
 
 
+def configure(session, scene, recipe, output, record, timeout):
+    if open_scene(session, scene, record, timeout):
+        return configure_mode(session, scene, recipe, output, record, timeout, initialize_view=True)
+    return None
+
+
 def runtime_hashes(engine, runtime_dirs):
     result = {'executable': sha256(engine)}
     for index, directory in enumerate([engine.parent, *runtime_dirs]):
@@ -500,53 +534,106 @@ def runtime_hashes(engine, runtime_dirs):
     return result
 
 
+def scene_environment(recipes):
+    gi_only = {'VISION_RESTIR_PRIMARY_JITTER', 'VISION_FALCOR_DI_MODE',
+               'VISION_GI_NEE_DIAGNOSTIC', 'VISION_RTXPT_GI_LIGHT_FEEDBACK'}
+    keys = set().union(*(r['environment'] for r in recipes))
+    merged = {}
+    for name in sorted(keys):
+        if name == 'VISION_DISABLE_DENOISER':
+            require(all(name not in r['environment'] or (not r['denoise'] and r['environment'][name] == '1')
+                        for r in recipes), 'Incompatible shared engine environment: ' + name)
+            # The per-camera denoise API switches this off for the pure PT recipe.
+            continue
+        relevant = [r for r in recipes if (name not in gi_only or r['id'] == 'gi')
+                    and (name != 'VISION_PT_PRIMARY_JITTER' or r['id'] != 'gi')]
+        values = {r['environment'].get(name) for r in relevant}
+        require(len(values) <= 1, 'Incompatible shared engine environment: ' + name)
+        if values and None not in values:
+            merged[name] = values.pop()
+    return merged
+
+
 def capture(scene, algorithm, engine, output, *, runtime_dirs=(), timeout=7200, port=9980):
-    """Capture one fresh process. Only evidence-backed unsupported results skip images."""
-    engine, output = Path(engine).resolve(), Path(output).resolve()
+    """Capture one recipe in a fresh engine process."""
+    return capture_scene(scene, [(algorithm, output)], engine, runtime_dirs=runtime_dirs,
+                         timeout=timeout, port=port)[algorithm['id']]
+
+
+def capture_scene(scene, jobs, engine, *, runtime_dirs=(), timeout=7200, port=9980):
+    """Open a project once, run the selected recipes, then seal their capture evidence."""
+    engine = Path(engine).resolve()
     runtime_dirs = [Path(p).resolve() for p in runtime_dirs]
-    if output.exists() and any(output.iterdir()):
-        raise FileExistsError('Preserving nonempty capture output: ' + str(output))
-    output.mkdir(parents=True, exist_ok=True)
-    recipe = json.loads(json.dumps(algorithm))
+    jobs = [(json.loads(json.dumps(recipe)), Path(output).resolve()) for recipe, output in jobs]
+    if not jobs:
+        return {}
+    require(len({r['id'] for r, _ in jobs}) == len(jobs), 'Duplicate algorithm in scene capture')
+    require(len({output for _, output in jobs}) == len(jobs), 'Duplicate output in scene capture')
+    for _, output in jobs:
+        if output.exists() and any(output.iterdir()):
+            raise FileExistsError('Preserving nonempty capture output: ' + str(output))
+    environment = (scene_environment([r for r, _ in jobs]) if len(jobs) > 1
+                   else jobs[0][0]['environment'])
+    for _, output in jobs:
+        output.mkdir(parents=True, exist_ok=True)
+    if len(jobs) == 1:
+        return run_capture_jobs(scene, jobs, engine, runtime_dirs, timeout, port, jobs[0][1], environment)
+    with tempfile.TemporaryDirectory(prefix='session-', dir=jobs[0][1], ignore_cleanup_errors=True) as directory:
+        return run_capture_jobs(scene, jobs, engine, runtime_dirs, timeout, port, Path(directory), environment)
+
+
+def run_capture_jobs(scene, jobs, engine, runtime_dirs, timeout, port, journal, environment):
     started = time.monotonic()
-    record = {'schema': 1, 'scene_id': scene['id'], 'algorithm_id': recipe['id'], 'status': 'failed', 'configuration': recipe, 'engine': str(engine), 'engine_cwd': str(engine.parent), 'runtime_dirs': [str(p) for p in runtime_dirs], 'started_utc': datetime.now(timezone.utc).isoformat(), 'owned_engine_closed': False, 'offline_pacing': 'One setup frame, then one continuous screenshot batch; no frame cap, sleeps, cooldown or thermal feedback', 'history_reset': 'Each public save_screenshot invalidates history; verify exact integrator frames 1..N', 'evidence': ['api.jsonl', 'engine.log']}
+    shared = len(jobs) > 1
+    common = {'schema': 1, 'scene_id': scene['id'], 'status': 'failed', 'engine': str(engine), 'engine_cwd': str(engine.parent), 'runtime_dirs': [str(p) for p in runtime_dirs], 'started_utc': datetime.now(timezone.utc).isoformat(), 'owned_engine_closed': False, 'offline_pacing': 'One setup frame, then one continuous screenshot batch; no frame cap, sleeps, cooldown or thermal feedback', 'history_reset': 'Each public save_screenshot invalidates history; verify exact integrator frames 1..N'}
+    records = {recipe['id']: dict(common, algorithm_id=recipe['id'], configuration=recipe,
+                                  evidence=['api.jsonl', 'engine.log']) for recipe, _ in jobs}
     process = frontend = session = None
     ini = engine.with_name('CoronaEditor.ini')
     ini_before = ini.read_bytes() if ini.is_file() else None
     logdir = engine.parent / 'logs'
     logs_before = {p: p.stat().st_mtime_ns for p in logdir.glob('*_corona.log')}
-    captured = unsupported_hair = setup_transport_failure = False
+    captured, unsupported_hair = set(), set()
+    active = failed = None
+    mode_seconds = {}
     try:
         require(engine.is_file(), 'Engine executable missing')
         require(all(p.is_dir() for p in runtime_dirs), 'Explicit runtime directory missing')
         source = Path(scene['source']).resolve()
-        record['source_scene_sha256'] = sha256(source)
-        require(not scene.get('source_sha256') or record['source_scene_sha256'] == scene['source_sha256'], 'Scene source hash drift')
+        common['source_scene_sha256'] = sha256(source)
+        require(not scene.get('source_sha256') or common['source_scene_sha256'] == scene['source_sha256'], 'Scene source hash drift')
         source_tree = ET.parse(source).getroot()
-        record['source_emitter_types'] = sorted({item.get('type') for item in source_tree.iter('emitter')})
+        common['source_emitter_types'] = sorted({item.get('type') for item in source_tree.iter('emitter')})
         sensor = source_tree.find('sensor')
-        record['source_sensor_xml'] = ET.tostring(sensor, encoding='unicode') if sensor is not None else None
-        record['runtime_sha256'] = runtime_hashes(engine, runtime_dirs)
-        record['thermal'] = confirm_thermal_protection()
+        common['source_sensor_xml'] = ET.tostring(sensor, encoding='unicode') if sensor is not None else None
+        common['runtime_sha256'] = runtime_hashes(engine, runtime_dirs)
+        common['thermal'] = confirm_thermal_protection()
         require(1 <= port <= 65535, 'Invalid debug port')
         with socket.socket() as probe:
             if os.name == 'nt': probe.setsockopt(socket.SOL_SOCKET, socket.SO_EXCLUSIVEADDRUSE, 1)
             probe.bind(('127.0.0.1', port))
-        env = build_environment(recipe, output, engine, runtime_dirs, port)
-        record['environment'] = {k: v for k, v in env.items() if k.startswith(CLEAN_PREFIXES) or k == 'CORONA_OPTICS_MEASURE_RENDER_TIME'}
-        record['process_environment'] = {k: env[k] for k in ('PATH', 'CORONA_CEF_REMOTE_DEBUG_PORT', 'CORONA_CEF_ROOT_CACHE', 'CORONA_SWITCH_PROFILE', 'DISABLE_RTSS_LAYER', 'DISABLE_VULKAN_OBS_CAPTURE')}
-        save_json(output / 'run.json', record)
-        with (output / 'engine.log').open('w', encoding='utf8') as log:
+        env = build_environment({'environment': environment}, journal, engine, runtime_dirs, port)
+        common['environment'] = {k: v for k, v in env.items() if k.startswith(CLEAN_PREFIXES) or k == 'CORONA_OPTICS_MEASURE_RENDER_TIME'}
+        common['process_environment'] = {k: env[k] for k in ('PATH', 'CORONA_CEF_REMOTE_DEBUG_PORT', 'CORONA_CEF_ROOT_CACHE', 'CORONA_SWITCH_PROFILE', 'DISABLE_RTSS_LAYER', 'DISABLE_VULKAN_OBS_CAPTURE')}
+        for recipe, output in jobs:
+            records[recipe['id']].update(common)
+            save_json(output / 'run.json', records[recipe['id']])
+        with (journal / 'engine.log').open('w', encoding='utf8') as log:
             process = subprocess.Popen([str(engine)], cwd=engine.parent, env=env, stdout=log, stderr=subprocess.STDOUT, creationflags=getattr(subprocess, 'CREATE_NO_WINDOW', 0))
-        record['pid'] = process.pid
-        save_json(output / 'run.json', record)
+        common['pid'] = process.pid
+        for recipe, output in jobs:
+            record = records[recipe['id']]
+            record['pid'] = process.pid
+            if shared:
+                record['scene_session_algorithms'] = list(records)
+            save_json(output / 'run.json', record)
         deadline = time.monotonic() + min(timeout, 150)
         while time.monotonic() < deadline:
             if process.poll() is not None:
                 raise RuntimeError('Engine exited during startup')
             try:
                 frontend = Frontend(port)
-                session = Session(frontend, process, output / 'api.jsonl')
+                session = Session(frontend, process, journal / 'api.jsonl')
                 if session.evaluate('Boolean(window.cefQuery)'): break
             except (ConnectionError, OSError, RuntimeError, ValueError):
                 pass
@@ -555,97 +642,153 @@ def capture(scene, algorithm, engine, output, *, runtime_dirs=(), timeout=7200, 
             time.sleep(.1)  # Connection startup polling only, never frame pacing.
         else:
             raise TimeoutError('CEF startup timed out')
-        record['phase'] = 'configure'
-        configured = configure(session, scene, recipe, output, record, timeout)
-        save_json(output / 'run.json', record)
-        if configured is None:
-            unsupported_hair = True
-        else:
-            route, identity, camera, method = configured
-            record['phase'] = 'capture'
-            record['capture'] = screenshot(session, route, identity, output, recipe['frames'], timeout)
-            validate_png(output / 'image.png', recipe['resolution'])
-            validate_frames(output, recipe['frames'], recipe['denoise'])
-            record['camera_after'] = camera()
-            record['effective_after'] = session.api(method, [route, identity])
-            validate_effective_settings(record['effective_after'], recipe)
-            record['effective_reblur_after'] = session.api('SceneTools.get_reblur_settings', [route, identity])
-            record['environment_after'] = session.api('SceneTools.get_environment', [route])
-            require(record['camera_before'] == record['camera_after'] and record['effective_before'] == record['effective_after'], 'Camera/integrator settings changed during capture')
-            require(record['environment_before'] == record['environment_after'], 'Scene environment changed during capture')
-            if recipe['id'] == 'gi':
-                record['actual_context_lifecycle'] = validate_context_evolution(record['effective_reblur_before'], record['effective_reblur_after'], recipe['reblur'])
+        if shared:
+            loaded = {'phase': 'configure'}
+            try:
+                supported = open_scene(session, scene, loaded, timeout)
+            finally:
+                for recipe, _ in jobs:
+                    records[recipe['id']].update(loaded)
+                if (journal / 'api.jsonl').is_file():
+                    shutil.copyfile(journal / 'api.jsonl', jobs[0][1] / 'api.jsonl')
+            if not supported:
+                unsupported_hair.update(records)
+        for index, (recipe, output) in enumerate(jobs):
+            active = recipe['id']
+            if active in unsupported_hair:
+                continue
+            record = records[active]
+            mode_started = time.monotonic()
+            record['phase'] = 'configure'
+            if shared:
+                session.log = output / 'api.jsonl'
+                configured = configure_mode(session, scene, recipe, output, record, timeout, initialize_view=index == 0)
             else:
-                require(record['effective_reblur_before'] == record['effective_reblur_after'] and record['effective_reblur_before']['contexts'] == {}, 'PT REBLUR effective settings/contexts changed')
-            record['viewport_gate_after'] = session.evaluate('({ready:window.__visionBenchViewportReady,requests:window.__visionBenchViewportRequests})')
-            require(record['viewport_gate_after']['ready'] is False, 'Viewport gate opened')
-            captured = True
+                configured = configure(session, scene, recipe, output, record, timeout)
+            save_json(output / 'run.json', record)
+            if configured is None:
+                unsupported_hair.add(active)
+            else:
+                capture_image(session, configured, recipe, output, record, timeout)
+                captured.add(active)
+            mode_seconds[active] = time.monotonic() - mode_started
     except Exception as error:
-        record['error'] = str(error) or repr(error)
-        # Native Falcor termination can disconnect or time out the outstanding
-        # setup RPC. Never infer that route from an unrelated validation error.
-        from websocket import WebSocketConnectionClosedException, WebSocketTimeoutException
-        setup_transport_failure = (record.get('phase') == 'setup-screenshot'
-            and isinstance(error, (ConnectionError, TimeoutError,
-                                   WebSocketConnectionClosedException, WebSocketTimeoutException)))
-        record['failure_phase'] = record.get('phase', 'startup')
-        record['error_type'] = type(error).__name__
+        failed = error
+        for mode, record in records.items():
+            if mode in captured or mode in unsupported_hair:
+                continue
+            if active is None or active == mode:
+                record.update(error=str(error) or repr(error), error_type=type(error).__name__,
+                              failure_phase=record.get('phase', 'startup'))
+            else:
+                record.update(error=f'Scene session stopped during {active}: {error}', failure_phase='scene-session')
     finally:
         if process is not None:
             if process.poll() is None and session is not None:
                 try: session.api('CoronaEditor.close_process', [], 10)
-                except Exception as error: record['shutdown_rpc_disconnect'] = str(error)
+                except Exception as error: common['shutdown_rpc_disconnect'] = str(error)
             try:
                 process.wait(timeout=25)
             except subprocess.TimeoutExpired:
                 process.terminate()
                 try: process.wait(timeout=10)
                 except subprocess.TimeoutExpired: process.kill(); process.wait(timeout=10)
-                record['forced_shutdown'] = True
-            record['exit_code'] = process.returncode
-            record['owned_engine_closed'] = process.poll() is not None
+                common['forced_shutdown'] = True
+            common['exit_code'] = process.returncode
+            common['owned_engine_closed'] = process.poll() is not None
             newlogs = [p for p in logdir.glob('*_corona.log') if p not in logs_before or p.stat().st_mtime_ns != logs_before[p]]
             if newlogs:
-                shutil.copy2(max(newlogs, key=lambda p: p.stat().st_mtime_ns), output / 'engine-native.log')
+                shutil.copy2(max(newlogs, key=lambda p: p.stat().st_mtime_ns), journal / 'engine-native.log')
             if ini_before is not None: ini.write_bytes(ini_before)
             elif ini.exists(): ini.unlink()
         else:
-            record['owned_engine_closed'] = True  # No process was created.
+            common['owned_engine_closed'] = True  # No process was created.
         if frontend: frontend.socket.close()
+        integrity_error = None
         try:
-            if 'runtime_sha256' in record:
-                record['runtime_sha256_after'] = runtime_hashes(engine, runtime_dirs)
-                record['source_scene_sha256_after'] = sha256(scene['source'])
-                require(record['runtime_sha256_after'] == record['runtime_sha256'] and record['source_scene_sha256_after'] == record['source_scene_sha256'], 'Runtime/source changed during capture')
-            logs = '\n'.join(p.read_text(encoding='utf8', errors='replace') for p in (output / 'engine.log', output / 'engine-native.log') if p.is_file())
-            expected = scene.get('expected_unsupported', {}).get(recipe['id'])
-            light_unsupported = (setup_transport_failure and bool(record.get('pid'))
-                and record['owned_engine_closed'] and not record.get('forced_shutdown')
-                and dragon_unsupported(scene['id'], recipe['id'], record.get('source_emitter_types', []), logs))
-            if unsupported_hair or light_unsupported:
-                if unsupported_hair:
-                    require(record.get('exit_code') == 0 and not record.get('forced_shutdown'), 'Hair import attempt did not close cleanly')
-                else:
-                    record['support_evidence'] = {'kind': 'unsupported-directional-light', 'source_emitter_types': record['source_emitter_types'], 'log_witnesses': [line for line in logs.splitlines() if 'Falcor DI found no finite light power' in line or 'RTXPT GI + REBLUR requires active Falcor DI:' in line], 'engine_exit_code': record['exit_code'], 'failure_phase': record['failure_phase'], 'route': record['route'], 'error_type': record['error_type']}
-                record.update(status='expected-unsupported' if expected else 'support-changed', reason=expected or record['support_evidence']['kind'])
-            elif captured:
-                require(record['owned_engine_closed'] and record.get('exit_code') == 0 and not record.get('forced_shutdown'), 'Capture engine did not close cleanly')
-                mapping = map_gpu_frames(output, recipe['frames'])
-                timing = summarize_timing(output, mapping, recipe)
-                if recipe['id'] == 'gi':
-                    require(all(marker in logs for marker in GI_LOG_MARKERS) and 'Falcor DI unavailable' not in logs, 'GI default route log evidence differs')
-                save_json(output / 'gpu-frame-map.json', mapping)
-                save_json(output / 'timing.json', timing)
-                record.update(status='support-changed' if expected or record.get('support_observation_changed') else 'complete', image='image.png', image_sha256=sha256(output / 'image.png'), timing=timing)
-                if expected: record['reason'] = 'Expected limitation no longer observed: ' + expected
-                record['evidence'].extend(['frames.csv', 'stages.csv', 'gpu.csv', 'gpu-diagnostics.csv', 'gpu-frame-map.json', 'timing.json'])
-            elif record.get('support_observation_changed'):
-                record.update(status='support-changed', reason='Hair importer support differs; capture validation did not complete')
+            if 'runtime_sha256' in common:
+                common['runtime_sha256_after'] = runtime_hashes(engine, runtime_dirs)
+                common['source_scene_sha256_after'] = sha256(scene['source'])
+                require(common['runtime_sha256_after'] == common['runtime_sha256'] and common['source_scene_sha256_after'] == common['source_scene_sha256'], 'Runtime/source changed during capture')
+            if shared and captured:
+                partition_gpu_profiles(journal, [(output, r['frames']) for r, output in jobs if r['id'] in captured])
         except Exception as error:
-            record.update(status='failed', validation_error=str(error), error=record.get('error') or str(error))
-        record['elapsed_seconds'] = time.monotonic() - started
-        record['evidence'] = [p for p in record['evidence'] if (output / p).is_file()]
-        if (output / 'engine-native.log').is_file(): record['evidence'].append('engine-native.log')
-        record['evidence_sha256'] = {p: sha256(output / p) for p in record['evidence']}
-        save_json(output / 'run.json', record)
-    return record
+            integrity_error = error
+        elapsed = time.monotonic() - started
+        for recipe, output in jobs:
+            mode = recipe['id']
+            record = records[mode]
+            record.update(common)
+            record['elapsed_seconds'] = mode_seconds.get(mode, 0.0) if shared else elapsed
+            if shared:
+                record['scene_session_elapsed_seconds'] = elapsed
+                for name in ('engine.log', 'engine-native.log'):
+                    if (journal / name).is_file():
+                        shutil.copyfile(journal / name, output / name)
+            finalize_capture(scene, recipe, output, record, captured=mode in captured,
+                             unsupported_hair=mode in unsupported_hair,
+                             error=failed if active == mode else None, integrity_error=integrity_error)
+    return records
+
+
+def capture_image(session, configured, recipe, output, record, timeout):
+    route, identity, camera, method = configured
+    record['phase'] = 'capture'
+    record['capture'] = screenshot(session, route, identity, output, recipe['frames'], timeout)
+    validate_png(output / 'image.png', recipe['resolution'])
+    validate_frames(output, recipe['frames'], recipe['denoise'])
+    record['camera_after'] = camera()
+    record['effective_after'] = session.api(method, [route, identity])
+    validate_effective_settings(record['effective_after'], recipe)
+    record['effective_reblur_after'] = session.api('SceneTools.get_reblur_settings', [route, identity])
+    record['environment_after'] = session.api('SceneTools.get_environment', [route])
+    require(record['camera_before'] == record['camera_after'] and record['effective_before'] == record['effective_after'], 'Camera/integrator settings changed during capture')
+    require(record['environment_before'] == record['environment_after'], 'Scene environment changed during capture')
+    if recipe['id'] == 'gi':
+        record['actual_context_lifecycle'] = validate_context_evolution(record['effective_reblur_before'], record['effective_reblur_after'], recipe['reblur'])
+    else:
+        require(record['effective_reblur_before'] == record['effective_reblur_after'] and record['effective_reblur_before']['contexts'] == {}, 'PT REBLUR effective settings/contexts changed')
+    record['viewport_gate_after'] = session.evaluate('({ready:window.__visionBenchViewportReady,requests:window.__visionBenchViewportRequests})')
+    require(record['viewport_gate_after']['ready'] is False, 'Viewport gate opened')
+
+
+def finalize_capture(scene, recipe, output, record, *, captured, unsupported_hair, error, integrity_error):
+    try:
+        if integrity_error is not None:
+            raise integrity_error
+        logs = '\n'.join(p.read_text(encoding='utf8', errors='replace') for p in (output / 'engine.log', output / 'engine-native.log') if p.is_file())
+        expected = scene.get('expected_unsupported', {}).get(recipe['id'])
+        # Native Falcor termination can disconnect or time out the setup RPC.
+        # Unrelated validation failures must not be excused by native log text.
+        from websocket import WebSocketConnectionClosedException, WebSocketTimeoutException
+        setup_transport_failure = (record.get('phase') == 'setup-screenshot'
+            and isinstance(error, (ConnectionError, TimeoutError,
+                                   WebSocketConnectionClosedException, WebSocketTimeoutException)))
+        light_unsupported = (setup_transport_failure and bool(record.get('pid'))
+            and record['owned_engine_closed'] and not record.get('forced_shutdown')
+            and dragon_unsupported(scene['id'], recipe['id'], record.get('source_emitter_types', []), logs))
+        if unsupported_hair or light_unsupported:
+            if unsupported_hair:
+                require(record.get('exit_code') == 0 and not record.get('forced_shutdown'), 'Hair import attempt did not close cleanly')
+            else:
+                record['support_evidence'] = {'kind': 'unsupported-directional-light', 'source_emitter_types': record['source_emitter_types'], 'log_witnesses': [line for line in logs.splitlines() if 'Falcor DI found no finite light power' in line or 'RTXPT GI + REBLUR requires active Falcor DI:' in line], 'engine_exit_code': record['exit_code'], 'failure_phase': record['failure_phase'], 'route': record['route'], 'error_type': record['error_type']}
+            record.update(status='expected-unsupported' if expected else 'support-changed', reason=expected or record['support_evidence']['kind'])
+        elif captured:
+            require(record['owned_engine_closed'] and record.get('exit_code') == 0 and not record.get('forced_shutdown'), 'Capture engine did not close cleanly')
+            mapping = map_gpu_frames(output, recipe['frames'])
+            timing = summarize_timing(output, mapping, recipe)
+            if recipe['id'] == 'gi':
+                require(all(marker in logs for marker in GI_LOG_MARKERS) and 'Falcor DI unavailable' not in logs, 'GI default route log evidence differs')
+            save_json(output / 'gpu-frame-map.json', mapping)
+            save_json(output / 'timing.json', timing)
+            record.update(status='support-changed' if expected or record.get('support_observation_changed') else 'complete', image='image.png', image_sha256=sha256(output / 'image.png'), timing=timing)
+            if expected: record['reason'] = 'Expected limitation no longer observed: ' + expected
+            record['evidence'].extend(['frames.csv', 'stages.csv', 'gpu.csv', 'gpu-diagnostics.csv', 'gpu-frame-map.json', 'timing.json'])
+        elif record.get('support_observation_changed'):
+            record.update(status='support-changed', reason='Hair importer support differs; capture validation did not complete')
+    except Exception as failure:
+        record.update(status='failed', validation_error=str(failure), error=record.get('error') or str(failure))
+    record['evidence'] = [p for p in record['evidence'] if (output / p).is_file()]
+    if (output / 'engine-native.log').is_file(): record['evidence'].append('engine-native.log')
+    record['evidence_sha256'] = {p: sha256(output / p) for p in record['evidence']}
+    save_json(output / 'run.json', record)

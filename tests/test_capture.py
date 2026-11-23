@@ -149,6 +149,100 @@ def test_capture_options_request_one_reset_batch_without_hidden_warmup(tmp_path)
     assert result['args'][3] == {'render_frames': 2048, 'warmup_frames': 0, 'timings_path': str(tmp_path / 'frames.csv'), 'timeout_seconds': 7200}
 
 
+def test_scene_capture_opens_once_and_records_actual_close_for_each_job(tmp_path, monkeypatch, unused_capture_port):
+    capture = implementation()
+    source = tmp_path / 'scene.xml'
+    source.write_text('<scene/>')
+    engine = tmp_path / 'engine.exe'
+    engine.write_bytes(b'fixture')
+    trace = []
+    loaded = json.loads((FIXTURE / 'hair-response.json').read_text())['open_project_response']['data']
+
+    class Process:
+        pid = 987654
+        returncode = None
+
+        def poll(self):
+            return self.returncode
+
+        def wait(self, timeout):
+            assert self.returncode == 0
+            return self.returncode
+
+    def launch(*args, **kwargs):
+        trace.append('launch')
+        env = kwargs['env']
+        assert 'VISION_RESTIR_GI_BACKEND' not in env
+        assert env['VISION_PT_PRIMARY_JITTER'] == '0'
+        assert 'VISION_DISABLE_DENOISER' not in env
+        return Process()
+
+    class Frontend:
+        class Socket:
+            def close(self): pass
+        socket = Socket()
+
+    class Session:
+        def __init__(self, frontend, process, log):
+            self.process, self.log = process, log
+
+        def evaluate(self, expression):
+            return True
+
+        def until(self, method, args, ready, timeout):
+            value = self.api(method, args, timeout)
+            assert ready(value)
+            return value
+
+        def api(self, method, args, timeout=30):
+            trace.append(method)
+            if method == 'ProjectLauncher.get_project_load_status':
+                return {'archive_service_ready': True}
+            if method == 'ProjectLauncher.open_project':
+                return loaded
+            if method == 'SceneTools.get_scene_snapshot':
+                return {'actor_count': 0, 'actors': []}
+            assert method == 'CoronaEditor.close_process'
+            self.process.returncode = 0
+
+    monkeypatch.setattr(capture, 'confirm_thermal_protection', lambda: [])
+    monkeypatch.setattr(capture.subprocess, 'Popen', launch)
+    monkeypatch.setattr(capture, 'Frontend', lambda port: Frontend())
+    monkeypatch.setattr(capture, 'Session', Session)
+    limitations = {mode: 'Mitsuba hair geometry unsupported' for mode in ('gi', 'pt2048')}
+    scene = {'id': 'hair-curl', 'source': str(source), 'expected_unsupported': limitations,
+             'expected_diagnostics': ['UNSUPPORTED_SHAPE', 'LIGHT_UNSUPPORTED']}
+    jobs = [(recipe(mode), tmp_path / mode) for mode in limitations]
+    records = capture.capture_scene(scene, jobs, engine, port=unused_capture_port)
+    assert trace == ['launch', 'ProjectLauncher.get_project_load_status', 'ProjectLauncher.open_project',
+                     'SceneTools.get_scene_snapshot', 'CoronaEditor.close_process']
+    assert records.keys() == limitations.keys()
+    for mode, record in records.items():
+        assert record['status'] == 'expected-unsupported'
+        assert record['support_evidence']['kind'] == 'unsupported-hair'
+        assert record['pid'] == 987654 and record['owned_engine_closed']
+        assert json.loads((tmp_path / mode / 'run.json').read_text()) == record
+
+
+def test_shared_gpu_profile_keeps_only_paired_rows_for_job(tmp_path):
+    capture = implementation()
+    out = tmp_path / 'job'
+    shutil.copytree(FIXTURE, out)
+    journal = tmp_path / 'session'
+    journal.mkdir()
+    for name in ('gpu.csv', 'gpu-diagnostics.csv'):
+        original = (FIXTURE / name).read_bytes()
+        # Repeat the first row with a QPC beyond the last captured frame.
+        row = original.splitlines()[1]
+        if name == 'gpu-diagnostics.csv':
+            row = row.replace(b'5673854184624', b'9999999999999').replace(b'5673854191450', b'9999999999999')
+        (journal / name).write_bytes(original + row + b'\n')
+        (out / name).unlink()
+    capture.partition_gpu_profiles(journal, [(out, 2)])
+    mapped = capture.map_gpu_frames(out, 2)
+    assert mapped['all_gpu_rows'] == 172 and not mapped['outside_recorded_frame_windows']
+
+
 def test_api_rejection_logs_raw_native_response_and_raises(tmp_path):
     capture = implementation()
     class FrontendBoundary:

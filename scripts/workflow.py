@@ -6,6 +6,7 @@ from collections import Counter
 from contextlib import contextmanager
 from datetime import datetime, timezone
 import hashlib
+from itertools import groupby
 import json
 import os
 from pathlib import Path
@@ -300,8 +301,7 @@ def verify_capture(output, record):
         raise ValueError("Capture lacks raw frame evidence")
 
 
-def capture_attempt(scene, algorithm, options, output, contract, frozen, capture_job):
-    frozen.check()
+def prepare_capture_attempt(options, output, contract):
     attempt = output / "attempt.json"
     if attempt.is_file():
         if not options.resume:
@@ -327,24 +327,84 @@ def capture_attempt(scene, algorithm, options, output, contract, frozen, capture
         if output.resolve().parent != parent or retained.resolve().parent != parent or retained.exists():
             raise ValueError("Unsafe interrupted-attempt preservation path")
         output.rename(retained)
-    started = time.monotonic()
-    try:
-        record = capture_job(scene, algorithm, options.engine_executable, output,
-            runtime_dirs=options.runtime_dir, timeout=options.timeout, port=options.port)
-        if record.get("scene_id") != scene["id"] or record.get("algorithm_id") != algorithm["id"]:
-            raise ValueError("Capture returned a different scene or algorithm")
-        verify_capture(output, record)
-    except (KeyboardInterrupt, SystemExit):
-        raise
-    except Exception as error:
-        output.mkdir(parents=True, exist_ok=True)
-        record = {"schema": 1, "scene_id": scene["id"], "algorithm_id": algorithm["id"],
-                  "status": "failed", "error": str(error), "elapsed_seconds": time.monotonic() - started,
-                  "owned_engine_closed": False}
+
+
+def capture_attempts(scene, entries, options, frozen, capture_job, capture_scene=None):
     frozen.check()
-    record.update(_contract=contract, _artifacts=artifacts(output))
-    save(attempt, record)
-    return record
+    results, pending = {}, []
+    for algorithm, output, contract in entries:
+        previous = prepare_capture_attempt(options, output, contract)
+        if previous is None:
+            pending.append((algorithm, output, contract))
+        else:
+            results[algorithm['id']] = previous
+    if not pending:
+        return results
+
+    started = time.monotonic()
+    launch_options = dict(runtime_dirs=options.runtime_dir, timeout=options.timeout, port=options.port)
+    capture_error = None
+    try:
+        if len(pending) == 1:
+            algorithm, output, _ = pending[0]
+            records = {algorithm['id']: capture_job(scene, algorithm, options.engine_executable, output, **launch_options)}
+        else:
+            records = capture_scene(scene, [(algorithm, output) for algorithm, output, _ in pending],
+                                    options.engine_executable, **launch_options)
+    except Exception as error:
+        capture_error = error
+    frozen.check()
+    for algorithm, output, contract in pending:
+        algorithm_id = algorithm['id']
+        try:
+            if capture_error is not None:
+                raise capture_error
+            record = records[algorithm_id]
+            if record.get('scene_id') != scene['id'] or record.get('algorithm_id') != algorithm_id:
+                raise ValueError('Capture returned a different scene or algorithm')
+            verify_capture(output, record)
+        except Exception as error:
+            output.mkdir(parents=True, exist_ok=True)
+            record = {'schema': 1, 'scene_id': scene['id'], 'algorithm_id': algorithm_id,
+                      'status': 'failed', 'error': str(error), 'elapsed_seconds': time.monotonic() - started,
+                      'owned_engine_closed': False}
+        record.update(_contract=contract, _artifacts=artifacts(output))
+        save(output / 'attempt.json', record)
+        results[algorithm_id] = record
+    return results
+
+
+def capture_jobs(jobs, comparable, run_config, output, options, frozen, capture_job, capture_scene):
+    for scene_id, group in groupby(jobs, key=lambda job: job[0]['id']):
+        scene_jobs = list(group)
+        scene = scene_jobs[0][0]
+        entries = {}
+        for _, algorithm, input_fingerprint in scene_jobs:
+            algorithm_id = algorithm['id']
+            job_id = scene_id + '--' + algorithm_id
+            if comparable is not None and job_id not in comparable:
+                continue
+            contract = fingerprint({'input': input_fingerprint, 'engine': run_config['engine_fingerprint'],
+                                    'tools': run_config['tools'], 'runtime_dirs': run_config['runtime_dirs'],
+                                    'launch_environment': run_config['launch_environment']})
+            entries[algorithm_id] = (algorithm, output / 'runs' / job_id / 'repeat-0', contract)
+        shared = capture_scene is not None and len(entries) > 1
+        if shared:
+            for algorithm_id in entries:
+                print('START ' + scene_id + '--' + algorithm_id, flush=True)
+            records = capture_attempts(scene, entries.values(), options, frozen, capture_job, capture_scene)
+        for _, algorithm, input_fingerprint in scene_jobs:
+            algorithm_id = algorithm['id']
+            entry = entries.get(algorithm_id)
+            if not shared or entry is None:
+                print('START ' + scene_id + '--' + algorithm_id, flush=True)
+            if entry is None:
+                raw = None
+            elif shared:
+                raw = records[algorithm_id]
+            else:
+                raw = capture_attempts(scene, (entry,), options, frozen, capture_job)[algorithm_id]
+            yield scene, algorithm, input_fingerprint, raw
 
 
 def seal(value):
@@ -496,8 +556,11 @@ def execute(kind, options, *, root=ROOT, prepare=None, capture_job=None, thermal
     if prepare is None:
         from scripts.download_scenes import ensure_scenes
         prepare = ensure_scenes
+    capture_scene = None
     if capture_job is None or thermal is None:
         from scripts import capture
+        if capture_job is None and kind == 'regression':
+            capture_scene = capture.capture_scene
         capture_job = capture_job or capture.capture
         thermal = thermal or capture.confirm_thermal_protection
     root = Path(root).resolve()
@@ -608,21 +671,21 @@ def execute(kind, options, *, root=ROOT, prepare=None, capture_job=None, thermal
                   "records": [], "summary": {}}
         profiles = {}
         artifact_index = {}
-        for scene, algorithm, input_fingerprint in jobs:
+        comparable = None
+        if kind == 'regression':
+            comparable = {job_id for job_id, comparison_input in comparison_inputs.items()
+                          if golden_by_id.get(job_id, {}).get('input_fingerprint') == comparison_input}
+        for scene, algorithm, input_fingerprint, raw in capture_jobs(
+                jobs, comparable, batch_contract, output, options, frozen, capture_job, capture_scene):
             job_id = scene["id"] + "--" + algorithm["id"]
-            print("START " + job_id, flush=True)
             expected = scene.get("expected_unsupported", {}).get(algorithm["id"])
-            contract = fingerprint({"input": input_fingerprint, "engine": engine_fingerprint, "tools": tool_hashes,
-                                    "runtime_dirs": batch_contract["runtime_dirs"],
-                                    "launch_environment": batch_contract["launch_environment"]})
             base_record = golden_by_id.get(job_id)
-            if kind == "regression" and (base_record is None or base_record.get("input_fingerprint") != comparison_inputs[job_id]):
+            if raw is None:
                 row = {"scene_id": scene["id"], "algorithm_id": algorithm["id"], "job_id": job_id,
                        "configuration": algorithm, "status": "incomparable",
                        "reason": "Golden does not cover the same scene/resources/algorithm outside sampling budget"}
             else:
                 folder = output / "runs" / job_id / "repeat-0"
-                raw = capture_attempt(scene, algorithm, options, folder, contract, frozen, capture_job)
                 row = {key: value for key, value in raw.items() if not key.startswith("_")}
                 row.update(job_id=job_id, label=algorithm.get("label", algorithm["id"]),
                            scene_name=scene.get("name", scene["id"]), regions=scene.get("regions", {}),

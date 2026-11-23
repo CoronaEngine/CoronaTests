@@ -392,6 +392,40 @@ def test_single_capture_does_not_require_empirical_calibration(project):
     assert (output.parent / 'single.zip').is_file()
 
 
+def test_regression_captures_one_scene_batch_and_keeps_independent_attempts_on_resume(project, monkeypatch):
+    from scripts import capture
+
+    root, engine, scene = project
+    algorithms = ('gi', 'pt-reblur', 'pt2048')
+    write_json(root / 'recipes/algorithms.json', {'algorithms': {
+        algorithm: {'id': algorithm, 'frames': 3, 'warmup': 0} for algorithm in algorithms}})
+    golden, _ = execute(project, 'golden', extra=['--baseline-id', 'scene-batch-reference'])
+    calls = []
+
+    def shared_capture(scene, jobs, engine, **kwargs):
+        calls.append((scene['id'], tuple(recipe['id'] for recipe, _ in jobs)))
+        return {recipe['id']: good_capture(scene, recipe, engine, output) for recipe, output in jobs}
+
+    monkeypatch.setattr(capture, 'capture_scene', shared_capture)
+    monkeypatch.setattr(capture, 'capture', lambda *args, **kwargs: pytest.fail('Expected one scene batch'))
+
+    def run(*extra):
+        options = workflow.parse_options('regression', [
+            '--engine-executable', str(engine), '--golden', golden['output'], *extra], root=root)
+        return workflow.execute('regression', options, root=root,
+            prepare=lambda *args, **kwargs: {'scenes': [scene]}, thermal=lambda: {})
+
+    result, code = run()
+    assert code == 0 and calls == [('box', algorithms)]
+    assert [row['algorithm_id'] for row in result['records']] == list(algorithms)
+    output = Path(result['output'])
+    assert {path.parent.parent.name for path in output.glob('runs/*/repeat-0/attempt.json')} == {
+        f'box--{algorithm}' for algorithm in algorithms}
+    resumed, code = run('--output', str(output), '--resume')
+    assert code == 0 and resumed['summary'] == result['summary']
+    assert calls == [('box', algorithms)]
+
+
 def test_existing_golden_is_not_overwritten(project):
     execute(project, "golden", extra=["--baseline-id", "kept"])
     with pytest.raises(FileExistsError):
