@@ -17,6 +17,24 @@ def pair():
     return baseline, candidate
 
 
+@pytest.mark.parametrize(('mode', 'historical'), [('gi', 'rtxpt'), ('pt2048', 'legacy'), ('pt-reblur', 'legacy')])
+def test_retired_backend_matches_only_the_historical_default(mode, historical):
+    key = 'VISION_RESTIR_GI_BACKEND'
+    _, candidate = pair()
+    candidate['recipe'].update(id=mode, environment={'OTHER': 'same'})
+    reference = copy.deepcopy(candidate)
+    reference['recipe']['environment'][key] = historical
+    baseline = {'input_fingerprint': workflow.fingerprint(reference), 'configuration': reference['recipe']}
+    assert workflow.comparison_fingerprint(candidate, baseline) == baseline['input_fingerprint']
+    assert key not in candidate['recipe']['environment']
+    candidate['recipe']['environment']['OTHER'] = 'different'
+    assert workflow.comparison_fingerprint(candidate, baseline) != baseline['input_fingerprint']
+    candidate['recipe']['environment']['OTHER'] = 'same'
+    reference['recipe']['environment'][key] = 'unexpected'
+    baseline['input_fingerprint'] = workflow.fingerprint(reference)
+    assert workflow.comparison_fingerprint(candidate, baseline) != baseline['input_fingerprint']
+
+
 def test_different_budget_can_match_the_existing_golden_input_contract():
     baseline, candidate = pair()
     assert workflow.fingerprint(candidate) != baseline['input_fingerprint']

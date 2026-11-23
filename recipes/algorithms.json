@@ -104,7 +104,6 @@
         "REBLUR_GPU_PROFILE": "{output}/gpu.csv",
         "REBLUR_GPU_PROFILE_MODE": "dispatch",
         "REBLUR_GPU_PROFILE_DIAGNOSTICS": "{output}/gpu-diagnostics.csv",
-        "VISION_RESTIR_GI_BACKEND": "rtxpt",
         "VISION_RESTIR_PRIMARY_JITTER": "0",
         "VISION_FALCOR_DI_MODE": "pairwise",
         "VISION_GI_NEE_DIAGNOSTIC": "1x1",
@@ -225,7 +224,6 @@
         "REBLUR_GPU_PROFILE": "{output}/gpu.csv",
         "REBLUR_GPU_PROFILE_MODE": "dispatch",
         "REBLUR_GPU_PROFILE_DIAGNOSTICS": "{output}/gpu-diagnostics.csv",
-        "VISION_RESTIR_GI_BACKEND": "legacy",
         "VISION_PT_PRIMARY_JITTER": "0"
       },
       "reblur_contexts": [
@@ -340,7 +338,6 @@
         "REBLUR_GPU_PROFILE": "{output}/gpu.csv",
         "REBLUR_GPU_PROFILE_MODE": "dispatch",
         "REBLUR_GPU_PROFILE_DIAGNOSTICS": "{output}/gpu-diagnostics.csv",
-        "VISION_RESTIR_GI_BACKEND": "legacy",
         "VISION_PT_PRIMARY_JITTER": "0",
         "VISION_DISABLE_DENOISER": "1"
       },

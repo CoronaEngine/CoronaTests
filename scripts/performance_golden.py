@@ -80,6 +80,17 @@ def compact_timing(timing):
     }
 
 
+def matching_inputs(row, baseline):
+    recipe = row.get('configuration')
+    if recipe == baseline['configuration']:
+        return row.get('input_fingerprint') == baseline['input_fingerprint']
+    # The image comparison independently verified the scene and camera. Requiring
+    # the entire timing recipe here also preserves its exact frame/warmup budget.
+    return (isinstance(recipe, dict)
+            and workflow.recipe_for_golden(recipe, baseline['configuration']) == baseline['configuration']
+            and row.get('comparison_input_fingerprint') == baseline['input_fingerprint'])
+
+
 def annotate_report(report, bundle, *, is_baseline=False):
     """Attach presentation data, leaving image comparisons and verdicts intact."""
     metadata = report.setdefault('metadata', {})
@@ -106,8 +117,7 @@ def annotate_report(report, bundle, *, is_baseline=False):
             hardware = device_identity(row.get('thermal') or metadata.get('hardware'))
             if not valid_timing(current):
                 value.update(status='missing-candidate', reason='本次采集缺少完整的逐 pass 计时。')
-            elif (row.get('input_fingerprint') != baseline['input_fingerprint']
-                  or row.get('configuration') != baseline['configuration']
+            elif (not matching_inputs(row, baseline)
                   or any(current[field] != baseline['timing'][field] for field in FRAME_FIELDS)):
                 value.update(status='incomparable', reason='输入、采样或预热设置与性能 Golden 不同。')
             elif hardware is None or hardware != device_identity(bundle['hardware']):

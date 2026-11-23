@@ -49,6 +49,20 @@ def fixture():
     return report, baseline
 
 
+def test_retired_backend_requires_a_verified_input_hash_and_identical_timing_recipe():
+    report, bundle = fixture()
+    baseline = bundle['records']['room--gi']
+    baseline['configuration']['environment'] = {'VISION_RESTIR_GI_BACKEND': 'rtxpt', 'OTHER': 'same'}
+    row = report['records'][0]
+    row['configuration']['environment'] = {'OTHER': 'same'}
+    row['input_fingerprint'] = '9' * 64
+    assert not perf.matching_inputs(row, baseline)
+    row['comparison_input_fingerprint'] = baseline['input_fingerprint']
+    assert perf.matching_inputs(row, baseline)
+    row['configuration']['warmup'] -= 1
+    assert not perf.matching_inputs(row, baseline)
+
+
 def test_comparison_accepts_changed_engine_and_temperature(tmp_path):
     report, baseline = fixture()
     report['metadata']['hardware'][0]['current_temperature'] = '75 C'

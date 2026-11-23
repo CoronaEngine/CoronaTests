@@ -46,6 +46,18 @@ def fingerprint(value):
                                     ensure_ascii=False, allow_nan=False).encode("utf-8")).hexdigest()
 
 
+def recipe_for_golden(recipe, reference):
+    """Reconstruct only the retired default backend setting of a frozen recipe."""
+    key = "VISION_RESTIR_GI_BACKEND"
+    historical_backends = {"gi": "rtxpt", "pt-reblur": "legacy", "pt2048": "legacy"}
+    backend = historical_backends.get(recipe.get("id"))
+    environment = recipe.get("environment")
+    if (backend is not None and isinstance(environment, dict) and key not in environment
+            and reference.get("environment", {}).get(key) == backend):
+        return {**recipe, "environment": {**environment, key: backend}}
+    return recipe
+
+
 def comparison_fingerprint(inputs, baseline):
     """Allow sampling budgets to differ while checking every other input."""
     current = fingerprint(inputs)
@@ -54,7 +66,7 @@ def comparison_fingerprint(inputs, baseline):
     reference = baseline.get("configuration") or {}
     if "frames" not in reference or "warmup" not in reference:
         return current
-    recipe = dict(inputs["recipe"])
+    recipe = dict(recipe_for_golden(inputs["recipe"], reference))
     if recipe.get("id") == "pt2048" and recipe["frames"] != reference["frames"] and "label" in reference:
         recipe["label"] = reference["label"]
     recipe.update(frames=reference["frames"], warmup=reference["warmup"])
