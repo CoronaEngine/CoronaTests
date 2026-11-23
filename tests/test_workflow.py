@@ -177,6 +177,148 @@ def test_golden_fresh_directory_is_sealed_and_can_regress(project):
     assert (golden / "golden.json").read_text(encoding="utf-8") == json.dumps(manifest, ensure_ascii=False, indent=2, allow_nan=False) + "\n"
 
 
+def test_managed_regression_keeps_last_completed_report(project):
+    root, _, _ = project
+    managed = root / ".workspace/experiments/regression"
+    golden, _ = execute(project, "golden", extra=["--baseline-id", "reference"])
+    args = ["--golden", golden["output"]]
+    previous, _ = execute(project, "regression", extra=args)
+    unfinished = managed / "unfinished"
+    unfinished.mkdir()
+    (unfinished / "run-config.json").write_bytes((Path(previous["output"]) / "run-config.json").read_bytes())
+    external, _ = execute(project, "regression", extra=[*args, "--output", str(root / "external")])
+    assert Path(previous["output"]).is_dir()
+
+    def failed(scene, algorithm, engine, output, **kwargs):
+        return {"scene_id": scene["id"], "algorithm_id": algorithm["id"], "status": "failed",
+                "error": "fixture crash", "owned_engine_closed": True}
+
+    current, code = execute(project, "regression", extra=[*args, "--output", str(managed / "desktop-run")],
+                            capture=failed)
+    assert code == 1 and not Path(previous["output"]).exists()
+    assert (Path(current["output"]) / "index.html").is_file()
+    assert workflow.load(Path(current["output"]) / "workflow-result.json")["completed_utc"]
+    assert unfinished.is_dir() and (Path(external["output"]) / "index.html").is_file()
+
+
+def test_regression_retention_preserves_checkout_and_retries_failed_removal(project, monkeypatch, capsys):
+    import shutil
+    root, _, _ = project
+    managed = root / ".workspace/experiments/regression"
+    golden, _ = execute(project, "golden", extra=["--baseline-id", "reference"])
+    args = ["--golden", golden["output"]]
+    old, _ = execute(project, "regression", extra=args)
+    old = Path(old["output"])
+    protected = managed / "protected"
+    shutil.copytree(old, protected)
+    saved = workflow.load(protected / "workflow-result.json")
+    workflow.save(protected / "workflow-result.json", {**saved, "output": str(protected)})
+    (protected / "runs/.git").write_text("gitdir: elsewhere")
+    artifact = "progress.json"
+    real_remove = shutil.rmtree
+
+    def busy(path, *args, **kwargs):
+        if (Path(path) / artifact).is_file() and Path(path).resolve() != protected:
+            (Path(path) / "workflow-result.json").unlink()
+            raise PermissionError("file busy")
+        return real_remove(path, *args, **kwargs)
+
+    with monkeypatch.context() as patch:
+        patch.setattr(shutil, "rmtree", busy)
+        second, code = execute(project, "regression", extra=args)
+    assert code == 0 and "file busy" in capsys.readouterr().err
+    last, code = execute(project, "regression", extra=args)
+    assert code == 0 and (Path(last["output"]) / "index.html").is_file()
+    assert protected.is_dir() and not old.exists() and not Path(second["output"]).exists()
+    assert set(root.rglob(artifact)) == {protected / artifact, Path(last["output"]) / artifact}
+
+
+def test_resumed_regression_becomes_latest_only_after_report_is_written(project, monkeypatch):
+    from scripts import report
+    golden, _ = execute(project, "golden", extra=["--baseline-id", "reference"])
+    args = ["--golden", golden["output"]]
+    first, _ = execute(project, "regression", extra=args)
+    old = Path(first["output"])
+    (old / "workflow-result.json").unlink()  # interrupted before the completion marker
+    second, _ = execute(project, "regression", extra=args)
+    recent = Path(second["output"])
+    resume = [*args, "--resume", "--output", str(old)]
+
+    def failed_report(*args, **kwargs):
+        raise OSError("report write failed")
+
+    with monkeypatch.context() as patch:
+        patch.setattr(report, "write_report", failed_report)
+        with pytest.raises(OSError, match="report write failed"):
+            execute(project, "regression", extra=resume)
+    assert (recent / "index.html").is_file()
+    result, code = execute(project, "regression", extra=resume)
+    assert code == 0 and result["created_utc"] < second["created_utc"]
+    assert (old / "index.html").is_file() and not recent.exists()
+
+
+def test_regression_retention_skips_linked_and_future_runs(project):
+    import os
+    root, _, _ = project
+    golden, _ = execute(project, "golden", extra=["--baseline-id", "reference"])
+    args = ["--golden", golden["output"]]
+    first, _ = execute(project, "regression", extra=args)
+    linked = Path(first["output"])
+    original = root / "original"
+    original.write_text("external data")
+    os.link(original, linked / "runs/hard-link")
+    second, _ = execute(project, "regression", extra=args)
+    future = Path(second["output"])
+    saved = workflow.load(future / "workflow-result.json")
+    workflow.save(future / "workflow-result.json", {**saved, "completed_utc": "2099-01-01T00:00:00+00:00"})
+    execute(project, "regression", extra=args)
+    assert (linked / "runs/hard-link").read_text() == original.read_text()
+    assert (future / "index.html").is_file()
+
+
+def test_regression_retention_protects_extra_data_and_embedded_golden(project):
+    import shutil
+    golden, _ = execute(project, "golden", extra=["--baseline-id", "reference"])
+    args = ["--golden", golden["output"]]
+    first, _ = execute(project, "regression", extra=args)
+    mixed = Path(first["output"])
+    (mixed / "notes.md").write_text("manually saved")
+    second, _ = execute(project, "regression", extra=args)
+    embedded = Path(second["output"]) / "reference/custom-golden"
+    shutil.copytree(golden["output"], embedded)
+    third, _ = execute(project, "regression", extra=["--golden", str(embedded)])
+    nested = Path(third["output"]) / "runs/another-run/run-config.json"
+    write_json(nested, {"id": "nested", "contract": {"kind": "regression"}})
+    execute(project, "regression", extra=args)
+    assert (mixed / "notes.md").read_text() == "manually saved"
+    assert (embedded / "golden.json").is_file()
+    assert nested.is_file()
+
+
+def test_regression_retention_removes_readonly_reference_copy_on_windows(project):
+    import os
+    import shutil
+    import stat
+    if os.name != "nt":
+        pytest.skip("Windows read-only file attribute")
+    root, _, _ = project
+    golden, _ = execute(project, "golden", extra=["--baseline-id", "reference"])
+    args = ["--golden", golden["output"]]
+    first, _ = execute(project, "regression", extra=args)
+    original = root / "original.png"
+    original.write_bytes(b"readonly")
+    original.chmod(stat.S_IREAD)
+    copy = Path(first["output"]) / "reference/copied.png"
+    try:
+        shutil.copy2(original, copy)
+        second, code = execute(project, "regression", extra=args)
+        assert code == 0 and (Path(second["output"]) / "index.html").is_file()
+        assert not list(copy.parents[2].glob(".coronatests-retired-*"))
+        assert original.stat().st_file_attributes & stat.FILE_ATTRIBUTE_READONLY
+    finally:
+        original.chmod(stat.S_IWRITE)
+
+
 def test_full_golden_captures_each_job_once_and_retains_exactly_93_pngs(project, monkeypatch):
     from collections import Counter
     import shutil

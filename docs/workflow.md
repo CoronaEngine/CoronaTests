@@ -6,6 +6,8 @@
 
 日常使用编辑对应配置文件并保存，然后直接双击入口。`generate_golden.cmd` 使用 `config.golden.local.json`，`run_full_regression.cmd` / `run_regression.cmd` 使用 `config.regression.local.json`。两份文件的 SPP、历史帧数、预热和引擎路径各自独立。启动时无需输入参数，运行 ID 和结果目录自动生成，结束后打开已有报告并保留结果窗口。
 
+默认回归目录 `.workspace/experiments/regression/` 只保留最近一次写完报告的运行，包括比较失败的运行和 `--resume` 后写完的运行。新报告和 `workflow-result.json` 均写入后才清理旧结果。中断的运行可以继续恢复。包含独立基线、嵌套运行、链接、Git 仓库或额外顶层文件的目录会保留。需长期引用一组结果时，可用 `--output` 将它写到默认回归目录以外。文件占用导致的清理失败会在下次完成回归时重试。
+
 ## 场景准备
 
 `scenes/catalog.lock.json` 锁定 35 个场景的 URL、归档 SHA256、大小和 XML 选择。默认不抓取网页后自动改变套件；新增场景是显式修改清单和验证覆盖的动作。

@@ -480,7 +480,7 @@ def hardware_identity(observation):
 
 
 def execute(kind, options, *, root=ROOT, prepare=None, capture_job=None, thermal=None):
-    from scripts import compare, performance_golden, report, pt_policy
+    from scripts import compare, performance_golden, report, pt_policy, regression_retention
     if prepare is None:
         from scripts.download_scenes import ensure_scenes
         prepare = ensure_scenes
@@ -719,8 +719,11 @@ def execute(kind, options, *, root=ROOT, prepare=None, capture_job=None, thermal
         result["passed"] = valid
         if performance_baseline is not None:
             performance_golden.annotate_report(result, performance_baseline)
+        completed = datetime.now(timezone.utc)
+        result["completed_utc"] = completed.isoformat()
         report.write_report(output, result)
         save(output / "workflow-result.json", result)
+        regression_retention.prune(root, output, completed, options.golden)
         return result, int(not valid)
 
 
