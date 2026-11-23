@@ -263,7 +263,9 @@
       "PT_settings": {
         "min_depth": 5,
         "max_depth": 16,
-        "rr_threshold": 1
+        "rr_threshold": 1,
+        "participating_media": true,
+        "medium_diagnostics": false
       },
       "GI_settings": {
         "max_depth": 16,

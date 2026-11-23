@@ -124,6 +124,20 @@ def verify_references(source: Path, scene_directory: Path | None = None, seen: s
                 _verify_obj_dependencies(asset, seen)
 
 
+def has_authored_media(source: Path, seen: set[Path] | None = None) -> bool:
+    """Inspect the prepared Mitsuba scene and its local includes."""
+    seen = set() if seen is None else seen
+    source = source.resolve()
+    if source in seen:
+        return False
+    seen.add(source)
+    root = ET.parse(source).getroot()
+    if root.find('.//medium') is not None:
+        return True
+    return any(has_authored_media(relative_asset(source.parent, node.attrib['filename']), seen)
+               for node in root.iter('include'))
+
+
 def prepare_scene(directory: Path, entry: dict) -> Path:
     """Prepare XML in-place in a staging copy; return its local source path."""
     directory = Path(directory)

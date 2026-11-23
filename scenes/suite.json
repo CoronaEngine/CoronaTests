@@ -749,6 +749,10 @@
     "volumetric-caustic": {
       "name": "Volumetric Caustic",
       "expected_unsupported": {},
+      "pt_media_contract": {
+        "imported_media_count": 1,
+        "medium_boundary_count": 1
+      },
       "expected_diagnostics": [
         "MATERIAL_FEATURE_DEFERRED",
         "MEDIUM_DEFERRED"

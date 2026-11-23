@@ -25,8 +25,12 @@ def implementation():
     return capture
 
 
-def recipe(mode='gi'):
-    return json.loads((ROOT / 'recipes/algorithms.json').read_text())['algorithms'][mode]
+def recipe(mode='gi', *, legacy=False):
+    result = json.loads((ROOT / 'recipes/algorithms.json').read_text())['algorithms'][mode]
+    if legacy and mode == 'pt2048':
+        result['PT_settings'].pop('participating_media')
+        result['PT_settings'].pop('medium_diagnostics')
+    return result
 
 
 def test_raw_ticks_are_mapped_by_identity_and_qpc_with_four_contexts():
@@ -349,12 +353,13 @@ def test_complete_effective_settings_match_frozen_recipe(mode):
     capture = implementation()
     data = json.loads((FIXTURE / 'effective-settings.json').read_text())[mode]
     assert hasattr(capture, 'validate_effective_settings'), 'Complete effective settings audit missing'
-    capture.validate_effective_settings(data['effective_before'], recipe(mode))
-    capture.validate_effective_settings(data['effective_after'], recipe(mode))
+    expected = recipe(mode, legacy=True)
+    capture.validate_effective_settings(data['effective_before'], expected)
+    capture.validate_effective_settings(data['effective_after'], expected)
     extra = copy.deepcopy(data['effective_before'])
     extra['settings']['new_transport_default'] = 1
     with pytest.raises(ValueError, match='Effective integrator settings'):
-        capture.validate_effective_settings(extra, recipe(mode))
+        capture.validate_effective_settings(extra, expected)
 
 
 @pytest.mark.parametrize('arm', ['direct', 'indirect'])
@@ -383,7 +388,7 @@ def test_pt_adaptive_defaults_are_frozen_by_readback(key, value):
     data = json.loads((FIXTURE / 'effective-settings.json').read_text())['pt2048']['effective_before']
     data['adaptive'][key] = value
     with pytest.raises(ValueError, match='Effective integrator settings'):
-        capture.validate_effective_settings(data, recipe('pt2048'))
+        capture.validate_effective_settings(data, recipe('pt2048', legacy=True))
 
 
 def test_thermal_evidence_includes_root_driver_version(monkeypatch):

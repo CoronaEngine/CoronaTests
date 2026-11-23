@@ -59,8 +59,8 @@ def recipe_for_golden(recipe, reference):
     return recipe
 
 
-def comparison_fingerprint(inputs, baseline):
-    """Allow sampling budgets to differ while checking every other input."""
+def comparison_fingerprint(inputs, baseline, *, scene_source=None):
+    """Allow sampling budgets and the PT media toggle in verified vacuum scenes to differ."""
     current = fingerprint(inputs)
     if baseline is None or current == baseline.get("input_fingerprint"):
         return current
@@ -71,6 +71,22 @@ def comparison_fingerprint(inputs, baseline):
     if recipe.get("id") == "pt2048" and recipe["frames"] != reference["frames"] and "label" in reference:
         recipe["label"] = reference["label"]
     recipe.update(frames=reference["frames"], warmup=reference["warmup"])
+    normalized = fingerprint({**inputs, "recipe": recipe})
+    if normalized == baseline["input_fingerprint"] or recipe.get("id") != "pt2048" or scene_source is None:
+        return normalized
+    pt = recipe.get("PT_settings", {})
+    reference_pt = reference.get("PT_settings", {})
+    if (pt.get("participating_media") is not True or pt.get("medium_diagnostics") is not False
+            or reference_pt.get("participating_media", False) is not False
+            or reference_pt.get("medium_diagnostics", False) is not False
+            or recipe.get("media_contract") or reference.get("media_contract")):
+        return normalized
+    from scripts.prepare_scenes import has_authored_media
+    if has_authored_media(Path(scene_source)):
+        return normalized
+    media_settings = ("participating_media", "medium_diagnostics")
+    recipe["PT_settings"] = {key: value for key, value in pt.items() if key not in media_settings}
+    recipe["PT_settings"].update({key: reference_pt[key] for key in media_settings if key in reference_pt})
     return fingerprint({**inputs, "recipe": recipe})
 
 
@@ -619,6 +635,12 @@ def execute(kind, options, *, root=ROOT, prepare=None, capture_job=None, thermal
         for scene in scenes:
             for algorithm_id in algorithm_ids:
                 recipe = {**recipes[algorithm_id], "id": algorithm_id}
+                if algorithm_id == "pt2048" and "pt_media_contract" in scene:
+                    recipe["media_contract"] = {
+                        **scene["pt_media_contract"],
+                        "enabled": recipe["PT_settings"]["participating_media"],
+                        "diagnostics": recipe["PT_settings"]["medium_diagnostics"],
+                    }
                 inputs = {"scene_id": scene["id"], "asset_fingerprint": scene["asset_fingerprint"], "recipe": recipe,
                           "regions": scene.get("regions", {}),
                           "expected_diagnostics": scene.get("expected_diagnostics", []),
@@ -629,7 +651,8 @@ def execute(kind, options, *, root=ROOT, prepare=None, capture_job=None, thermal
                     inputs["camera"] = camera_data.get("scenes", camera_data.get("cameras", camera_data)).get(scene["id"])
                 jobs.append((scene, recipe, fingerprint(inputs)))
                 job_id = scene["id"] + "--" + algorithm_id
-                comparison_inputs[job_id] = comparison_fingerprint(inputs, golden_by_id.get(job_id))
+                comparison_inputs[job_id] = comparison_fingerprint(inputs, golden_by_id.get(job_id),
+                                                                    scene_source=scene["source"])
         batch_contract = {"kind": kind, "suite": options.suite, "selected": selected, "algorithms": algorithm_ids,
                           "engine_fingerprint": engine_fingerprint, "tools": tool_hashes,
                           "runtime_dirs": [str(path) for path in options.runtime_dir],

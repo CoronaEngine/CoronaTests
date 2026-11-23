@@ -326,8 +326,10 @@ def test_full_golden_captures_each_job_once_and_retains_exactly_93_pngs(project,
     root, engine, source = project
     suite = workflow.load(workflow.ROOT / 'scenes/suite.json')
     write_json(root / 'scenes/suite.json', suite)
-    write_json(root / 'recipes/algorithms.json', {'schema': 1, 'algorithms': {
-        name: {'id': name, 'frames': 3, 'warmup': 0} for name in ('gi', 'pt-reblur', 'pt2048')}})
+    recipes = workflow.load(workflow.ROOT / 'recipes/algorithms.json')
+    for recipe in recipes['algorithms'].values():
+        recipe.update(frames=3, warmup=0)
+    write_json(root / 'recipes/algorithms.json', recipes)
     prepared = [{**source, 'id': name} for name in suite['full']]
     template = root / 'capture-template'
     good_capture(source, {'id': 'pt2048'}, engine, template)
@@ -335,6 +337,12 @@ def test_full_golden_captures_each_job_once_and_retains_exactly_93_pngs(project,
     def capture(scene, algorithm, executable, output, **kwargs):
         job = scene['id'] + '--' + algorithm['id']
         calls[job] += 1
+        assert algorithm['PT_settings'].get('participating_media', False) is (algorithm['id'] == 'pt2048')
+        if job == 'volumetric-caustic--pt2048':
+            assert algorithm['media_contract'] == {'enabled': True, 'diagnostics': False,
+                                                   'imported_media_count': 1, 'medium_boundary_count': 1}
+        else:
+            assert 'media_contract' not in algorithm
         output.mkdir(parents=True)
         record = {'scene_id': scene['id'], 'algorithm_id': algorithm['id'],
                   'configuration': dict(algorithm), 'owned_engine_closed': True}

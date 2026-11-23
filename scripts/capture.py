@@ -97,12 +97,93 @@ def matches_float32(actual, expected):
     return actual == expected
 
 
+MEDIA_TELEMETRY = ('imported_media_count', 'medium_boundary_count', 'media_enabled')
+
+
+def normalize_integrator_media(settings, recipe):
+    """Remove only audited telemetry and disabled defaults from the frozen schema."""
+    require(isinstance(settings, dict), 'Effective integrator settings must be an object')
+    settings = dict(settings)
+    contract = recipe.get('media_contract')
+    expected = recipe['GI_settings'] if recipe['id'] == 'gi' else recipe['PT_settings']
+    media_enabled = expected.get('participating_media', False)
+    if contract:
+        require(all(type(recipe['PT_settings'].get(key)) is bool
+                    for key in ('participating_media', 'medium_diagnostics')),
+                'Media capture requires explicit participating_media and medium_diagnostics settings')
+        require(recipe['PT_settings']['participating_media'] is contract['enabled'] and
+                recipe['PT_settings']['medium_diagnostics'] is contract['diagnostics'],
+                'Explicit PT media request differs from capture contract')
+        require(recipe['id'] == 'pt2048' or not contract['enabled'], 'Realtime media capture must be disabled')
+    for key in ('participating_media', 'medium_diagnostics'):
+        if key in settings:
+            require(type(settings[key]) is bool, 'Effective media setting must be boolean: ' + key)
+            if key not in expected:
+                require(settings.pop(key) is False, 'Unexpected enabled media default: ' + key)
+    present = set(MEDIA_TELEMETRY).intersection(settings)
+    require(not present or present == set(MEDIA_TELEMETRY), 'Incomplete effective media telemetry')
+    if present:
+        for key in MEDIA_TELEMETRY[:2]:
+            require(type(settings[key]) is int and settings[key] >= 0, 'Invalid effective media count: ' + key)
+        require(type(settings['media_enabled']) is bool, 'Invalid effective media_enabled')
+        require(settings['media_enabled'] is media_enabled, 'Effective media policy differs')
+        if contract:
+            require(all(settings[key] == contract[key] for key in MEDIA_TELEMETRY[:2]),
+                    'Effective imported media/boundary counts differ')
+        for key in MEDIA_TELEMETRY:
+            settings.pop(key)
+    else:
+        require(not (contract or media_enabled), 'Media capture requires actual effective media telemetry')
+    if 'medium_diagnostics_state' in settings:
+        state = settings.pop('medium_diagnostics_state')
+        require(isinstance(state, dict) and set(state) ==
+                {'instrumentation', 'boundary_crossings', 'scattering_events', 'sampled_frames'},
+                'Invalid medium diagnostics schema')
+        require(type(state['instrumentation']) is bool and all(type(state[key]) is int and state[key] >= 0
+                for key in ('boundary_crossings', 'scattering_events', 'sampled_frames')), 'Invalid medium diagnostics values')
+        require(state['instrumentation'] is (contract['diagnostics'] if contract else False),
+                'Actual medium instrumentation differs')
+        if not state['instrumentation']:
+            require(state['boundary_crossings'] == state['scattering_events'] == state['sampled_frames'] == 0,
+                    'Disabled medium instrumentation reported samples')
+    elif (contract or media_enabled) and recipe['id'] != 'gi':
+        require(False, 'Media capture requires actual PT diagnostic state')
+    return settings
+
+
 def validate_effective_settings(actual, recipe):
-    """Freeze the complete effective API response, including inherited defaults."""
+    """Freeze all settings while explicitly auditing known media feedback additions."""
     expected = {'ready': True, 'settings': recipe['GI_settings'] if recipe['id'] == 'gi' else recipe['PT_settings']}
     if recipe['id'] != 'gi':
         expected['adaptive'] = recipe['PT_adaptive']
+    actual = dict(actual)
+    raw = actual.pop('effective', None)
+    requested = actual.pop('requested', None)
+    actual['settings'] = normalize_integrator_media(actual.get('settings'), recipe)
+    if requested is not None:
+        require(matches_float32(requested, recipe['PT_settings']), 'Requested PT settings differ from frozen recipe')
     require(matches_float32(actual, expected), 'Effective integrator settings differ from complete frozen recipe: ' + json.dumps(actual))
+    if raw is not None:
+        require(isinstance(raw, dict), 'Raw effective PT settings must be an object')
+        raw = dict(raw)
+        adaptive = raw.pop('adaptive', None)
+        normalized = {'ready': actual['ready'], 'settings': normalize_integrator_media(raw, recipe), 'adaptive': adaptive}
+        require(matches_float32(normalized, expected), 'Raw effective integrator settings differ from complete frozen recipe')
+    return actual
+
+
+def validate_media_capture(actual, recipe):
+    validate_effective_settings(actual, recipe)
+    contract = recipe.get('media_contract')
+    if not contract:
+        return None
+    settings = actual.get('effective', actual['settings'])
+    state = settings.get('medium_diagnostics_state', {})
+    if contract['diagnostics']:
+        require(state.get('boundary_crossings', 0) > 0, 'No actual medium boundary crossings recorded')
+        require(state.get('scattering_events', 0) > 0, 'No actual medium scattering events recorded')
+        require(state.get('sampled_frames') == recipe['frames'], 'Medium diagnostic sampled frame count differs')
+    return {key: settings[key] for key in MEDIA_TELEMETRY} | state
 
 
 def validate_context_evolution(before, after, parent):
@@ -442,6 +523,29 @@ def screenshot(session, route, identity, output, frames, timeout):
     return session.api('SceneTools.save_screenshot', [route, str(output / 'image.png'), identity, {'render_frames': frames, 'warmup_frames': 0, 'timings_path': str(output / 'frames.csv'), 'timeout_seconds': timeout}], timeout + 20)
 
 
+def integrator_configuration_operations(recipe, route, identity):
+    integrator = 'restir' if recipe['id'] == 'gi' else 'pt'
+    settings = recipe['GI_settings'] if recipe['id'] == 'gi' else recipe['PT_settings']
+    operations = []
+    if recipe.get('media_contract') and integrator == 'restir':
+        operations.append(('set_pt_settings', [route, identity, recipe['PT_settings']],
+                           {'vision_pt_settings': recipe['PT_settings']}))
+    operations.append((f'set_{integrator}_settings', [route, identity, settings],
+                       {f'vision_{integrator}_settings': settings}))
+    return operations
+
+
+def read_capture_effective(session, method, route, identity, recipe, timeout):
+    def ready(value):
+        if value.get('ready') is not True:
+            return False
+        if recipe.get('media_contract', {}).get('diagnostics'):
+            state = value.get('effective', value.get('settings', {})).get('medium_diagnostics_state', {})
+            return state.get('sampled_frames') == recipe['frames']
+        return True
+    return session.until(method, [route, identity], ready, timeout)
+
+
 def open_scene(session, scene, record, timeout):
     session.evaluate(VIEWPORT_GATE)
     session.until('ProjectLauncher.get_project_load_status', [], lambda v: v.get('archive_service_ready'), timeout)
@@ -472,6 +576,17 @@ def open_scene(session, scene, record, timeout):
 
 def configure_mode(session, scene, recipe, output, record, timeout, *, initialize_view):
     route, identity = record['route'], record['camera_id']
+    if recipe.get('media_contract'):
+        snapshot = session.api('SceneTools.get_scene_snapshot', [route])
+        record['scene_snapshot'] = snapshot
+        record['authored_media'] = snapshot.get('media')
+        require(isinstance(record['authored_media'], dict) and record['authored_media'].get('schema') == 1,
+                'Imported scene did not preserve authored media')
+        require(len(record['authored_media'].get('mediums', [])) == recipe['media_contract']['imported_media_count'],
+                'Imported medium definition count differs')
+        require(len(record['authored_media'].get('boundaries', [])) == 1, 'Imported null boundary count differs')
+        require(not any(d.get('code') == 'MEDIUM_DEFERRED' for d in record['load'].get('diagnostics', [])),
+                'Supported medium was deferred during import')
     expected = dict(record['source_camera_numeric'])
     def camera():
         return session.until('SceneTools.list_camera_views', [route], lambda v: len(v.get('cameras', [])) == 1 and (v['cameras'][0].get('camera_id') or v['cameras'][0].get('id')) == identity and subset_equal(v['cameras'][0], expected), timeout)['cameras'][0]
@@ -487,8 +602,8 @@ def configure_mode(session, scene, recipe, output, record, timeout, *, initializ
         ('update_camera_view', [route, identity, {'width': recipe['resolution'][0], 'height': recipe['resolution'][1]}], {'width': recipe['resolution'][0], 'height': recipe['resolution'][1]}),
     ]
     integrator = 'restir' if recipe['id'] == 'gi' else 'pt'
-    settings = recipe['GI_settings'] if recipe['id'] == 'gi' else recipe['PT_settings']
-    operations.extend([(f'set_{integrator}_settings', [route, identity, settings], {f'vision_{integrator}_settings': settings}), ('set_reblur_settings', [route, identity, recipe['reblur']], {'vision_reblur_settings': recipe['reblur']})])
+    operations.extend(integrator_configuration_operations(recipe, route, identity))
+    operations.append(('set_reblur_settings', [route, identity, recipe['reblur']], {'vision_reblur_settings': recipe['reblur']}))
     for method, args, fields in operations:
         session.api('SceneTools.' + method, args)
         expected.update(fields)
@@ -738,11 +853,18 @@ def capture_image(session, configured, recipe, output, record, timeout):
     validate_png(output / 'image.png', recipe['resolution'])
     validate_frames(output, recipe['frames'], recipe['denoise'])
     record['camera_after'] = camera()
-    record['effective_after'] = session.api(method, [route, identity])
+    record['effective_after'] = read_capture_effective(session, method, route, identity, recipe, timeout)
     validate_effective_settings(record['effective_after'], recipe)
+    if recipe.get('media_contract'):
+        record['media_evidence'] = validate_media_capture(record['effective_after'], recipe)
+        record['instrumented_timing'] = recipe['media_contract']['diagnostics']
+        record['timing_scope'] = ('Media instrumentation enabled; elapsed time is diagnostic evidence and is not a performance baseline'
+                                  if record['instrumented_timing'] else 'Medium instrumentation disabled')
     record['effective_reblur_after'] = session.api('SceneTools.get_reblur_settings', [route, identity])
     record['environment_after'] = session.api('SceneTools.get_environment', [route])
-    require(record['camera_before'] == record['camera_after'] and record['effective_before'] == record['effective_after'], 'Camera/integrator settings changed during capture')
+    require(record['camera_before'] == record['camera_after'] and
+            validate_effective_settings(record['effective_before'], recipe) ==
+            validate_effective_settings(record['effective_after'], recipe), 'Camera/integrator settings changed during capture')
     require(record['environment_before'] == record['environment_after'], 'Scene environment changed during capture')
     if recipe['id'] == 'gi':
         record['actual_context_lifecycle'] = validate_context_evolution(record['effective_reblur_before'], record['effective_reblur_after'], recipe['reblur'])

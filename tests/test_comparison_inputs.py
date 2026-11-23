@@ -65,3 +65,15 @@ def test_missing_reference_configuration_cannot_authorize_different_budgets():
     baseline, candidate = pair()
     baseline.pop('configuration')
     assert workflow.comparison_fingerprint(candidate, baseline) != baseline['input_fingerprint']
+
+
+@pytest.mark.parametrize('authored_media', [False, True])
+def test_default_pt_media_can_use_a_legacy_golden_only_for_a_vacuum_scene(tmp_path, authored_media):
+    source = tmp_path / 'scene.xml'
+    source.write_text('<scene><include filename="part.xml"/></scene>', encoding='utf-8')
+    (tmp_path / 'part.xml').write_text(
+        '<scene><medium type="homogeneous"/></scene>' if authored_media else '<scene/>', encoding='utf-8')
+    baseline, candidate = pair()
+    candidate['recipe']['PT_settings'].update(participating_media=True, medium_diagnostics=False)
+    actual = workflow.comparison_fingerprint(candidate, baseline, scene_source=source)
+    assert (actual == baseline['input_fingerprint']) is not authored_media
